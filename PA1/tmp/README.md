@@ -1,3 +1,1 @@
-I think this is needed to preserve the directory without having to include the files inside of it.
-
-it is!! 
+Using a README.md in this directory forces github to preserve said directory, while still avoiding all the files that we put in here. Essentially giving us an empty directory to test things in! 
