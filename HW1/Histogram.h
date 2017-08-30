@@ -5,6 +5,8 @@
  */
 
 #include<iostream>
+using std::cerr;
+using std::endl;
 #include<fstream>
 using std::istream;
 using std::ostream;
@@ -18,22 +20,24 @@ using std::vector;
  * totals and output said counts to the console. 
  */
 class Histogram {
-	public:
-		/// Constructor defaults to an empty container
-		Histogram(vector<int> h) : histogram(h) {}
+public:
+	/// Constructor defaults to an zero filled vector of size() 20 
+	Histogram() : histogram(20, 0) {}
+	Histogram(vector<int> h) : histogram(h) {}
 
-		/* simple accessors */
-		/// Retrieve the totals from the buckets
-		inline int total(const int position) const {return histogram[position];}
-		bool Write(ostream& ostr) const;
+	/* simple accessors */
+	/// Retrieve the totals from the buckets
+	inline int Total(int index) const {return histogram.at(index);}	// .at() checks bounds! 
+	inline vector<int>& GetHist() {return histogram;}	
+	bool Write(ostream& ostr, vector<int>& histogram) const;
 
-		/* Mutators */
-		inline void SetTotal(const int newValue, const int position) {histogram[position] = newValue;}
-		bool Read(istream& istr);
+	/* Mutators */
+	inline void SetTotal(const int newValue, const int position) {histogram[position] = newValue;}
+	bool Read(istream& istr, vector<int>& histogram);
 
-	Private:
+private:
 
-		vector<int> histogram;	/// the totals of each int 0-19
+	vector<int> histogram;	/// the totals of each int 0-19
 };
 
 #endif // HISTOGRAM_H_INCLUDE
