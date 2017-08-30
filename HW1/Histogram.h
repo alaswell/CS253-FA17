@@ -8,6 +8,8 @@
 #include<fstream>
 using std::istream;
 using std::ostream;
+#include<vector>
+using std::vector;
 
 /*! \brief An integer histogram for simple counting (currently)
  *
@@ -17,8 +19,8 @@ using std::ostream;
  */
 class Histogram {
 	public:
-		/// Constructor defaults all buckets to 0
-		Histogram(int initialHist[20] = 0) : histogram(initialHist) {}
+		/// Constructor defaults to an empty container
+		Histogram(vector<int> h) : histogram(h) {}
 
 		/* simple accessors */
 		/// Retrieve the totals from the buckets
@@ -31,7 +33,7 @@ class Histogram {
 
 	Private:
 
-		int histogram[20];	/// the totals of each int 1-20
+		vector<int> histogram;	/// the totals of each int 0-19
 };
 
 #endif // HISTOGRAM_H_INCLUDE
