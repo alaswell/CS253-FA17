@@ -30,8 +30,7 @@ int main(int argc, char** argv)
 
   if (!h1.Write(cout, h1.GetHist())) return Usage(argv[0], "Write()");
   
-  cout << endl;	// flush the buffer!! 
-  istr.close();	// close the ifstream
+  istr.close();
 
   return 0;
 }

@@ -22,8 +22,8 @@ using std::vector;
 class Histogram {
 public:
 	/// Constructor defaults to an zero filled vector of size() 20 
-//	Histogram() : histogram(20, 0) {}
-	Histogram(vector<int> h = {20, 0}) : histogram(h) {}
+	Histogram() : histogram(20, 0) {}
+	Histogram(vector<int> h) : histogram(h) {}
 
 	/* simple accessors */
 	/// Retrieve the totals from the buckets
