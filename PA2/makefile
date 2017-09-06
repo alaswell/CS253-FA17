@@ -16,4 +16,4 @@ clean:
 	rm -rf *.o exec1
 
 tar: 
-	tar -cvf PA1.tar *.cpp *.h makefile
+	tar -cvf PA2.tar *.cpp *.h makefile
