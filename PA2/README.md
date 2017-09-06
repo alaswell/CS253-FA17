@@ -1,6 +1,9 @@
 Programming Assignment #2
+
 CS253, Fall 2017
+
 Due: Tuesday, Sept. 12th
+
 “Counting Words”
 
 Motivation
