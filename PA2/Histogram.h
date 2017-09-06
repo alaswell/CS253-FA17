@@ -30,20 +30,18 @@ public:
 	Histogram(vector<string> h) : histogram(h) {}
 
 	/* simple accessors */
-	/// Retrieve the totals from the buckets
-	//inline int Total(int index) const {return histogram.at(index);}	// .at() checks bounds! 
 	inline vector<string>& GetHist() {return histogram;}	
 	inline map<string, int>& GetMap() {return key_value_map;}
 	bool Write(ostream& ostr, map<string, int>& kvm) const;
 
 	/* Mutators */
-	inline void SetTotal(string newValue, const int position) {histogram[position] = newValue;}
-	bool Eval(Histogram& Hist);
+	inline void SetString(string newValue, const int position) {histogram[position] = newValue;}
+	void Eval(Histogram& Hist);
 	bool Read(istream& istr, vector<string>& histogram);
 
 private:
 
-	vector<string> histogram;	/// the strings exaclty as they are read in 
+	vector<string> histogram;	/// the strings exactly as they are read in 
 	map<string, int> key_value_map;		/// string_count_map containing number of times said string appears
 };
 
