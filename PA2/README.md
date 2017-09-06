@@ -61,8 +61,7 @@ Hints
 • Never trust a file or a user. There are fewer possible error cases this week, but there are
 some!
 • Lexicographic order is the order used by the compare method of the string class.
-• There are many useful pre-defined character functions in C++. Isspace() is one of them.
-They may be useful in the current assignment, they definitely will be useful in future
+• There are many useful pre-defined character functions in C++. Isspace() is one of them. They may be useful in the current assignment, they definitely will be useful in future
 assignments.
 • Note that we are not grading on efficiency (yet). Nonetheless, your program should run in
 O(n log(n)) time (assuming you use an O(n log(n)) sort algorithm).
