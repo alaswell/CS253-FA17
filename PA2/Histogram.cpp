@@ -25,7 +25,7 @@ bool Histogram::Read (istream& istr, vector<string>& histogram)
 
 	// store all the words in the file in a single vector
 	while(istr >> word) {
-		if(empty) empty = false;	// there is at least one integer in the file
+		if(empty) empty = false;	// there is at least one string in the file
 		histogram.push_back(word);
 	}
 

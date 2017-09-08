@@ -11,8 +11,8 @@ int Usage(char* arg0, const char* location)
 {
   cout << "Usage: " << arg0 << " filename" << endl;
   cout << "where file contains 1 or more values" << endl;
-  cout << "where every value is an integer between 0 and 19" << endl;
-  cout << "The integers should be separated by white space." << endl;
+  cout << "where every value is a string" << endl;
+  cout << "The strings should be separated by white space." << endl;
   cout << location << endl;
   return -1;
 }

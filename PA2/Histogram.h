@@ -17,7 +17,7 @@ using std::string;
 #include<map>
 using std::map;
 
-/*! \brief An integer histogram for simple counting (currently)
+/*! \brief A string histogram for simple counting (currently)
  *
  * A class for counting the instances of strings from a file. 
  * This class currently does nothing more than count totals
