@@ -1,19 +1,22 @@
 # CS253 Program makefile
 
+PNAME = PA2
 CC = g++
-INCLUDE = -g -c -Wall -I.
+CFLAGS = -g -c -Wall -I.
+LFLAGS =-o $(PNAME)
 
 exec: main.o Histogram.o
-	$(CC) main.o Histogram.o -o exec
+	$(CC) main.o Histogram.o $(LFLAGS)
 
 main.o: main.cpp Histogram.h
-	$(CC) $(INCLUDE) main.cpp
+	$(CC) $(CFLAGS) main.cpp
 
 Histogram.o: Histogram.cpp Histogram.h
-	$(CC) $(INCLUDE) Histogram.cpp
+	$(CC) $(CFLAGS) Histogram.cpp
 
 clean: 
-	rm -rf *.o exec 
+	rm -f *.o 
+	rm -f $(PNAME)
 
 tar:
-	cd ../ && tar -cvf PA2/PA2.tar PA2/*.cpp PA2/*.h PA2/makefile
+	cd ../ && tar -cvf $(PNAME)/$(PNAME).tar $(PNAME)/*.cpp $(PNAME)/*.h $(PNAME)/makefile
