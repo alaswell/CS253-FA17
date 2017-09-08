@@ -4,7 +4,7 @@ CC = g++
 INCLUDE = -g -c -Wall -I.
 
 exec: main.o Histogram.o
-	$(CC) main.o Histogram.o -o exec1
+	$(CC) main.o Histogram.o -o exec
 
 main.o: main.cpp Histogram.h
 	$(CC) $(INCLUDE) main.cpp
@@ -13,7 +13,7 @@ Histogram.o: Histogram.cpp Histogram.h
 	$(CC) $(INCLUDE) Histogram.cpp
 
 clean: 
-	rm -rf *.o exec1
+	rm -rf *.o exec 
 
-tar: 
-	tar -cvf PA2.tar *.cpp *.h makefile
+tar:
+	cd ../ && tar -cvf PA2/PA2.tar PA2/*.cpp PA2/*.h PA2/makefile
