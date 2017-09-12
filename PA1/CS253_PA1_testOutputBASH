@@ -1,0 +1,170 @@
+[lexicon@lexicondesigns ~]$ cd workspace/
+[lexicon@lexicondesigns workspace]$ ls
+Alex-Laswell-CS155  Alex-Laswell-CS475
+Alex-Laswell-CS253  stencil_2D_data_tables.ods
+[lexicon@lexicondesigns workspace]$ cd Alex-Laswell-CS253/
+[lexicon@lexicondesigns Alex-Laswell-CS253]$ ls
+PA1  PA2  README.md  Util
+[lexicon@lexicondesigns Alex-Laswell-CS253]$ cd PA2
+[lexicon@lexicondesigns PA2]$ ls
+alaswell@baton-rouge.cs.colostate.edu  testEmpty.txt
+Histogram.cpp                          testGiven.txt
+Histogram.h                            testNotWhite.txt
+main.cpp                               testOneHundredOnes.txt
+makefile                               testRetun.txt
+PA2.tar                                testRNG20k.txt
+pg1524.txt                             testRNG.txt
+README.md                              testSciNotation.txt
+results.txt                            testTab.txt
+test00001.txt                          tmp
+testAs.txt                             url
+[lexicon@lexicondesigns PA2]$ vim Histogram.cpp
+[lexicon@lexicondesigns PA2]$ cd ../
+[lexicon@lexicondesigns Alex-Laswell-CS253]$ mkdir tmp
+[lexicon@lexicondesigns Alex-Laswell-CS253]$ cd tmp                                                                                                                                                                
+[lexicon@lexicondesigns tmp]$ ls                                                                                                                                                                                   
+[lexicon@lexicondesigns tmp]$ mv ~/Downloads/PA1.tar ./
+[lexicon@lexicondesigns tmp]$ ls                                                                                                                                                                                   
+PA1.tar                                                                                                                                                                                                            
+[lexicon@lexicondesigns tmp]$ tar -xvf PA1.tar                                                                                                                                                                     
+Histogram.cpp                                                                                                                                                                                                      
+main.cpp                                                                                                                                                                                                           
+Histogram.h                                                                                                                                                                                                        
+makefile                                                                                                                                                                                                           
+[lexicon@lexicondesigns tmp]$ make                                                                                                                                                                                 
+g++ -g -c -Wall -I. main.cpp                                                                                                                                                                                       
+g++ -g -c -Wall -I. Histogram.cpp                                                                                                                                                                                  
+g++ main.o Histogram.o -o exec1                                                                                                                                                                                    
+[lexicon@lexicondesigns tmp]$ ls                                                                                                                                                                                   
+exec1  Histogram.cpp  Histogram.h  Histogram.o  Input  main.cpp  main.o  makefile  Output  PA1.tar                                                                                                                 
+[lexicon@lexicondesigns tmp]$ ls Input/                                                                                                                                                                            
+invalid2  invalid3  invalid4  invalid5  invalid6  valid1  valid2  valid3  valid4                                                                                                                                   
+[lexicon@lexicondesigns tmp]$ ./exec1 Input/invalid2
+Error Histogram.Read() : Empty file                                                                                                                                                                                
+Usage: ./exec1 filename                                                                                                                                                                                            
+where file contains 1 or more values                                                                                                                                                                               
+where every value is an integer between 0 and 19                                                                                                                                                                   
+The integers should be separated by white space.                                                                                                                                                                   
+Read()                                                                                                                                                                                                             
+[lexicon@lexicondesigns tmp]$ ./exec1 Input/invalid3
+Error Message Histogram.Read() : Integer out of range '-18'                                                                                                                                                        
+Usage: ./exec1 filename                                                                                                                                                                                            
+where file contains 1 or more values                                                                                                                                                                               
+where every value is an integer between 0 and 19
+The integers should be separated by white space.
+Read()
+[lexicon@lexicondesigns tmp]$ ./exec1 Input/invalid4
+Error Message Histogram.Read() : Integer out of range '20'
+Usage: ./exec1 filename
+where file contains 1 or more values
+where every value is an integer between 0 and 19
+The integers should be separated by white space.
+Read()
+[lexicon@lexicondesigns tmp]$ ./exec1 Input/invalid5
+Error Histogram.Read() : File contents are invalid.
+Usage: ./exec1 filename
+where file contains 1 or more values
+where every value is an integer between 0 and 19
+The integers should be separated by white space.
+Read()
+[lexicon@lexicondesigns tmp]$ ./exec1 Input/invalid6
+Error Histogram.Read() : File contents are invalid.
+Usage: ./exec1 filename
+where file contains 1 or more values
+where every value is an integer between 0 and 19
+The integers should be separated by white space.
+Read()
+[lexicon@lexicondesigns tmp]$ ./exec1 Input/valid1
+0 52
+1 45
+2 60
+3 44
+4 49
+5 38
+6 57
+7 41
+8 39
+9 54
+10 47
+11 37
+12 60
+13 61
+14 62
+15 53
+16 51
+17 50
+18 48
+19 52
+
+[lexicon@lexicondesigns tmp]$ ./exec1 Input/valid2
+0 0
+1 0
+2 0
+3 0
+4 0
+5 0
+6 0
+7 0
+8 1
+9 0
+10 0
+11 0
+12 0
+13 0
+14 0
+15 0
+16 0
+17 0
+18 0
+19 0
+
+[lexicon@lexicondesigns tmp]$ ./exec1 Input/valid2 | diff Output/valid2_output.txt 
+diff: missing operand after 'Output/valid2_output.txt'
+diff: Try 'diff --help' for more information.
+[lexicon@lexicondesigns tmp]$ ./exec1 Input/valid3
+0 0
+1 0
+2 0
+3 0
+4 0
+5 0
+6 0
+7 0
+8 0
+9 0
+10 0
+11 0
+12 1
+13 0
+14 0
+15 0
+16 0
+17 0
+18 0
+19 0
+
+[lexicon@lexicondesigns tmp]$ ./exec1 Input/valid4
+0 0
+1 0
+2 0
+3 0
+4 0
+5 0
+6 0
+7 0
+8 0
+9 0
+10 0
+11 0
+12 0
+13 0
+14 0
+15 0
+16 0
+17 2000
+18 0
+19 0
+
+[lexicon@lexicondesigns tmp]$ vim Histogram.h
+[lexicon@lexicondesigns tmp]$ vim main.cpp 
+[lexicon@lexicondesigns tmp]$ 
