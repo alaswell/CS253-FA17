@@ -2,6 +2,7 @@
 #include <Histogram.h>
 #include <iostream>
 using std::cout;
+using std::cerr;
 using std::endl;
 #include <fstream>
 using std::ifstream;
@@ -9,11 +10,11 @@ using std::ifstream;
 /// Print the correct usage in case of user syntax error.
 int Usage(char* arg0, const char* location)
 {
-  cout << "Usage: " << arg0 << " filename" << endl;
-  cout << "where file contains 1 or more values" << endl;
-  cout << "where every value is a string" << endl;
-  cout << "The strings should be separated by white space." << endl;
-  cout << location << endl;
+  cerr << "Usage: " << arg0 << " filename" << endl;
+  cerr << "where file contains 1 or more values" << endl;
+  cerr << "where every value is a string" << endl;
+  cerr << "The strings should be separated by white space." << endl;
+  cerr << location << endl;
   return -1;
 }
 
