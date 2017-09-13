@@ -25,6 +25,19 @@ bool Histogram::Read (istream& istr, vector<string>& histogram)
 
 	// store all the words in the file in a single vector
 	while(istr >> word) {
+		for(unsigned int i = 0; i < word.length(); i++) {
+			// for every char in word check if it is punctuation
+			if(ispunct(word[i])) {
+				//split the string 
+				histogram.push_back(word.substr(0,i+1));	// parse out the word before the punct
+				word = word.substr(i);			// eat
+				i = 0;					// reset counter
+				while(ispunct(word[i+1])) i++; 		// eat until no more punctuation in substr
+				histogram.push_back(word.substr(0,i+1));	// parse out the punctuation as a word
+				word = word.substr(i+1);			// eat
+				i = 0;					// reset counter again
+			}
+		}
 		if(empty) empty = false;	// there is at least one string in the file
 		histogram.push_back(word);
 	}
