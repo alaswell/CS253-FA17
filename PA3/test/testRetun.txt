@@ -1,0 +1,7 @@
+newline
+deliniated
+words
+will
+still
+work
+still. 
