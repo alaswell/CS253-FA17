@@ -1,0 +1,6 @@
+early return eof
+semicolon while
+extra read
+valid3 fix
+remove is eof
+add invalid check
