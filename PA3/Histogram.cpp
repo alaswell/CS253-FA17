@@ -27,15 +27,42 @@ bool Histogram::Read (istream& istr, vector<string>& histogram)
 	while(istr >> word) {
 		for(unsigned int i = 0; i < word.length(); i++) {
 			// for every char in word check if it is punctuation
-			if(ispunct(word[i])) {
-				//split the string 
-				histogram.push_back(word.substr(0,i+1));	// parse out the word before the punct
-				word = word.substr(i);			// eat
-				i = 0;					// reset counter
-				while(ispunct(word[i+1])) i++; 		// eat until no more punctuation in substr
-				histogram.push_back(word.substr(0,i+1));	// parse out the punctuation as a word
-				word = word.substr(i+1);			// eat
-				i = 0;					// reset counter again
+			if(ispunct(word.at(i))) {
+				// found punctuation
+
+				// EXCEPTIONS : see Assignment3.pdf
+				if(word.at(i) == '\'') break;	// apostrophes don't count
+				if(word.at(i) == ',') 
+					if(i != 0 && (isdigit(word.at(i-1) && isdigit(word.at(i+1)))))
+						break;		// numbers don't count
+				if(word.at(i) == '.') {
+					if(isdigit(word.at(i+1)) || (i == 0 || isdigit(word.at(i-1))))
+						break;		// periods only count in certain instances
+				}
+					
+				// not an exception
+				// so we parse the string
+				
+				if(i != 0) {
+					// there is a word before the punctuation char
+					//start by adding the part we know is a word
+					histogram.push_back(word.substr(0,i));	// What...?!Oops! would add "What" to hist
+					word = word.substr(i);			// What...?!Oops! => ...?!Oops!
+					i = 0;	// reset i b/c the word changed
+				}
+
+				if(word.length() == 1) break;	// just one single punct char before the next space 
+
+				// while there is more punctuation
+				// increment the counter so we can eat this string
+				unsigned int j = 1;
+				while(ispunct(word.at(j))) {
+					if(word.at(j == '\'')) break;	// apostrophes don't count
+					j++;	// eat
+				}
+				histogram.push_back(word.substr(0,j));	// ...?!Oops! adds "...?!" to hist
+				word = word.substr(j);			// ...?!Oops! => Oops!
+				i = 0;	// reset i becuase the word has changed
 			}
 		}
 		if(empty) empty = false;	// there is at least one string in the file
