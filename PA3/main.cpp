@@ -28,6 +28,7 @@ int main(int argc, char** argv)
 
   Histogram h1;
   if (!h1.Read(istr, h1.GetHist())) return Usage(argv[0], "Read()");
+  h1.findCapitals(h1.GetHist());
   h1.Eval(h1);
 
   if (!h1.Write(cout, h1.GetMap())) return Usage(argv[0], "Write()");

@@ -38,6 +38,8 @@ public:
 	inline void SetString(string newValue, const int position) {histogram[position] = newValue;}
 	void Eval(Histogram& Hist);
 	bool Read(istream& istr, vector<string>& histogram);
+	string parsePunctuation(string word, vector<string>& histogram);
+	void findCapitals(vector<string>& histogram);
 
 private:
 

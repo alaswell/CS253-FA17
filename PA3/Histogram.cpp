@@ -18,55 +18,73 @@ void Histogram::Eval (Histogram& Hist) {
 /// Any other format causes the input stream to fail.
 bool Histogram::Read (istream& istr, vector<string>& histogram) 
 {
-	string word;	// temp var for holding the word
-	bool empty = true;	// the vector starts out empty 
+	string word;			// temp var for holding the word
+	bool empty = true;		// the vector starts out empty 
+	bool punctADD = false;		// flag for added inside loop
+	bool punctFnd = false;		// flag for if punctuation was found
 
 	if(istr.fail()) return false;	// input file did not open correctly
 
 	// store all the words in the file in a single vector
 	while(istr >> word) {
+		if(empty) empty = false;		// there is at least one string in the file
+		if(punctADD) punctADD = false;		// reset this flag
+		if(punctFnd) punctFnd = false;		// reset this flag
+
 		for(unsigned int i = 0; i < word.length(); i++) {
 			// for every char in word check if it is punctuation
 			if(ispunct(word.at(i))) {
-				// found punctuation
+				// punctuation found
+				// CHECK FOR EXCEPTIONS 
 
-				// EXCEPTIONS : see Assignment3.pdf
-				if(word.at(i) == '\'') break;	// apostrophes don't count
-				if(word.at(i) == ',') 
-					if(i != 0 && (isdigit(word.at(i-1) && isdigit(word.at(i+1)))))
-						break;		// numbers don't count
-				if(word.at(i) == '.') {
-					if(isdigit(word.at(i+1)) || (i == 0 || isdigit(word.at(i-1))))
-						break;		// periods only count in certain instances
-				}
-					
-				// not an exception
-				// so we parse the string
-				
-				if(i != 0) {
-					// there is a word before the punctuation char
-					//start by adding the part we know is a word
-					histogram.push_back(word.substr(0,i));	// What...?!Oops! would add "What" to hist
-					word = word.substr(i);			// What...?!Oops! => ...?!Oops!
-					i = 0;	// reset i b/c the word changed
-				}
+				char c = word.at(i);
 
-				if(word.length() == 1) break;	// just one single punct char before the next space 
-
-				// while there is more punctuation
-				// increment the counter so we can eat this string
-				unsigned int j = 1;
-				while(ispunct(word.at(j))) {
-					if(word.at(j == '\'')) break;	// apostrophes don't count
-					j++;	// eat
+				// apostrophes don't count
+				if(c == '\'') {}
+				// numbers don't count
+				else if(c == ',') { 
+					if(i != 0 && (i+1 != word.length()) && i != word.length()) {
+						if(isdigit(word.at(i-1)) && isdigit(word.at(i+1))) {}
+					}
 				}
-				histogram.push_back(word.substr(0,j));	// ...?!Oops! adds "...?!" to hist
-				word = word.substr(j);			// ...?!Oops! => Oops!
-				i = 0;	// reset i becuase the word has changed
+				// periods only count in certain instances
+				else if(c == '.') {
+					if(i+1 != word.length()) {
+						if(isdigit(word.at(i+1))) {
+							if(i == 0 || isdigit(word.at(i-1))) {}
+						}
+					}
+				}		
+				else { // no exceptions			
+					punctFnd = true;
+					if(i > 0) {
+						// there is a preceeding string
+						histogram.push_back(word.substr(0, i)); 	// add that string to hist
+						word = word.substr(i);				//cut out the added string
+					}
+					// word[0].ispunct() = true
+					if(word.length() == 1) 	{
+						// it's a single string containing a punctuation char
+						// can just add it to histogram
+						histogram.push_back(word);	
+						punctADD = true;
+						break;
+					}
+					else 
+						word = Histogram::parsePunctuation(word, this->GetHist());	
+				}	
+			}
+			// keep cBhecking char's in this word
+			if(punctADD) break;
+			if(punctFnd) {
+			       	i = 0; // ispunct(word.at(0)) == false
+				punctFnd = false;	// reset flag
 			}
 		}
-		if(empty) empty = false;	// there is at least one string in the file
-		histogram.push_back(word);
+		// we have checked each char in this word 
+		// for(char c : word) ispunct(c) = false
+		if(!punctADD)
+			histogram.push_back(word);
 	}
 
 	// if not at eof, the value was not a valid string
@@ -100,4 +118,68 @@ bool Histogram::Write(ostream& ostr, map<string, int>& kvm) const
       // dump the totals to the ostream
       for(auto s : kvm) ostr << s.first << " " << s.second << "\n";
       return true;
+}
+
+/// Parse Punctuation.
+/// Takes a string and a vector<string>&
+/// searches the str and parses out any punctuation
+/// returns a string such that ispunct(str[0]) = FALSE
+string Histogram::parsePunctuation(string word, vector<string>& histogram) {
+	// ispunct(word[0]) = true 
+	// word.length() > 1 = true
+	char c = word[0];
+
+	// the word either contains a single char
+	unsigned int strlen = 1;
+	if(ispunct(word.at(strlen))) {
+		// or it contains a string of char's
+		while(ispunct(word.at(strlen))) {
+			// CHECK FOR EXCEPTIONSi
+			if(c == '\'') break;	// apostrophes don't count
+			strlen++;
+			if(strlen == word.length()) break;
+		}
+	}
+
+	// PARSE IT
+	histogram.push_back(word.substr(0,strlen));	// ...?!Oops! adds "...?!" to hist
+	word = word.substr(strlen);			// ...?!Oops! => Oops!
+	return word;
+}
+
+void Histogram::findCapitals(vector<string>& histogram){
+	for(unsigned int i = 0; i < histogram.size(); i++) {
+		// for each string in the vector
+		string word = histogram.at(i);
+		
+		// if the word is capitalized
+		if(isupper(word[0])) {
+			if(i == 0) {
+				word = "+" + word;
+				histogram.at(i) = word;
+			}
+			else {
+				// get the previous word 
+				string prev = histogram.at(i-1);
+				if(ispunct(prev[0])) {
+					// check for regexp
+					bool firstWord = false;
+					for(auto c : prev) 
+						if(c == '.' || c == '?' || c == '!') firstWord = true;
+					
+					if(firstWord)
+						for(auto c : word) if(!(isupper(c) || isdigit(c))) {
+							// IF a word is capatalized, 
+							// is the first word in a sentence
+							// is not an acronym
+							// and does not contain a digit,
+							// mark is as ambiguous by prepending a '+' sign
+							word = "+" + word;
+							histogram.at(i) = word;
+							break;
+						}	
+				}
+			}
+		}
+	}
 }
