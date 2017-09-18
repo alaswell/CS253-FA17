@@ -40,23 +40,29 @@ bool Histogram::Read (istream& istr, vector<string>& histogram)
 				char c = word.at(i);
 
 				// apostrophes don't count
-				if(c == '\'') {}
+				if(c == '\'') {}	// do nothing
 				// numbers don't count
 				else if(c == ',') { 
-					if(i != 0 && (i+1 != word.length()) && i != word.length()) {
-						if(isdigit(word.at(i-1)) && isdigit(word.at(i+1))) {}
+					if(i != 0 && (i+1 != word.length())) {
+						if(isdigit(word.at(i-1)) && isdigit(word.at(i+1))) {} // do nothing
+						else punctFnd = true;
 					}
+					else punctFnd = true;
 				}
 				// periods only count in certain instances
 				else if(c == '.') {
 					if(i+1 != word.length()) {
 						if(isdigit(word.at(i+1))) {
 							if(i == 0 || isdigit(word.at(i-1))) {}
+							else punctFnd = true;
 						}
+						else punctFnd = true;
 					}
+					else punctFnd = true;
 				}		
-				else { // no exceptions			
-					punctFnd = true;
+				else { punctFnd = true; } // no exceptions
+
+				if(punctFnd) {	
 					if(i > 0) {
 						// there is a preceeding string
 						histogram.push_back(word.substr(0, i)); 	// add that string to hist
@@ -74,7 +80,7 @@ bool Histogram::Read (istream& istr, vector<string>& histogram)
 						word = Histogram::parsePunctuation(word, this->GetHist());	
 				}	
 			}
-			// keep cBhecking char's in this word
+			// keep checking char's in this word
 			if(punctADD) break;
 			if(punctFnd) {
 			       	i = 0; // ispunct(word.at(0)) == false
@@ -83,7 +89,7 @@ bool Histogram::Read (istream& istr, vector<string>& histogram)
 		}
 		// we have checked each char in this word 
 		// for(char c : word) ispunct(c) = false
-		if(!punctADD)
+		if(!punctADD && word.length() > 0)
 			histogram.push_back(word);
 	}
 
@@ -127,17 +133,18 @@ bool Histogram::Write(ostream& ostr, map<string, int>& kvm) const
 string Histogram::parsePunctuation(string word, vector<string>& histogram) {
 	// ispunct(word[0]) = true 
 	// word.length() > 1 = true
-	char c = word[0];
+	char c = word[1];
 
 	// the word either contains a single char
 	unsigned int strlen = 1;
-	if(ispunct(word.at(strlen))) {
+	if(ispunct(c)) {
 		// or it contains a string of char's
-		while(ispunct(word.at(strlen))) {
+		while(ispunct(c)) {
 			// CHECK FOR EXCEPTIONSi
 			if(c == '\'') break;	// apostrophes don't count
 			strlen++;
 			if(strlen == word.length()) break;
+			c = word[strlen];
 		}
 	}
 
@@ -151,6 +158,7 @@ void Histogram::findCapitals(vector<string>& histogram){
 	for(unsigned int i = 0; i < histogram.size(); i++) {
 		// for each string in the vector
 		string word = histogram.at(i);
+		bool firstWord = false;
 		
 		// if the word is capitalized
 		if(isupper(word[0])) {
@@ -162,22 +170,28 @@ void Histogram::findCapitals(vector<string>& histogram){
 				// get the previous word 
 				string prev = histogram.at(i-1);
 				if(ispunct(prev[0])) {
+					if(firstWord) firstWord = false; // rest the flag
+
 					// check for regexp
-					bool firstWord = false;
 					for(auto c : prev) 
 						if(c == '.' || c == '?' || c == '!') firstWord = true;
 					
-					if(firstWord)
-						for(auto c : word) if(!(isupper(c) || isdigit(c))) {
-							// IF a word is capatalized, 
-							// is the first word in a sentence
-							// is not an acronym
-							// and does not contain a digit,
-							// mark is as ambiguous by prepending a '+' sign
+					if(firstWord) {
+						// EXCEPTOIN: 
+						// if the word has another upperCase letter or a digit;
+						// it's an acronym 
+						for(unsigned int j = 1; j < word.length(); j++) { 
+							char c = word[j];
+							if(isupper(c) || isdigit(c)) { firstWord = false; }
+						}
+						// IF a word is capatalized, is the first word in a sentence
+						// is not an acronym, and does not contain a digit;
+						// mark is as ambiguous by prepending a '+' sign
+						if(firstWord) {
 							word = "+" + word;
 							histogram.at(i) = word;
-							break;
-						}	
+						}
+					}	
 				}
 			}
 		}
