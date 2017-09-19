@@ -163,8 +163,16 @@ void Histogram::findCapitals(vector<string>& histogram){
 		// if the word is capitalized
 		if(isupper(word[0])) {
 			if(i == 0) {
-				word = "+" + word;
-				histogram.at(i) = word;
+				firstWord = true;
+				// first word is special, but still has exceptions
+				for(unsigned int j = 1; j < word.length(); j++) { 
+					char c = word[j];
+					if(isupper(c) || isdigit(c)) { firstWord = false; }
+				}
+				if(firstWord) {
+					word = "+" + word;
+					histogram.at(i) = word;
+				}
 			}
 			else {
 				// get the previous word 
