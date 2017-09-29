@@ -1,5 +1,3 @@
-#ifndef HASH_TABLE_H
-#define HASH_TABLE_H
 
 #include <string>
 using std::string;
@@ -29,4 +27,3 @@ protected:
   string* table;
 };
 
-#endif // HASH_TABLE_H

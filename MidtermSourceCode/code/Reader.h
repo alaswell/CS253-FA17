@@ -1,5 +1,3 @@
-#ifndef READER_H
-#define READER_H
 
 #include <HashTable.h>
 
@@ -16,4 +14,3 @@ protected:
   HashTable ht;
 };
 
-#endif // READER_h
