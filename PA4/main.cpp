@@ -1,5 +1,6 @@
 /*! \file main.cpp: main function for CS253 Histogram (HW1) */
 #include <Histogram.h>
+#include <Porter.h>
 #include <iostream>
 using std::cout;
 using std::cerr;
@@ -35,6 +36,8 @@ int main(int argc, char** argv)
   
   istr.close();
 
+  Porter p0;
+  p0.Eval(h1);
   return 0;
 }
 

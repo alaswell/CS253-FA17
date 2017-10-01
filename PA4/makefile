@@ -1,18 +1,21 @@
 # CS253 Program makefile
 
-PNAME = PA3
+PNAME = PA4
 CC = g++
 CFLAGS = -g -c -Wall -I.
 LFLAGS =-o $(PNAME)
 
-exec: main.o Histogram.o
-	$(CC) main.o Histogram.o $(LFLAGS)
+exec: main.o Histogram.o Porter.o
+	$(CC) main.o Histogram.o Porter.o $(LFLAGS)
 
 main.o: main.cpp Histogram.h
 	$(CC) $(CFLAGS) main.cpp
 
 Histogram.o: Histogram.cpp Histogram.h
 	$(CC) $(CFLAGS) Histogram.cpp
+
+Porter.o: Porter.cpp Porter.h
+	$(CC) $(CFLAGS) Porter.cpp
 
 clean: 
 	rm -f *.o 
