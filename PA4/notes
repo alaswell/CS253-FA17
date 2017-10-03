@@ -1,0 +1,6 @@
+Document holds  a vector<lexeme> 
+		a map for output
+	lexeme holds the word and if it's punct or capital or w/e (marked array!)
+Stemmer is my Porter.c (needs way more bools and methods in general)
+
+
