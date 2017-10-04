@@ -6,7 +6,8 @@
 /// Takes a Histogram and applies an 8-step algorithm to the strings 
 /// within the .histogram in order to stem them before counting
 void Porter::Eval (Histogram& Hist) const {
-	for(auto &s : Hist.GetHist()) {
+	for(auto &l : Hist.GetHist()) {
+		auto s = l.getString();
 		// for each string in Hist.Histogram
 		if(isValid(s)) {
 			// need to stem

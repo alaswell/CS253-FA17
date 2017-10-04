@@ -12,10 +12,11 @@ using std::istream;
 using std::ostream;
 #include<vector>
 using std::vector;
-#include<string>
-using std::string;
 #include<map>
 using std::map;
+#include<string>
+using std::string;
+#include<Lexeme.h>
 
 /*! \brief A string histogram for simple counting (currently)
  *
@@ -27,23 +28,24 @@ class Histogram {
 public:
 	/// Constructor
 	Histogram() : histogram() {}
-	Histogram(vector<string> h) : histogram(h) {}
+	Histogram(vector<Lexeme> h) : histogram(h) {}
 
 	/* simple accessors */
-	inline vector<string>& GetHist() {return histogram;}	
+	inline vector<Lexeme>& GetHist() {return histogram;}	
 	inline map<string, int>& GetMap() {return key_value_map;}
+	bool isException(const string& str, const unsigned int i) const;
 	bool Write(ostream& ostr, map<string, int>& kvm) const;
 
 	/* Mutators */
-	inline void SetString(string newValue, const int position) {histogram[position] = newValue;}
+	inline void SetString(const string newValue, const int position) {histogram[position].setString(newValue);}
 	void Eval(Histogram& Hist);
-	bool Read(istream& istr, vector<string>& histogram);
-	string parsePunctuation(string word, vector<string>& histogram);
-	void findCapitals(vector<string>& histogram);
+	bool Read(istream& istr, vector<Lexeme>& histogram);
+	string parsePunctuation(string word, vector<Lexeme>& histogram);
+	void findCapitals(vector<Lexeme>& histogram);
 
 private:
 
-	vector<string> histogram;	/// the strings exactly as they are read in 
+	vector<Lexeme> histogram;		/// the strings exactly as they are read in 
 	map<string, int> key_value_map;		/// string_count_map containing number of times said string appears
 };
 

@@ -10,13 +10,13 @@ void Histogram::Eval (Histogram& Hist) {
 	 * find it in kvm and increment
 	 * if not found, std::map::operator[] will zero-initialize
 	 */
-	for(auto &s : Hist.histogram) ++Hist.key_value_map[s];
+	for(auto &l : Hist.histogram) ++Hist.key_value_map[l.getString()];
 }
 
 /// Input operator. Format is string string ... str,
 /// where all strings are delineated by whitespace.
 /// Any other format causes the input stream to fail.
-bool Histogram::Read (istream& istr, vector<string>& histogram) 
+bool Histogram::Read (istream& istr, vector<Lexeme>& histogram) 
 {
 	string word;			// temp var for holding the word
 	bool empty = true;		// the vector starts out empty 
@@ -37,42 +37,20 @@ bool Histogram::Read (istream& istr, vector<string>& histogram)
 				// punctuation found
 				// CHECK FOR EXCEPTIONS 
 
-				char c = word.at(i);
-
-				// apostrophes don't count
-				if(c == '\'') {}	// do nothing
-				// numbers don't count
-				else if(c == ',') { 
-					if(i != 0 && (i+1 != word.length())) {
-						if(isdigit(word.at(i-1)) && isdigit(word.at(i+1))) {} // do nothing
-						else punctFnd = true;
-					}
-					else punctFnd = true;
-				}
-				// periods only count in certain instances
-				else if(c == '.') {
-					if(i+1 != word.length()) {
-						if(isdigit(word.at(i+1))) {
-							if(i == 0 || isdigit(word.at(i-1))) {}
-							else punctFnd = true;
-						}
-						else punctFnd = true;
-					}
-					else punctFnd = true;
-				}		
-				else { punctFnd = true; } // no exceptions
-
-				if(punctFnd) {	
+				if(!isException(word, i)) {	
+					punctFnd = true;
 					if(i > 0) {
 						// there is a preceeding string
-						histogram.push_back(word.substr(0, i)); 	// add that string to hist
+						histogram.push_back(Lexeme(word.substr(0,i), 0, 0));
 						word = word.substr(i);				//cut out the added string
 					}
 					// word[0].ispunct() = true
 					if(word.length() == 1) 	{
 						// it's a single string containing a punctuation char
 						// can just add it to histogram
-						histogram.push_back(word);	
+						if(word[0] == '.' || word[0] == '?' || word[0] == '!')
+							histogram.push_back(Lexeme(word, 0, 2));
+						else histogram.push_back(Lexeme(word, 0, 1));
 						punctADD = true;
 						break;
 					}
@@ -89,8 +67,9 @@ bool Histogram::Read (istream& istr, vector<string>& histogram)
 		}
 		// we have checked each char in this word 
 		// for(char c : word) ispunct(c) = false
-		if(!punctADD && word.length() > 0)
-			histogram.push_back(word);
+		if(!punctADD && word.length() > 0) {
+			histogram.push_back(Lexeme(word, 0, 0));
+		}
 	}
 
 	// if not at eof, the value was not a valid string
@@ -127,13 +106,17 @@ bool Histogram::Write(ostream& ostr, map<string, int>& kvm) const
 }
 
 /// Parse Punctuation.
-/// Takes a string and a vector<string>&
+/// Takes a string and a vector<Lexeme>&
 /// searches the str and parses out any punctuation
 /// returns a string such that ispunct(str[0]) = FALSE
-string Histogram::parsePunctuation(string word, vector<string>& histogram) {
+string Histogram::parsePunctuation(string word, vector<Lexeme>& histogram) {
 	// ispunct(word[0]) = true 
 	// word.length() > 1 = true
-	char c = word[1];
+	char c = word[0];
+	int punct = 1;
+	if(c == '.' || c == '?' || c == '!') punct = 2;
+
+	c = word[1];
 
 	// the word either contains a single char
 	unsigned int strlen = 1;
@@ -142,6 +125,7 @@ string Histogram::parsePunctuation(string word, vector<string>& histogram) {
 		while(ispunct(c)) {
 			// CHECK FOR EXCEPTIONSi
 			if(c == '\'') break;	// apostrophes don't count
+			if(c == '.' || c == '?' || c == '!') if(punct != 2) punct = 2;
 			strlen++;
 			if(strlen == word.length()) break;
 			c = word[strlen];
@@ -149,15 +133,15 @@ string Histogram::parsePunctuation(string word, vector<string>& histogram) {
 	}
 
 	// PARSE IT
-	histogram.push_back(word.substr(0,strlen));	// ...?!Oops! adds "...?!" to hist
-	word = word.substr(strlen);			// ...?!Oops! => Oops!
+	histogram.push_back(Lexeme(word.substr(0, strlen), 0, punct));	// ...?!Oops! adds "...?!" to hist
+	word = word.substr(strlen);	// ...?!Oops! => Oops!
 	return word;
 }
 
-void Histogram::findCapitals(vector<string>& histogram){
+void Histogram::findCapitals(vector<Lexeme>& histogram){
 	for(unsigned int i = 0; i < histogram.size(); i++) {
 		// for each string in the vector
-		string word = histogram.at(i);
+		string word = histogram.at(i).getString();
 		bool firstWord = false;
 		
 		// if the word is capitalized
@@ -171,37 +155,60 @@ void Histogram::findCapitals(vector<string>& histogram){
 				}
 				if(firstWord) {
 					word = "+" + word;
-					histogram.at(i) = word;
+					histogram.at(i).setString(word);
+					histogram.at(i).setCapital(1);
 				}
 			}
 			else {
 				// get the previous word 
-				string prev = histogram.at(i-1);
-				if(ispunct(prev[0])) {
-					if(firstWord) firstWord = false; // rest the flag
-
-					// check for regexp
-					for(auto c : prev) 
-						if(c == '.' || c == '?' || c == '!') firstWord = true;
-					
+				Lexeme prev = histogram.at(i-1);
+				if(prev.isPunctuation() == 2) {
+					firstWord = true;
+					// EXCEPTOIN: 
+					// if the word has another upperCase letter or a digit;
+					// it's an acronym 
+					for(unsigned int j = 1; j < word.length(); j++) { 
+						char c = word[j];
+						if(isupper(c) || isdigit(c)) { firstWord = false; }
+					}
+					// IF a word is capatalized, is the first word in a sentence
+					// is not an acronym, and does not contain a digit;
+					// mark is as ambiguous by prepending a '+' sign
 					if(firstWord) {
-						// EXCEPTOIN: 
-						// if the word has another upperCase letter or a digit;
-						// it's an acronym 
-						for(unsigned int j = 1; j < word.length(); j++) { 
-							char c = word[j];
-							if(isupper(c) || isdigit(c)) { firstWord = false; }
-						}
-						// IF a word is capatalized, is the first word in a sentence
-						// is not an acronym, and does not contain a digit;
-						// mark is as ambiguous by prepending a '+' sign
-						if(firstWord) {
-							word = "+" + word;
-							histogram.at(i) = word;
-						}
+						word = "+" + word;
+						histogram.at(i).setString(word);
+						histogram.at(i).setCapital(1);
 					}	
 				}
 			}
 		}
 	}
+}
+				
+/// Is this character an exception to the punctuation
+/// checks the string against the provided exceptoins 
+/// to ensure that it is valid
+/// int i = the location in the word (to en
+bool Histogram::isException(const string& word, const unsigned int i) const {
+	char c = word.at(i);
+
+	if(c == '\'') { return true; }	// apostrophes don't count
+	else if(c == ',') { 		// numbers don't count
+		if(i != 0 && (i+1 != word.length())) {
+			if(isdigit(word.at(i-1)) && isdigit(word.at(i+1))) { return true; } // do nothing
+			else return false;
+		}
+		else return false;
+	}
+	else if(c == '.') {		// periods only count in certain instances
+		if(i+1 != word.length()) {
+			if(isdigit(word.at(i+1))) {
+				if(i == 0 || isdigit(word.at(i-1))) { return true; }
+				else return false;
+			}
+			else return false;
+		}
+		else return false;
+	}		
+	else return false; // no exceptions
 }
