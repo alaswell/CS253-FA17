@@ -30,14 +30,15 @@ int main(int argc, char** argv)
   Histogram h1;
   if (!h1.Read(istr, h1.GetHist())) return Usage(argv[0], "Read()");
   h1.findCapitals(h1.GetHist());
+//  for(int i = 0; i < h1.GetHist().size(); i++) std::cout <<  h1.GetHist().at(i).getString() << std::endl;
   h1.Eval(h1);
-
+  
   if (!h1.Write(cout, h1.GetMap())) return Usage(argv[0], "Write()");
   
   istr.close();
 
-  Porter p0;
-  p0.Eval(h1);
+  //Porter p0;
+  //p0.Eval(h1);
   return 0;
 }
 

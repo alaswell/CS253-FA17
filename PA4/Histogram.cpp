@@ -22,18 +22,27 @@ bool Histogram::Read (istream& istr, vector<Lexeme>& histogram)
 	bool empty = true;		// the vector starts out empty 
 	bool punctADD = false;		// flag for added inside loop
 	bool punctFnd = false;		// flag for if punctuation was found
+	bool digitFnd = false;		// flag for if a digit is found
+	bool upperFnd = false;		// flag for if an uppercase char is found
+	bool capitalFnd = false;	// flag for if the str is capitalized
 
 	if(istr.fail()) return false;	// input file did not open correctly
 
 	// store all the words in the file in a single vector
 	while(istr >> word) {
-		if(empty) empty = false;		// there is at least one string in the file
-		if(punctADD) punctADD = false;		// reset this flag
-		if(punctFnd) punctFnd = false;		// reset this flag
+		empty = false;		// there is at least one string in the file
+		punctADD = false;	// reset the flags
+		punctFnd = false;	
+		digitFnd = false; 
+		upperFnd = false;
+		capitalFnd = false;
 
 		for(unsigned int i = 0; i < word.length(); i++) {
-			// for every char in word check if it is punctuation
-			if(ispunct(word.at(i))) {
+			// for every char in word check if it:
+			// is punctuation
+			// has digits
+			char ch = word.at(i);
+			if(ispunct(ch)) {
 				// punctuation found
 				// CHECK FOR EXCEPTIONS 
 
@@ -41,7 +50,10 @@ bool Histogram::Read (istream& istr, vector<Lexeme>& histogram)
 					punctFnd = true;
 					if(i > 0) {
 						// there is a preceeding string
-						histogram.push_back(Lexeme(word.substr(0,i), 0, 0));
+						histogram.push_back(Lexeme(word.substr(0,i), capitalFnd, 0, digitFnd, upperFnd));
+						digitFnd = false;	// reset flags
+						upperFnd = false;
+						capitalFnd = false;
 						word = word.substr(i);				//cut out the added string
 					}
 					// word[0].ispunct() = true
@@ -58,17 +70,29 @@ bool Histogram::Read (istream& istr, vector<Lexeme>& histogram)
 						word = Histogram::parsePunctuation(word, this->GetHist());	
 				}	
 			}
+			else if(isdigit(ch)) {
+				digitFnd = true;
+			}
+			else if(isupper(ch)) {
+				if(i == 0) capitalFnd = true;
+				else upperFnd = true;
+			}
 			// keep checking char's in this word
-			if(punctADD) break;
+			if(punctADD) break;	// break out because it was a single str and was added
 			if(punctFnd) {
 			       	i = 0; // ispunct(word.at(0)) == false
-				punctFnd = false;	// reset flag
+				punctFnd = false;	// reset flags
+				upperFnd = false;
+				if(word.length() > 0 && !(isdigit(word.at(i)))) digitFnd = false;	
+				else digitFnd = true;
+				if(word.length() > 0 && !(isupper(word.at(i)))) capitalFnd = false;
+				else capitalFnd = true;
 			}
 		}
 		// we have checked each char in this word 
 		// for(char c : word) ispunct(c) = false
 		if(!punctADD && word.length() > 0) {
-			histogram.push_back(Lexeme(word, 0, 0));
+			histogram.push_back(Lexeme(word, capitalFnd, 0, digitFnd, upperFnd));
 		}
 	}
 
@@ -84,7 +108,7 @@ bool Histogram::Read (istream& istr, vector<Lexeme>& histogram)
 		return false;
 	}
 
-  	return true;	// eof 
+  	return true;	// eof Histogram::Read() 
 }
 
 /// Write operator. 
@@ -140,50 +164,30 @@ string Histogram::parsePunctuation(string word, vector<Lexeme>& histogram) {
 
 void Histogram::findCapitals(vector<Lexeme>& histogram){
 	for(unsigned int i = 0; i < histogram.size(); i++) {
-		// for each string in the vector
-		string word = histogram.at(i).getString();
-		bool firstWord = false;
-		
-		// if the word is capitalized
-		if(isupper(word[0])) {
-			if(i == 0) {
-				firstWord = true;
-				// first word is special, but still has exceptions
-				for(unsigned int j = 1; j < word.length(); j++) { 
-					char c = word[j];
-					if(isupper(c) || isdigit(c)) { firstWord = false; }
-				}
-				if(firstWord) {
-					word = "+" + word;
-					histogram.at(i).setString(word);
-					histogram.at(i).setCapital(1);
-				}
-			}
-			else {
-				// get the previous word 
-				Lexeme prev = histogram.at(i-1);
-				if(prev.isPunctuation() == 2) {
-					firstWord = true;
-					// EXCEPTOIN: 
-					// if the word has another upperCase letter or a digit;
-					// it's an acronym 
-					for(unsigned int j = 1; j < word.length(); j++) { 
-						char c = word[j];
-						if(isupper(c) || isdigit(c)) { firstWord = false; }
-					}
-					// IF a word is capatalized, is the first word in a sentence
-					// is not an acronym, and does not contain a digit;
-					// mark is as ambiguous by prepending a '+' sign
-					if(firstWord) {
-						word = "+" + word;
-						histogram.at(i).setString(word);
-						histogram.at(i).setCapital(1);
-					}	
-				}
+		// for each lexeme in histogram
+		Lexeme& lexeme = histogram.at(i);
+
+		// first word is special
+		if(i == 0) {
+			if(lexeme.isCapital() && (!(lexeme.hasUpper() || lexeme.hasDigit()))) {
+ 				// the word is capitalized, is not an acronym, & doesn't have a digit
+				lexeme.setString("+" + lexeme.getString());
 			}
 		}
+		else {
+			if(lexeme.isCapital()) {
+				// need the previous Lexeme
+				Lexeme prev = histogram.at(i-1);
+				if(prev.isPunctuation() == 2 && (!(lexeme.hasUpper() || lexeme.hasDigit()))) {
+ 					// prev lexeme contains a '.', '!', or '?'
+					// curr lexeme does not contain another upper or digit
+					lexeme.setString("+" + lexeme.getString());
+				}
+			}
+			// not a capital - do nothing
+		}	
 	}
-}
+}		
 				
 /// Is this character an exception to the punctuation
 /// checks the string against the provided exceptoins 
