@@ -24,6 +24,7 @@ systematically test this code? We are now reaching the point where system design
 and testing become critical.
 
 Task
+
 As in PA3, your program will take a single file name as an argument. Any input file that was
 valid for PA3 is still valid. The output is also similar: your program should write one line of
 output for every unique string in the input, sorted lexicographically, followed by a space and the
@@ -76,28 +77,32 @@ then the preceder of talking is talk.
   • A string ends in a short syllable if either
   
     1. It ends with a non-vowel followed by a vowel followed by a non-vowel that is
-not one of {‘w’, ‘x’ or ‘y’}
+    not one of {‘w’, ‘x’ or ‘y’}
 
     2. The string is only two characters long, and is a vowel followed by a non-vowel
     
   • A word is called short if both (1) it ends in a short syllable and (2) its Region1 is empty.
   
     For example, bed, shed, and shred are short words, but bead, embed and beds are not.
+    
 Step #1 starts with a special case: if the word (i.e. string) begins with an apostrophe, remove the
 apostrophe. Then apply the longest of the following substitutions that apply:
 
 
 Example
+
 With this assignment (and this assignment only) we are providing a test file and the correct output
 for the test file. Note that the test file does not exercise all of the rules above, but it exercises
 many of them and should get you started.
 
 Submitting Your Work
+
 To submit your program, first create a single tar file containing all of your source files (i.e. your
 .cpp and .h files) and your makefile, but not your compiled files (no executable or .o files,
 please). Then submit the tar file as PA3 on Canvas.
 
 Grading Your Homework
+
 To grade your assignment, the GTAs will unpack your archive in an empty directory. They will compile
 your code by typing ‘make’. This command must compile your code from scratch, and it must produce an
 executable called PA4 in a directory called PA4. If your code does not compile using make, you will
@@ -120,6 +125,7 @@ many do you need? My implementation has three classes, but your design may vary.
 if your design has one class (or worse, none), I worry.
 
 Policies
+
 All work you submit must be your own. You may not submit code written by a peer, a former
 student, or anyone else. You may not copy or buy code from the web. The department academic
 integrity policies apply.
