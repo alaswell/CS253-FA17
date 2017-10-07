@@ -87,7 +87,7 @@ then the preceder of talking is talk.
     
 Step #1 starts with a special case: if the word (i.e. string) begins with an apostrophe, remove the
 apostrophe. Then apply the longest of the following substitutions that apply:
-
+[Steps](Steps.png)
 
 Example
 
