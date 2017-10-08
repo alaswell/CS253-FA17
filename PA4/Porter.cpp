@@ -43,7 +43,11 @@ void Porter::Eval (Histogram& Hist) const {
  	string a[] = {"test's'", "test's", "test'", "abcd", 
 		"busses", "tied", "unified", "unties", "bus", "truss", "cats", 
 		"aneedly", "ayeed", "aingly", "ablingly", "abbingly", "bedingly", "eedly", "eing", "eed", "eingly",
-		"baby", "aby", "bay"};
+		"baby", "aby", "bay", 
+		"ational", "benci", "banci", "dabli", "zentli", "tizer", "vization", "national", "nation", "gator",
+		"kalism", "kaliti", "kalli", "bashfulness", "obviousli", "bousness", "diveness", "diviti", "abiliti",
+		"abli", "alogi", "pfulli", "plessli", "xcli", "xdli", "xeli", "xgli", "xhli", "xkli", "xmli", "xnli", 
+		"xrli", "xtli"};
 
 	for(i = 0; i < 4; i++) {
 		unsigned int size = a[i].size();
@@ -63,11 +67,16 @@ void Porter::Eval (Histogram& Hist) const {
 		StemCuatro(a[i], a[i].size());
 		std::cout << a[i] << ", ";
 	}
+	std::cout << std::endl;
+	for(; i < 57; i++) {
+		StemCinco(a[i], a[i].size());
+		std::cout << a[i] << ", ";
+	}
 	std::cout << std::endl;	
 }
 
 
-/// getRegion1(str)
+/// getRegion(str)
 /// Takes a string and returns the defined "Region1"
 string Porter::getRegion(const string& str) const {
 	// IF Region1 exists, it is the substring that; 
@@ -404,7 +413,7 @@ void Porter::StemTresAlpha(string& str, const string& preceder, const unsigned i
 }
 
 /// StemCuatro(str, int)
-/// Step #3 of the Porter Algorithm
+/// Step #4 of the Porter Algorithm
 /// Takes a string and its size and parses off:
 /// {"y"}
 void Porter::StemCuatro(string& str, const unsigned int size) const {
@@ -424,4 +433,149 @@ void Porter::StemCuatro(string& str, const unsigned int size) const {
 				replace(str, "i", 1);	// replace with i
 		}
 	}	
+	// otherwise, nothing to do here
+}
+
+
+/// StemCinco(str, int)
+/// Step #5 of the Porter Algorithm
+/// Takes a string and its size and parses off:
+/// {"ization", "ational", "fulness", "ousness", "iveness", "tional", 
+///  "biliti", "lessli", "entli", "ation", "alism", "aliti", "ousli", 
+///  "iviti", "fulli", "enci", "anci", "abli", "izer", "ator", "alli",
+///  "bli", "ogi", "li"}
+///  phew! 
+void Porter::StemCinco(string& str, const unsigned int size) const {
+	int sz = 0;
+	string suffix = "";
+	
+	// sz -> anything over 6 is 7
+	if(size > 6) sz = 7;
+	else sz = size;
+	
+
+	switch(sz) 
+	{
+		case 7:
+			suffix = str.substr(size-7);
+			if(!suffix.compare("ization")) {
+				replace(str, "ize", 7);	// replace with ize
+				break;
+			}
+			else if(!suffix.compare("ational")) {
+				replace(str, "ate", 7);	// replace with ate
+				break;
+			}
+			else if(!suffix.compare("fulness")) {
+				replace(str, "ful", 7);	// replace with ful
+				break;
+			}
+			else if(!suffix.compare("ousness")) {
+				replace(str, "ous", 7); // replace with ous
+				break;
+			}
+			else if(!suffix.compare("iveness")) {
+				replace(str, "ive", 7); // replace with ive
+				break;
+			}
+		case 6:
+			suffix = str.substr(size-6);
+			if(!suffix.compare("tional")) {
+				replace(str, "tion", 6); // replace with tion
+				break;
+			}
+			else if(!suffix.compare("biliti")) {
+				replace(str, "ble", 6);	// replace with ble
+				break;
+			}
+			else if(!suffix.compare("lessli")) {
+				replace(str, "less", 6); // replace with less
+				break;
+			}
+		case 5:
+			suffix = str.substr(size-5);
+			if(!suffix.compare("entli")) {
+				replace(str, "ent", 5);	// replace with ent
+				break;
+			}
+			else if(!suffix.compare("ation")) {
+				replace(str, "ate", 5);	// replace with ate
+				break;
+			}
+			else if(!suffix.compare("alism")) {
+				replace(str, "al", 5);	// replace with al
+				break;
+			}
+			else if(!suffix.compare("aliti")) {
+				replace(str, "al", 5);	// replace with al
+				break;
+			}
+			else if(!suffix.compare("ousli")) {
+				replace(str, "ous", 5);	// replace with ous
+				break;
+			}
+			else if(!suffix.compare("iviti")) {
+				replace(str, "ive", 5);	// replace with ive
+				break;
+			}
+			else if(!suffix.compare("fulli")) {
+				replace(str, "ful", 5);	// replace with ful
+				break;
+			}
+		case 4:
+			suffix = str.substr(size-4);
+			if(!suffix.compare("enci")) {
+				replace(str, "ence", 4); // replace with ence
+				break;
+			}
+			else if(!suffix.compare("anci")) {
+				replace(str, "ance", 4); // replace with ance
+				break;
+			}
+			else if(!suffix.compare("abli")) {
+				replace(str, "able", 4); // replace with able
+				break;
+			}
+			else if(!suffix.compare("izer")) {
+				replace(str, "ize", 4); // replace with ize
+				break;
+			}
+			else if(!suffix.compare("ator")) {
+				replace(str, "ate", 4); // replace with ate
+				break;
+			}
+			else if(!suffix.compare("alli")) {
+				replace(str, "al", 4); // replace with al
+				break;
+			}
+			else { // try "ogi"
+				suffix = str.substr(size-3);
+				if(!suffix.compare("ogi")) {
+					// ogi is special, it must be preceded by 'l'
+					// which means it needs a string of size >= 4
+					string prev = str.substr(size-4, 1);
+					if(!prev.compare("l")) {
+						replace(str, "og", 3); // replace with og
+					}
+					break;
+				}
+			}
+		case 3:
+			suffix = str.substr(size-3);
+			if(!suffix.compare("bli")) {
+				replace(str, "ble", 3); // replace with ble
+				break;
+			}
+			else {
+				suffix = str.substr(size-2);
+				if(!suffix.compare("li")) {
+					// preceder must end in a valid-li char
+					if(isValidli(getPreceder(str, 2))) 
+						replace(str, "", 2); // replace with (none)
+					break;
+				}
+			}
+		default: break;
+	}
+	// otherwise, nothing to do here
 }
