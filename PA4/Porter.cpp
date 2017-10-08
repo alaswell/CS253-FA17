@@ -47,7 +47,8 @@ void Porter::Eval (Histogram& Hist) const {
 		"ational", "benci", "banci", "dabli", "zentli", "tizer", "vization", "national", "nation", "gator",
 		"kalism", "kaliti", "kalli", "bashfulness", "obviousli", "bousness", "diveness", "diviti", "abiliti",
 		"abli", "alogi", "pfulli", "plessli", "xcli", "xdli", "xeli", "xgli", "xhli", "xkli", "xmli", "xnli", 
-		"xrli", "xtli"};
+		"xrli", "xtli", 
+		"xaxbational", "xaxational", "xxxxxxxxxazzzzzzzalize", "xaxaicate", "xaxaiciti", "xaxaical", "xaxaful", "xaxaness", "axaxaative"};
 
 	for(i = 0; i < 4; i++) {
 		unsigned int size = a[i].size();
@@ -73,6 +74,11 @@ void Porter::Eval (Histogram& Hist) const {
 		std::cout << a[i] << ", ";
 	}
 	std::cout << std::endl;	
+	for(; i < 66; i++) {
+		StemSeis(a[i], a[i].size());
+		std::cout << a[i] << ", ";
+	};
+	std::cout << std::endl;
 }
 
 
@@ -575,6 +581,88 @@ void Porter::StemCinco(string& str, const unsigned int size) const {
 					break;
 				}
 			}
+		default: break;
+	}
+	// otherwise, nothing to do here
+}
+
+
+/// StemSeis(str, int)
+/// Step #6 of the Porter Algorithm
+/// Takes a string and its size and parses off:
+/// {"ational", "tional", "alize", "ative", "icate", "iciti", "ical", "ness", "ful"}
+void Porter::StemSeis(string& str, const unsigned int size) const {
+	// all these require the suffix to be 
+	// at the very least be in Region1 
+	string region1 = getRegion(str);
+	if(!region1.compare("")) return; // region1 does not exist
+	
+	unsigned int sz = 0;	
+	string suffix = "";
+	
+	// sz -> anything over 8 is 9
+	if(size > 8) sz = 9;
+	else sz = size;
+	
+
+	switch(sz) 
+	{
+		case 9: 
+		// region1 requires at least 2 chars to precede the suffix
+			suffix = str.substr(size-7);
+			if(!suffix.compare("ational")) {
+				if(region1.find(suffix) != std::string::npos)
+					replace(str, "ate", 7); // replace with ate
+				break;
+			}
+			else {
+			// ative requires a region2, so it goes here
+				suffix = str.substr(size-5);
+				if(!suffix.compare("ative")) {
+					string region2 = getRegion(region1);
+					if(region2.find(suffix) != std::string::npos)
+						replace(str, "", 5); // replace with (none)
+					break;
+				}
+			}
+		case 8:
+			suffix = str.substr(size-6);
+			if(!suffix.compare("tional")) {
+				if(region1.find(suffix)) 
+					replace(str, "tion", 6); // replace with tion
+				break;
+			}
+		case 7:
+			suffix = str.substr(size-5);
+			if(!suffix.compare("alize")) {
+				if(region1.find(suffix))
+					replace(str, "al", 5); // replace with al
+				break;
+			}
+			else if(!suffix.compare("icate") || !suffix.compare("iciti")) {
+				if(region1.find(suffix) != std::string::npos)
+					replace(str, "ic", 5); // replace with ic
+				break;
+			}				
+		case 6:
+			suffix = str.substr(size-4);
+			if(!suffix.compare("ical")) {
+				if(region1.find(suffix) != std::string::npos)
+					replace(str, "ic", 4); // replace with ic
+				break;
+			}	
+			else if(!suffix.compare("ness")) {
+				if(region1.find(suffix) != std::string::npos)
+					replace(str, "", 4); // replace with (none)
+				break;
+			}
+		case 5:
+			suffix = str.substr(size-3);
+			if(!suffix.compare("ful")) {
+				if(region1.find(suffix) != std::string::npos)
+					replace(str, "", 3); // replace with (none)
+			}
+			break;
 		default: break;
 	}
 	// otherwise, nothing to do here
