@@ -37,8 +37,9 @@ int main(int argc, char** argv)
   
   istr.close();
 
-  //Porter p0;
-  //p0.Eval(h1);
+  Porter p0;
+  p0.Eval(h1);
+
   return 0;
 }
 
