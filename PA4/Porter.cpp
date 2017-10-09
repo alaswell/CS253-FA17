@@ -7,15 +7,15 @@
 /// within the .histogram in order to stem them before counting
 void Porter::Eval(Histogram& Hist) const {
 	vector<Lexeme>& histogram = Hist.GetHist();
-	unsigned int size = histogram.size();
+	unsigned long long size = histogram.size();
 
-	for(unsigned int i = 0; i < size; i++) {
+	for(unsigned long long i = 0; i < size; i++) {
 		Lexeme& lexeme = histogram[i];
 		// for each Lexeme
 		if(!lexeme.isPunctuation() && !lexeme.isCapital() && !lexeme.hasUpper() && !lexeme.hasDigit()) {
 			string& str = lexeme.getString();
-			const unsigned int sz = str.size();
-			if(sz > 3)
+			const unsigned long long sz = str.size();
+			if(sz > 2)
 				GoGoPorterNumeroDos(str, sz);
 		}
 	}
@@ -26,7 +26,7 @@ void Porter::Eval(Histogram& Hist) const {
 /// Takes a string and its size 
 /// iterates through Porter#2 to 
 /// systematically stem away the suffix
-void Porter::GoGoPorterNumeroDos(string& str, unsigned int size) const {
+void Porter::GoGoPorterNumeroDos(string& str, unsigned long long size) const {
 	StemUno(str, size);
 		size = str.size();	// reset size incase step modified it
 	StemDos(str, size);
@@ -53,7 +53,7 @@ void Porter::Test (Histogram& Hist) const {
 	string test0 = Hist.GetHist().at(0).getString();
 	string test1 = Hist.GetHist().at(1).getString();
 	string test2 = Hist.GetHist().at(2).getString();
-	unsigned int i = 0;
+	unsigned long long i = 0;
 	for(i = 0; i < test0.size(); i++) {
 		std::cout << isVowel(test0, i); 
 	}
@@ -80,7 +80,7 @@ void Porter::Test (Histogram& Hist) const {
 		"\n" << getPreceder(r1, 3) << std::endl;
 
 	string sh[] = {"bed", "shed", "shred", "bead", "embed", "beds"};
-	for(unsigned int j = 0; j < 6; j++) {
+	for(unsigned long long j = 0; j < 6; j++) {
 		std::cout << isShort(sh[j]) << std::endl;
 	}
 
@@ -99,12 +99,12 @@ void Porter::Test (Histogram& Hist) const {
 		"owowe", "owe", "woe", "owowll", "owowl"};
 
 	for(i = 0; i < 4; i++) {
-		unsigned int size = a[i].size();
+		unsigned long long size = a[i].size();
 		StemUno(a[i], size);
 		std::cout << a[i] << std::endl;
 	}
 	for(; i < 11; i++) {
-		unsigned int size = a[i].size();
+		unsigned long long size = a[i].size();
 		StemDos(a[i], size);
 		std::cout << a[i] << ", ";
 	}
@@ -146,10 +146,10 @@ string Porter::getRegion(const string& str) const {
 	// IF Region1 exists, it is the substring that; 
 	// follows the first consonant (non-vowel) 
 	// 	that follows a vowel
-	unsigned int size = str.size() - 1;
+	unsigned long long size = str.size() - 1;
 	if(size < 2) return ""; // 2 char strings have no Region1
 
-	for(unsigned int i = 0; i < size-1; i++) {
+	for(unsigned long long i = 0; i < size-1; i++) {
 		// only need to check until we are 2 chars from str.size()
 		if(isVowel(str, i) && !isVowel(str, i+1)) {
 			// vowel followed by not vowel
@@ -206,12 +206,15 @@ bool Porter::isShort(const string& str) const {
 ///	followed by a non-vowel
 ///	that is not {'w', 'x', 'y'}
 bool Porter::isShortSyllable(const string& str) const {
-	unsigned int size = str.size();
+	unsigned long long size = str.size();
 	if(size < 2) return false; // too short to even test
 
 	// 1) check length and pattern
-	if(size == 2 && (isVowel(str, 0) && !isVowel(str,1)))
-		return true;	
+	if(size == 2) {
+		if(isVowel(str, 0) && !isVowel(str,1))
+			return true;	
+		return false;
+	}
 
 	// 2) check end and pattern
 	string ending = str.substr(size-3);
@@ -252,7 +255,7 @@ bool Porter::isValidli(const string& str) const {
 /// Takes a string and a location of a char
 /// checks to see if said char is a vowel
 /// all other chars return false
-bool Porter::isVowel(const string& str, unsigned int loc) const {
+bool Porter::isVowel(const string& str, unsigned long long loc) const {
 	char c = str[loc];
 	switch(c) 
 	{
@@ -285,28 +288,42 @@ void Porter::replace(string& str, const string replacement, const int length) co
 /// remove the suffix and add the replacement.
 /// If the conditions of the suffix are NOT satisfied,
 /// do nothing
-void Porter::StemUno(string& str, const unsigned int size) const {
+void Porter::StemUno(string& str, const unsigned long long size) const {
+	unsigned long long sz = 0;
+	string suffix = "";
+
 	// first, if the word begins with an apostrophe, remove it
-	if(str[0] == '\'')
+	if(str[0] == '\'') {
 		str = str.substr(1);
+		sz = str.size();
+	}
+	else sz = size;
+
+	if(sz == 0) return;
 
 	// find/parse "'s'"
-	string suffix = str.substr(size - 3);
-	if(!suffix.compare("'s'")) {
-		replace(str, "", 3);
-		return;
+	if(sz > 2) {
+		suffix = str.substr(sz-3);
+		if(!suffix.compare("'s'")) {
+			replace(str, "", 3);
+			return;
+		}
 	}
 	// find/parse "'s"
-	suffix = suffix.substr(1);
-	if(!suffix.compare("'s")) {
-		replace(str, "", 2);
-		return;
+	if(sz > 1) {
+		suffix = str.substr(sz-2);
+		if(!suffix.compare("'s")) {
+			replace(str, "", 2);
+			return;
+		}
 	}
 	// find/parse "'"
-	suffix = suffix.substr(1);
-	if(!suffix.compare("'")) {
-		replace(str, "", 1);
-		return;
+	if(sz != 0) {
+		suffix = str.substr(sz-1);
+		if(!suffix.compare("'")) {
+			replace(str, "", 1);
+			return;
+		}
 	}
 	// otherwise, nothing to do here
 }
@@ -316,7 +333,7 @@ void Porter::StemUno(string& str, const unsigned int size) const {
 /// Step #2 of the Porter Algorithm
 /// {"sses", "ies", "ied", "us", "ss", "s"}
 /// Find the longest suffix that matches ...
-void Porter::StemDos(string& str, const unsigned int size) const {
+void Porter::StemDos(string& str, const unsigned long long size) const {
 	int sz = 0;
 	string suffix = "";
 	
@@ -353,7 +370,7 @@ void Porter::StemDos(string& str, const unsigned int size) const {
 		// find/parse "s"
 		suffix = str.substr(size-1);
 		if(!suffix.compare("s")) {
-			for(unsigned int i = 0; i < size - 2; i++) {
+			for(unsigned long long i = 0; i < size - 2; i++) {
 				if(isVowel(str, i)) {
 					replace(str, "", 1);	// replace with (none)
 					break;
@@ -372,68 +389,70 @@ void Porter::StemDos(string& str, const unsigned int size) const {
 /// Takes a string and its size and parses off:
 /// {"eed", "eedly", "ed", "edly", "ing", "ingly"}
 /// Find the longest suffix that matches ...
-void Porter::StemTres(string& str, const unsigned int size) const {
+void Porter::StemTres(string& str, const unsigned long long size) const {
 	string suffix = "";
-	unsigned int sz = 0;
+	unsigned long long sz = 0;
 
 	// sz -> anything over 6 is 7
-	if(size > 6) sz = 7;
+	if(size > 4) sz = 5;
 	else sz = size;
 	
 	switch(sz)
 	{
 		// same as dos, need to watch for little strings
-		case 7:
-		// find/parse "eedly"
+		case 5:
+		// find/parse "eedly" || "ingly"
 		// suffix must occur in Region1 which by 
 		// definition means size has to be >= 7
 			suffix = str.substr(size-5);
 			if(!suffix.compare("eedly")) {
+				if(size < 7) break; // no region 1
 				if(getRegion(str).find("eedly") != std::string::npos) {
 					replace(str, "ee", 5);	// replace with ee
 				}
 			break;
 			}
-		case 6:
-		// find/parse "ingly"
-		// preceder must contain a vowel
-		// ie: size >= 6 by definition
-			suffix = str.substr(size-5);
-			if(!suffix.compare("ingly")) {
-				// let the alpha function handle the messy work
+			else if(!suffix.compare("ingly")) {
+				// preceder must contain a vowel
+				// ie: size >= 6 by definition
+				if(size < 6) break; // no preceder
+				// otherwise, let the alpha function handle the messy work
 				StemTresAlpha(str, getPreceder(str, 5), 5);
 				break;
 			}
 		// find/parse "edly"
-		case 5:
+		case 4:
 			suffix = str.substr(size-4);
 			if(!suffix.compare("edly")) {
+				if(size < 5) break; // no preceder
 				// let the alpha function handle the messy work
 				StemTresAlpha(str, getPreceder(str, 4), 4);
 				break;
 			}
+		case 3:
 		// find/parse "eed"
  			suffix = str.substr(size-3);	
 			// again, must occur in Region1 
 			// ie: size >= 5 by definition
 			if(!suffix.compare("eed")) {
+				if(size < 5) break; // no region1
 				if(getRegion(str).find("eed") != std::string::npos) {
 					replace(str, "ee", 3);
 				}
 				break;
 			}
 		// find/parse "ing"
-		case 4: 
-			suffix = str.substr(size-3);
-			if(!suffix.compare("ing")) {
+			else if(!suffix.compare("ing")) {
+				if(size < 4) return; // no preceder
 				// alpha function to the rescue! 
 				StemTresAlpha(str, getPreceder(str, 3), 3);
 				break;
 			}
 		// find/parse "ed"
-		case 3:
+		case 2:
 			suffix = str.substr(size-2);
 			if(!suffix.compare("ed")) {
+				if(size < 3) return; // no preceder
 				// go go funciton alpha 
 				StemTresAlpha(str, getPreceder(str, 2), 2);
 				break;
@@ -455,19 +474,19 @@ void Porter::StemTres(string& str, const unsigned int size) const {
 /// 	1) if preceder ends in {"at", "bl", "iz"}
 /// 	2) if preceder isDouble()
 /// 	3) if preceder isShort()
-void Porter::StemTresAlpha(string& str, const string& preceder, const unsigned int length) const {
+void Porter::StemTresAlpha(string& str, const string& preceder, const unsigned long long length) const {
 	// length = size of suffix
 	// size = size of preceder
-	unsigned int size = preceder.size();
+	unsigned long long size = preceder.size();
 
 	// preceder must contain a vowel
-	for(unsigned int i = 0; i < size; i++) {
-		if(isVowel(str, i)) {
+	for(unsigned long long i = 0; i < size; i++) {
+		if(isVowel(preceder, i)) {
 			replace(str, "", length);	// replace suffix with (none)
 
 			if(size > 1) {
 				// still need to check 1,2, and 3 and adjust accordingly
-				string ending = str.substr(size-2);
+				string ending = preceder.substr(size-2);
 				if(!ending.compare("at") || !ending.compare("bl") || !ending.compare("iz")) 
 					str = str + "e";	// add an e
 				else if(isDouble(ending))
@@ -484,20 +503,19 @@ void Porter::StemTresAlpha(string& str, const string& preceder, const unsigned i
 /// Step #4 of the Porter Algorithm
 /// Takes a string and its size and parses off:
 /// {"y"}
-void Porter::StemCuatro(string& str, const unsigned int size) const {
+void Porter::StemCuatro(string& str, const unsigned long long size) const {
 	// size = str.size()
 	// sz   = preceder.size()
 	
 	char suffix = str[size-1];
 	if(suffix == 'y') {
 		string preceder = getPreceder(str, 1);
-		unsigned int sz = preceder.size();
+		unsigned long long sz = preceder.size();
 		// y must follow a consonant that is not the first word in str
 		// ie: preceder.size() >= 2
 		if(sz < 2) return;	
 		else {
-			preceder = preceder.substr(sz-1);	// get the last char in the preceder
-			if(!isVowel(preceder, 0))
+			if(!isVowel(preceder, sz-1))
 				replace(str, "i", 1);	// replace with i
 		}
 	}	
@@ -513,7 +531,7 @@ void Porter::StemCuatro(string& str, const unsigned int size) const {
 ///  "iviti", "fulli", "enci", "anci", "abli", "izer", "ator", "alli",
 ///  "bli", "ogi", "li"}
 ///  phew! 
-void Porter::StemCinco(string& str, const unsigned int size) const {
+void Porter::StemCinco(string& str, const unsigned long long size) const {
 	int sz = 0;
 	string suffix = "";
 	
@@ -653,13 +671,13 @@ void Porter::StemCinco(string& str, const unsigned int size) const {
 /// Step #6 of the Porter Algorithm
 /// Takes a string and its size and parses off:
 /// {"ational", "tional", "alize", "ative", "icate", "iciti", "ical", "ness", "ful"}
-void Porter::StemSeis(string& str, const unsigned int size) const {
+void Porter::StemSeis(string& str, const unsigned long long size) const {
 	// all these require the suffix to be 
 	// at the very least in Region1 
 	string region1 = getRegion(str);
 	if(!region1.compare("")) return; // region1 does not exist
 	
-	unsigned int sz = 0;	
+	unsigned long long sz = 0;	
 	string suffix = "";
 	
 	// sz -> anything over 8 is 9
@@ -735,7 +753,7 @@ void Porter::StemSeis(string& str, const unsigned int size) const {
 /// Takes a string and its size and parses off:
 /// {"ement", "ance", "ence", "able", "ible", "ment", "ant", "ent", "ism", 
 ///  "ate", "iti", "ous", "ive", "ize", "ion", "al", "er", "ic"}
-void Porter::StemSiete(string& str, unsigned const int size) const {
+void Porter::StemSiete(string& str, const unsigned long long size) const {
 	// all these require the suffix to be 
 	// be in Region2 
 
@@ -745,116 +763,69 @@ void Porter::StemSiete(string& str, unsigned const int size) const {
 	region = getRegion(region); // region2
 	if(!region.compare("")) return; // region2 does not exist
 	
-	unsigned int sz = 0;	
+	unsigned long long sz = 0;	
 	string suffix = "";
 	
-	// sz -> anything over 8 is 9
-	if(size > 8) sz = 9;
+	// sz -> anything over 4 is 5
+	if(size > 4) sz = 5;
 	else sz = size;
 	
 	switch(sz) 
 	{
-		case 9:
+		case 5:
 			suffix = str.substr(size-5);
 			if(!suffix.compare("ement")) {
-				if(region.find(suffix) != std::string::npos) 
-					replace(str, "", 5); // replace with (none)
+				if(size > 9) {
+					if(region.find(suffix) != std::string::npos) 
+						replace(str, "", 5); // replace with (none)
+				}
 				break;
 			}
-		case 8:
+		case 4:
 			suffix = str.substr(size-4);
-			if(!suffix.compare("ance")) {
-				if(region.find(suffix) != std::string::npos)
-					replace(str, "", 4); // replace with (none)
+			if(!suffix.compare("ance") || !suffix.compare("ence")
+				|| !suffix.compare("able") || !suffix.compare("ible")
+				|| !suffix.compare("ment")) 
+			{
+				if(size > 8) {
+					if(region.find(suffix) != std::string::npos)
+						replace(str, "", 4); // replace with (none)
+				}
 				break;
 			}	
-			else if(!suffix.compare("ence")) {
-				if(region.find(suffix) != std::string::npos)
-					replace(str, "", 4); // replace with (none)
-				break;
-			}
-			else if(!suffix.compare("able")) {
-				if(region.find(suffix) != std::string::npos)
-					replace(str, "", 4); // replace with (none)
-				break;
-			}
-			else if(!suffix.compare("ible")) {
-				if(region.find(suffix) != std::string::npos)
-					replace(str, "", 4); // replace with (none)
-				break;
-			}
-			else if(!suffix.compare("ment")) {
-				if(region.find(suffix) != std::string::npos)
-					replace(str, "", 4); // replace with (none)
-				break;
-			}
-		case 7: 
+		case 3: 
 			suffix = str.substr(size-3);
-			if(!suffix.compare("ant")) {
-				if(region.find(suffix) != std::string::npos)
-					replace(str, "", 3); // replace with (none)
-				break;
-			}	
-			else if(!suffix.compare("ent")) {
-				if(region.find(suffix) != std::string::npos)
-					replace(str, "", 3); // replace with (none)
-				break;
-			}
-			else if(!suffix.compare("ism")) {
-				if(region.find(suffix) != std::string::npos)
-					replace(str, "", 3); // replace with (none)
-				break;
-			}
-			else if(!suffix.compare("ate")) {
-				if(region.find(suffix) != std::string::npos)
-					replace(str, "", 3); // replace with (none)
-				break;
-			}
-			else if(!suffix.compare("iti")) {
-				if(region.find(suffix) != std::string::npos)
-					replace(str, "", 3); // replace with (none)
-				break;
-			}
-			else if(!suffix.compare("ous")) {
-				if(region.find(suffix) != std::string::npos)
-					replace(str, "", 3); // replace with (none)
-				break;
-			}
-			else if(!suffix.compare("ive")) {
-				if(region.find(suffix) != std::string::npos)
-					replace(str, "", 3); // replace with (none)
-				break;
-			}
-			else if(!suffix.compare("ize")) {
-				if(region.find(suffix) != std::string::npos)
-					replace(str, "", 3); // replace with (none)
+			if(!suffix.compare("ant") || !suffix.compare("ent") 
+				|| !suffix.compare("ism") || !suffix.compare("ate") 
+				|| !suffix.compare("iti") || !suffix.compare("ous")
+				|| !suffix.compare("ive") || !suffix.compare("ize")) 
+			{
+				if(size > 6) {
+					if(region.find(suffix) != std::string::npos)
+						replace(str, "", 3); // replace with (none)
+				}
 				break;
 			}
 			else if(!suffix.compare("ion")) {
-				if(region.find(suffix) != std::string::npos) {
-					// the preceder must end in "s" or "t"
-					string preceder = getPreceder(str, 3);
-					preceder = preceder.substr(preceder.size()-1);	// only care about last char
-					if(!preceder.compare("s") || !preceder.compare("t"))
-						replace(str, "", 3); // replace with (none)
-				break;
+				if(size > 6) {
+					if(region.find(suffix) != std::string::npos) {
+						// the preceder must end in "s" or "t"
+						string preceder = getPreceder(str, 3);
+						preceder = preceder.substr(preceder.size()-1);	// only care about last char
+						if(!preceder.compare("s") || !preceder.compare("t"))
+							replace(str, "", 3); // replace with (none)
+					}
 				}
+				break;
 			}
-		case 6:
+		case 2:
 			suffix = str.substr(size-2);
-			if(!suffix.compare("al")) {
-				if(region.find(suffix) != std::string::npos)
-					replace(str, "", 2); // replace with (none)
-				break;
-			}
-			else if(!suffix.compare("er")) {
-				if(region.find(suffix) != std::string::npos)
-					replace(str, "", 2); // replace with (none)
-				break;
-			}
-			else if(!suffix.compare("ic")) {
-				if(region.find(suffix) != std::string::npos)
-					replace(str, "", 2); // replace with (none)
+			if(!suffix.compare("al") || !suffix.compare("er") || !suffix.compare("ic")) 
+			{
+				if(size > 5) {
+					if(region.find(suffix) != std::string::npos)
+						replace(str, "", 2); // replace with (none)
+				}
 				break;
 			}
 		default: break;
@@ -867,17 +838,20 @@ void Porter::StemSiete(string& str, unsigned const int size) const {
 /// Step #8 of the Porter Algorithm
 /// Takes a string and its size and parses off:
 /// {"e", "l"}
-void Porter::StemOcho(string& str, const unsigned int size) const {
+void Porter::StemOcho(string& str, const unsigned long long size) const {
 	// both of these require at least region1
 	// ie: size >= 3
 	if(size < 3) return;	// nothing to do here
 
-	string preceder = str.substr(size-2,1);	// only care about the last char
+	string preceder = str.substr(0, size-1);
 
 	string region1 = getRegion(str);
-	if(!region1.compare("") || region1.size() < 3) return; // region1 does not exist
+	if(!region1.compare("")) return; // region1 does not exist
 
-	string region2 = getRegion(region1);
+	string region2 = "";
+	if(region1.size() > 2) 
+		region2 = getRegion(region1);
+
 	string suffix = str.substr(size-1);
 
 
@@ -895,6 +869,7 @@ void Porter::StemOcho(string& str, const unsigned int size) const {
 	else if(!suffix.compare("l")) {
 		if(region2.find(suffix) != std::string::npos) {
 			// preceder must end in "l"
+			preceder = preceder.substr(preceder.size()-1);
 			if(!preceder.compare("l"))
 				replace(str, "", 1); // replace with (none)
 		}
