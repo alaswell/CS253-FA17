@@ -35,6 +35,7 @@ public:
 
 	/* Mutators */
 	void replace(string& str, const string replacement, const int length) const; 
+	void GoGoPorterNumeroDos(string& str, unsigned int size) const;
 	void StemUno(string& str, const unsigned int size) const;
 	void StemDos(string& str, const unsigned int size) const;
 	void StemTres(string& str, const unsigned int size) const;
@@ -45,6 +46,7 @@ public:
 	void StemSiete(string& str, const unsigned int size) const;
 	void StemOcho(string& str, const unsigned int size) const;
 	void Eval(Histogram& Hist) const;
+	void Test(Histogram& Hist) const;
 };
 
 #endif // PORTER_H_INCLUDE

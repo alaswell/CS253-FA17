@@ -5,7 +5,51 @@
 /// Evaluation operator.
 /// Takes a Histogram and applies an 8-step algorithm to the strings 
 /// within the .histogram in order to stem them before counting
-void Porter::Eval (Histogram& Hist) const {
+void Porter::Eval(Histogram& Hist) const {
+	vector<Lexeme>& histogram = Hist.GetHist();
+	unsigned int size = histogram.size();
+
+	for(unsigned int i = 0; i < size; i++) {
+		Lexeme& lexeme = histogram[i];
+		// for each Lexeme
+		if(!lexeme.isPunctuation() && !lexeme.isCapital() && !lexeme.hasUpper() && !lexeme.hasDigit()) {
+			string& str = lexeme.getString();
+			const unsigned int sz = str.size();
+			if(sz > 3)
+				GoGoPorterNumeroDos(str, sz);
+		}
+	}
+}
+
+
+/// Execute Porter Algorithm #2
+/// Takes a string and its size 
+/// iterates through Porter#2 to 
+/// systematically stem away the suffix
+void Porter::GoGoPorterNumeroDos(string& str, unsigned int size) const {
+	StemUno(str, size);
+		size = str.size();	// reset size incase step modified it
+	StemDos(str, size);
+		size = str.size();	// reset size 
+	StemTres(str, size);
+		size = str.size();	// reset size 
+	StemCuatro(str, size);
+		size = str.size();	// reset size 
+	StemCinco(str, size);
+		size = str.size();	// reset size 
+	StemSeis(str, size);
+		size = str.size();	// reset size 
+	StemSiete(str, size);
+		size = str.size();	// reset size 
+	StemOcho(str, size);
+}
+
+
+/// Test operator.
+/// This just runs a nearly comprehensive
+/// sequential guantlet of test on a function by function
+/// basis. 
+void Porter::Test (Histogram& Hist) const {
 	string test0 = Hist.GetHist().at(0).getString();
 	string test1 = Hist.GetHist().at(1).getString();
 	string test2 = Hist.GetHist().at(2).getString();
@@ -310,8 +354,10 @@ void Porter::StemDos(string& str, const unsigned int size) const {
 		suffix = str.substr(size-1);
 		if(!suffix.compare("s")) {
 			for(unsigned int i = 0; i < size - 2; i++) {
-				if(isVowel(str, i))
+				if(isVowel(str, i)) {
 					replace(str, "", 1);	// replace with (none)
+					break;
+				}
 			}
 			break;
 		}
@@ -692,7 +738,10 @@ void Porter::StemSeis(string& str, const unsigned int size) const {
 void Porter::StemSiete(string& str, unsigned const int size) const {
 	// all these require the suffix to be 
 	// be in Region2 
+
 	string region = getRegion(str);
+	if(!region.compare("") || region.size() < 3) return;	// no region 1
+
 	region = getRegion(region); // region2
 	if(!region.compare("")) return; // region2 does not exist
 	
@@ -826,7 +875,7 @@ void Porter::StemOcho(string& str, const unsigned int size) const {
 	string preceder = str.substr(size-2,1);	// only care about the last char
 
 	string region1 = getRegion(str);
-	if(!region1.compare("")) return; // region1 does not exist
+	if(!region1.compare("") || region1.size() < 3) return; // region1 does not exist
 
 	string region2 = getRegion(region1);
 	string suffix = str.substr(size-1);
