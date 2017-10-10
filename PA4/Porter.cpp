@@ -775,7 +775,7 @@ void Porter::StemSiete(string& str, const unsigned long long size) const {
 		case 5:
 			suffix = str.substr(size-5);
 			if(!suffix.compare("ement")) {
-				if(size > 9) {
+				if(size > 8) {
 					if(region.find(suffix) != std::string::npos) 
 						replace(str, "", 5); // replace with (none)
 				}
@@ -787,7 +787,7 @@ void Porter::StemSiete(string& str, const unsigned long long size) const {
 				|| !suffix.compare("able") || !suffix.compare("ible")
 				|| !suffix.compare("ment")) 
 			{
-				if(size > 8) {
+				if(size > 7) {
 					if(region.find(suffix) != std::string::npos)
 						replace(str, "", 4); // replace with (none)
 				}
