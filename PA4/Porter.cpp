@@ -218,7 +218,7 @@ bool Porter::isShortSyllable(const string& str) const {
 
 	// 2) check end and pattern
 	string ending = str.substr(size-3);
-	if(!isVowel(ending, 0) && isVowel(ending, 1) && !isVowel(ending, 2)) {
+	if(!isVowel(str, size-3) && isVowel(str, size-2) && !isVowel(str, size-1)) {
 		switch(ending[2])
 		{
 			case 'w': case 'x': case 'y':
