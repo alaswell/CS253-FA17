@@ -29,18 +29,25 @@ void Porter::Eval(Histogram& Hist) const {
 void Porter::GoGoPorterNumeroDos(string& str, unsigned long long size) const {
 	StemUno(str, size);
 		size = str.size();	// reset size incase step modified it
+		if(!str.compare("")) return; // return on empty string 		
 	StemDos(str, size);
 		size = str.size();	// reset size 
+		if(!str.compare("")) return; // return on empty string 		
 	StemTres(str, size);
 		size = str.size();	// reset size 
+		if(!str.compare("")) return; // return on empty string 		
 	StemCuatro(str, size);
 		size = str.size();	// reset size 
+		if(!str.compare("")) return; // return on empty string 		
 	StemCinco(str, size);
 		size = str.size();	// reset size 
+		if(!str.compare("")) return; // return on empty string 		
 	StemSeis(str, size);
 		size = str.size();	// reset size 
+		if(!str.compare("")) return; // return on empty string 		
 	StemSiete(str, size);
 		size = str.size();	// reset size 
+		if(!str.compare("")) return; // return on empty string 		
 	StemOcho(str, size);
 }
 
@@ -158,6 +165,33 @@ string Porter::getRegion(const string& str) const {
 	}	
 	return "";	// no Region1
 }
+
+
+/// getRegion2(str)
+/// Takes a string and returns the defined "Region2"
+/// RELATIVE TO THE ORIGINAL WORD PER IN CLASS DISCUSSION 10/10
+string Porter::getRegion2(const string& str) const {
+	// Region2 is the Region1 of Region1 
+	// with regard to the original word
+	unsigned long long size = str.size();
+	if(size < 5) return ""; // 4 char strings have no Region2 
+
+	unsigned long long i = 0; // loop var is shared
+	for(; i < size-2; i++) {
+		// only need to check until 2 chars from str.size()
+		if(isVowel(str, i) && !isVowel(str, i+1)) {
+			// vowel followed by not vowel
+			// ie: region1 exists!
+			for(i+=2; i < size-2; i++) {	
+				// skip to region1 and stem region2
+				if(isVowel(str, i) && !isVowel(str, i+1)) {
+					return str.substr(i+2);	// region2
+				}
+			}
+		}
+	}	
+	return "";	// no Region2	
+}		
 
 
 /// isDouble(str)
@@ -335,10 +369,12 @@ void Porter::StemUno(string& str, const unsigned long long size) const {
 /// Find the longest suffix that matches ...
 void Porter::StemDos(string& str, const unsigned long long size) const {
 	int sz = 0;
+	unsigned long long length = 0;
 	string suffix = "";
+	string preceder = "";
 	
-	// sz -> anything over 4 is 5
-	if(size > 4) sz = 5;
+	// sz -> anything over 3 is 4
+	if(size > 3) sz = 4;
 	else sz = size;
 	
 	switch(sz)
@@ -346,31 +382,35 @@ void Porter::StemDos(string& str, const unsigned long long size) const {
 		// gotta be careful about the size of words here
 		// this switch keeps us from trying to parse 
 		// a word that is too short
-		case 5: 
-		case 4:
+		case 4: 
 		// find the longest suffix that matches this step
 		suffix = str.substr(size-4);
 		if(!suffix.compare("sses")) {
 			replace(str, "ss", 4);	// replace with ss
 			break;
 		}
+		case 3:
 		// find/parse "ied" || "ies"
 		suffix = str.substr(size-3);
 		if(!suffix.compare("ied") || !suffix.compare("ies")) {  
-			if(size > 4) replace(str, "i", 3);	// replace with i
+			preceder = getPreceder(str, 3);
+			length = preceder.size();
+			if(length > 1) replace(str, "i", 3);	// replace with i
 			else replace(str, "ie", 3);		// replace with ie
 			break;
 		}
-		case 3:
+		case 2:
 		// find/parse "us" || "ss"
 		suffix = str.substr(size-2);
 		if(!suffix.compare("us") || !suffix.compare("ss")) 
 			break; // replace with same
-		case 2:
+		case 1:
 		// find/parse "s"
 		suffix = str.substr(size-1);
 		if(!suffix.compare("s")) {
-			for(unsigned long long i = 0; i < size - 2; i++) {
+			preceder = getPreceder(str, 2);
+			length = preceder.size();
+			for(unsigned long long i = 0; i < length; i++) {
 				if(isVowel(str, i)) {
 					replace(str, "", 1);	// replace with (none)
 					break;
@@ -698,7 +738,7 @@ void Porter::StemSeis(string& str, const unsigned long long size) const {
 			// ative requires a region2, so it goes here
 				suffix = str.substr(size-5);
 				if(!suffix.compare("ative")) {
-					string region2 = getRegion(region1);
+					string region2 = getRegion2(str);
 					if(region2.find(suffix) != std::string::npos)
 						replace(str, "", 5); // replace with (none)
 					break;
@@ -757,12 +797,9 @@ void Porter::StemSiete(string& str, const unsigned long long size) const {
 	// all these require the suffix to be 
 	// be in Region2 
 
-	string region = getRegion(str);
-	if(!region.compare("") || region.size() < 3) return;	// no region 1
+	string region = getRegion2(str);
+	if(!region.compare("")) return;	// no region 2
 
-	region = getRegion(region); // region2
-	if(!region.compare("")) return; // region2 does not exist
-	
 	unsigned long long sz = 0;	
 	string suffix = "";
 	
@@ -850,7 +887,7 @@ void Porter::StemOcho(string& str, const unsigned long long size) const {
 
 	string region2 = "";
 	if(region1.size() > 2) 
-		region2 = getRegion(region1);
+		region2 = getRegion2(str);
 
 	string suffix = str.substr(size-1);
 

@@ -24,6 +24,7 @@ public:
 	
 	/* Accessors */
 	string getRegion(const string& str) const;
+	string getRegion2(const string& str) const;
 	inline string getPreceder(const string& str, const unsigned long long len) const { return str.substr(0,str.size() - len); }
 
 	bool isDouble(const string& str) const;
