@@ -20,6 +20,13 @@ Porter.o: Porter.cpp Porter.h
 clean: 
 	rm -f *.o 
 	rm -f $(PNAME)
+	rm -f gtest
 
 tar:
 	cd ../ && tar -cvf $(PNAME)/$(PNAME).tar $(PNAME)/*.cpp $(PNAME)/*.h $(PNAME)/makefile
+
+gtest:	Porter.o porterTests.o
+	$(CC) $^ -o $@ -lpthread -lgtest
+
+porterTests.o: porterTests.cpp Porter.h
+	$(CC) $(CFLAGS) porterTests.cpp
