@@ -2,7 +2,7 @@
 
 PNAME = PA4
 CC = g++
-CFLAGS = -g -c -Wall -I.
+CFLAGS = -std=c++11 -g -c -Wall -I.
 LFLAGS =-o $(PNAME)
 
 exec: main.o Histogram.o Porter.o
