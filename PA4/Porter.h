@@ -47,7 +47,6 @@ public:
 	void StemSiete(string& str, const unsigned long long size) const;
 	void StemOcho(string& str, const unsigned long long size) const;
 	void Eval(Histogram& Hist) const;
-	void Test(Histogram& Hist) const;
 };
 
 #endif // PORTER_H_INCLUDE
