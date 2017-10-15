@@ -1310,7 +1310,105 @@ TEST(GoGoPorterNumeroDos, TestEQ_arrowonezXsX) {
 	Porter p0;
 	string str = "arrowonez's'";
 	p0.GoGoPorterNumeroDos(str, str.size());
-	EXPECT_EQ("abat", str);
+	EXPECT_EQ("arrowonez", str);
+}
+
+TEST(GoGoPorterNumeroDos, TestEQ_atonement) {
+	Porter p0;
+	string str = "atonement";
+	p0.GoGoPorterNumeroDos(str, str.size());
+	EXPECT_EQ("aton", str);
+}
+
+TEST(GoGoPorterNumeroDos, TestEQ_abysmal) {
+	Porter p0;
+	string str = "abysmal";
+	p0.GoGoPorterNumeroDos(str, str.size());
+	EXPECT_EQ("abysm", str);
+}
+
+TEST(GoGoPorterNumeroDos, TestEQ_ceed) {
+	Porter p0;
+	string str = "ceed";
+	p0.GoGoPorterNumeroDos(str, str.size());
+	EXPECT_EQ("ceed", str);
+}
+
+TEST(GoGoPorterNumeroDos, TestEQ_ceedly) {
+	Porter p0;
+	string str = "ceedly";
+	p0.GoGoPorterNumeroDos(str, str.size());
+	EXPECT_EQ("ceed", str);
+}
+
+TEST(GoGoPorterNumeroDos, TestEQ_cyese) {
+	Porter p0;
+	string str = "cyese";
+	p0.GoGoPorterNumeroDos(str, str.size());
+	EXPECT_EQ("cyes", str);
+}
+
+TEST(GoGoPorterNumeroDos, TestEQ_ddy) {
+	Porter p0;
+	string str = "ddy";
+	p0.GoGoPorterNumeroDos(str, str.size());
+	EXPECT_EQ("ddi", str);
+}
+
+TEST(GoGoPorterNumeroDos, TestEQ_duy) {
+	Porter p0;
+	string str = "duy";
+	p0.GoGoPorterNumeroDos(str, str.size());
+	EXPECT_EQ("duy", str);
+}
+
+TEST(GoGoPorterNumeroDos, TestEQ_elegance) {
+	Porter p0;
+	string str = "elegance";
+	p0.GoGoPorterNumeroDos(str, str.size());
+	EXPECT_EQ("eleg", str);
+}
+
+TEST(GoGoPorterNumeroDos, TestEQ_element) {
+	Porter p0;
+	string str = "element";
+	p0.GoGoPorterNumeroDos(str, str.size());
+	EXPECT_EQ("element", str);
+}
+
+TEST(GoGoPorterNumeroDos, TestEQ_hable) {
+	Porter p0;
+	string str = "hable";
+	p0.GoGoPorterNumeroDos(str, str.size());
+	EXPECT_EQ("habl", str);
+}
+
+TEST(GoGoPorterNumeroDos, TestEQ_hive) {
+	Porter p0;
+	string str = "hive";
+	p0.GoGoPorterNumeroDos(str, str.size());
+	EXPECT_EQ("hive", str);
+}
+
+TEST(GoGoPorterNumeroDos, TestEQ_huzive) {
+	Porter p0;
+	string str = "huzive";
+	p0.GoGoPorterNumeroDos(str, str.size());
+	EXPECT_EQ("huziv", str);
+}
+
+TEST(GoGoPorterNumeroDos, TestEQ_liingly) {
+	Porter p0;
+	string str = "liingly";
+	p0.GoGoPorterNumeroDos(str, str.size());
+	EXPECT_EQ("li", str);
+}
+
+TEST(GoGoPorterNumeroDos, TestEQ_sentiment) {
+	Porter p0;
+	string str = "sentiment";
+	p0.GoGoPorterNumeroDos(str, str.size());
+	EXPECT_EQ("sentiment", str);
 }
 
 int main(int argc, char** argv) {
