@@ -1296,6 +1296,23 @@ TEST(StemOcho, TestEQ_not_eORl) {
 	EXPECT_EQ("add", str);
 }
 
+/****************************************/
+/*		GoGoPorter#2()		*/
+/****************************************/
+TEST(GoGoPorterNumeroDos, TestEQ_abatement) {
+	Porter p0;
+	string str = "abatement";
+	p0.GoGoPorterNumeroDos(str, str.size());
+	EXPECT_EQ("abat", str);
+}
+
+TEST(GoGoPorterNumeroDos, TestEQ_arrowonezXsX) {
+	Porter p0;
+	string str = "arrowonez's'";
+	p0.GoGoPorterNumeroDos(str, str.size());
+	EXPECT_EQ("abat", str);
+}
+
 int main(int argc, char** argv) {
 	::testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();
