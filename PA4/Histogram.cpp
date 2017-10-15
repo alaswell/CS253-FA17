@@ -16,7 +16,7 @@ void Histogram::Eval (Histogram& Hist) {
 /// Input operator. Format is string string ... str,
 /// where all strings are delineated by whitespace.
 /// Any other format causes the input stream to fail.
-bool Histogram::Read (istream& istr, vector<Lexeme>& histogram) 
+bool Histogram::Read (istream& istr, vector<Lexeme>& hist) 
 {
 	string word;			// temp var for holding the word
 	bool empty = true;		// the vector starts out empty 
@@ -50,7 +50,7 @@ bool Histogram::Read (istream& istr, vector<Lexeme>& histogram)
 					punctFnd = true;
 					if(i > 0) {
 						// there is a preceeding string
-						histogram.push_back(Lexeme(word.substr(0,i), capitalFnd, 0, digitFnd, upperFnd));
+						hist.push_back(Lexeme(word.substr(0,i), capitalFnd, 0, digitFnd, upperFnd));
 						digitFnd = false;	// reset flags
 						upperFnd = false;
 						capitalFnd = false;
@@ -61,8 +61,8 @@ bool Histogram::Read (istream& istr, vector<Lexeme>& histogram)
 						// it's a single string containing a punctuation char
 						// can just add it to histogram
 						if(word[0] == '.' || word[0] == '?' || word[0] == '!')
-							histogram.push_back(Lexeme(word, 0, 2));
-						else histogram.push_back(Lexeme(word, 0, 1));
+							hist.push_back(Lexeme(word, 0, 2));
+						else hist.push_back(Lexeme(word, 0, 1));
 						punctADD = true;
 						break;
 					}
@@ -92,7 +92,7 @@ bool Histogram::Read (istream& istr, vector<Lexeme>& histogram)
 		// we have checked each char in this word 
 		// for(char c : word) ispunct(c) = false
 		if(!punctADD && word.length() > 0) {
-			histogram.push_back(Lexeme(word, capitalFnd, 0, digitFnd, upperFnd));
+			hist.push_back(Lexeme(word, capitalFnd, 0, digitFnd, upperFnd));
 		}
 	}
 
@@ -133,7 +133,7 @@ bool Histogram::Write(ostream& ostr, map<string, int>& kvm) const
 /// Takes a string and a vector<Lexeme>&
 /// searches the str and parses out any punctuation
 /// returns a string such that ispunct(str[0]) = FALSE
-string Histogram::parsePunctuation(string word, vector<Lexeme>& histogram) {
+string Histogram::parsePunctuation(string word, vector<Lexeme>& hist) {
 	// ispunct(word[0]) = true 
 	// word.length() > 1 = true
 	char c = word[0];
@@ -157,15 +157,15 @@ string Histogram::parsePunctuation(string word, vector<Lexeme>& histogram) {
 	}
 
 	// PARSE IT
-	histogram.push_back(Lexeme(word.substr(0, strlen), 0, punct));	// ...?!Oops! adds "...?!" to hist
+	hist.push_back(Lexeme(word.substr(0, strlen), 0, punct));	// ...?!Oops! adds "...?!" to hist
 	word = word.substr(strlen);	// ...?!Oops! => Oops!
 	return word;
 }
 
-void Histogram::findCapitals(vector<Lexeme>& histogram){
-	for(unsigned int i = 0; i < histogram.size(); i++) {
+void Histogram::findCapitals(vector<Lexeme>& hist){
+	for(unsigned int i = 0; i < hist.size(); i++) {
 		// for each lexeme in histogram
-		Lexeme& lexeme = histogram.at(i);
+		Lexeme& lexeme = hist.at(i);
 
 		// first word is special
 		if(i == 0) {

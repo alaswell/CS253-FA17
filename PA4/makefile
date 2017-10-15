@@ -2,8 +2,9 @@
 
 PNAME = PA4
 CC = g++
-CFLAGS = -std=c++11 -g -c -Wall -I.
+CFLAGS = -std=c++11 -g -c -Wall -Wextra -Wpedantic -Werror -Wfatal-errors -Winit-self -Wshadow -Wlogical-op -Wcomment -Wctor-dtor-privacy -Wold-style-cast -D_GLIBCXX_DEBUG -fno-diagnostics-show-option -I.
 LFLAGS =-o $(PNAME)
+GFLAGS = -lpthread -lgtest
 
 exec: main.o Histogram.o Porter.o
 	$(CC) main.o Histogram.o Porter.o $(LFLAGS)
@@ -20,13 +21,13 @@ Porter.o: Porter.cpp Porter.h
 clean: 
 	rm -f *.o 
 	rm -f $(PNAME)
-	rm -f gtest
+	rm -f gtest*
 
 tar:
 	cd ../ && tar -cvf $(PNAME)/$(PNAME).tar $(PNAME)/*.cpp $(PNAME)/*.h $(PNAME)/makefile
 
-gtest:	Porter.o porterTests.o
-	$(CC) $^ -o $@ -lpthread -lgtest
+gtestPorter: Porter.o porterTests.o
+	$(CC) $^ -o $@ $(GFLAGS)
 
 porterTests.o: porterTests.cpp Porter.h
 	$(CC) $(CFLAGS) porterTests.cpp
