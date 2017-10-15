@@ -153,10 +153,10 @@ string Porter::getRegion(const string& str) const {
 	// IF Region1 exists, it is the substring that; 
 	// follows the first consonant (non-vowel) 
 	// 	that follows a vowel
-	unsigned long long size = str.size() - 1;
-	if(size < 2) return ""; // 2 char strings have no Region1
+	unsigned long long size = str.size();
+	if(size < 3) return ""; // 2 char strings have no Region1
 
-	for(unsigned long long i = 0; i < size-1; i++) {
+	for(unsigned long long i = 0; i < size-2; i++) {
 		// only need to check until we are 2 chars from str.size()
 		if(isVowel(str, i) && !isVowel(str, i+1)) {
 			// vowel followed by not vowel
@@ -309,7 +309,11 @@ bool Porter::isVowel(const string& str, unsigned long long loc) const {
 	return false;
 }
 
-
+/// replace method
+/// input:
+/// string, replacement, length
+/// returns string with replacement at length
+/// expects 0 <= length <= str.size()
 void Porter::replace(string& str, const string replacement, const int length) const {
 	str = str.substr(0, str.size() - length) + replacement;
 }
