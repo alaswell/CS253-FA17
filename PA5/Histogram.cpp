@@ -14,6 +14,48 @@ void Histogram::Eval (Histogram& Hist) {
 }
 
 
+/// Input operator for Exceptions file
+/// Format is string ... string\n (repeat)
+/// where all strings are delineated by whitespace
+/// any other format causes the input stream to fail.
+bool Histogram::ReadExceptionTable(ifstream& infile, unordered_map<string, string>& map) {
+	if(infile.fail()) return false;	// input file did not open correctly
+
+	bool empty = true;		// the map starts out empty
+	string line; 			// var for holding each line in file
+	string word; 			// var for holding each word
+	string stem;			// the associated stem for ^
+
+	// store each string and its associated stem
+	while(getline(infile, line)) {
+		empty = false;		// there is at least one string in the file
+
+		std::istringstream iss(line);
+		if(!(iss >> word >> stem)) { 
+			// incorrect input
+			cerr << "Error Histogram.ReadExceptionFile() istringstream : Invalid line read" << endl;
+			return false; 
+		} 
+		
+		map.insert({word, stem});
+	
+		// if not at eof, the value was not a valid string
+		if(iss.eof() != 1) {
+			cerr << "Error Histogram.ReadExceptionFile() : File contents are invalid eof." << endl;
+			return false;
+		}
+	}
+	
+
+	// if the file was empty we should error
+	if(empty) { 
+		cerr << "Error Histogram.Read() : Empty file" << endl;
+		return false;
+	}
+	return true;
+}
+
+
 /// Input operator. Format is string string ... str,
 /// where all strings are delineated by whitespace.
 /// Any other format causes the input stream to fail.

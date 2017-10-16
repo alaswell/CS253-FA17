@@ -11,10 +11,10 @@ using std::ifstream;
 /// Print the correct usage in case of user syntax error.
 int Usage(char* arg0, const char* location)
 {
-  cerr << "Usage: " << arg0 << " filename" << endl;
-  cerr << "where file contains 1 or more values" << endl;
-  cerr << "where every value is a string" << endl;
-  cerr << "The strings should be separated by white space." << endl;
+  cerr << "Usage: " << arg0 << " Exceptions.txt filename" << endl;
+  cerr << "where Exceptions.txt contains 1 or more string pairs" << endl;
+  cerr << "and filename contains 1 or more string values" << endl;
+  cerr << "All strings should be separated by white space." << endl;
   cerr << location << endl;
   return -1;
 }
@@ -22,15 +22,22 @@ int Usage(char* arg0, const char* location)
 int main(int argc, char** argv)
 {
   // check for the correct number of arguments 
-  if (argc != 2) return Usage(argv[0], "arguments != 2");
+  if (argc != 3) return Usage(argv[0], "arguments != 3");
   
-  ifstream istr(argv[1]);
+  ifstream infile(argv[1]);
+  if (infile.fail()) return Usage(argv[0], "infile.fail()");
+
+  ifstream istr(argv[2]);
   if (istr.fail()) return Usage(argv[0], "istr.fail()");
 
   Histogram h1;
   vector<Lexeme>& hist = h1.GetHist();
+  unordered_map<string, string>& table = h1.GetExceptions();
 
   if (!h1.Read(istr, hist)) return Usage(argv[0], "Read()");
+  if (!h1.ReadExceptionTable(infile, table)) return Usage(argv[0], "ReadExceptionTable()");
+
+
   h1.findCapitals(hist);
   h1.resolveAmbiguity(hist);
   
