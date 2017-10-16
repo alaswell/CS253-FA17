@@ -224,12 +224,15 @@ void Histogram::resolveAmbiguity(vector<Lexeme>& hist) {
 						// found another equal non-ambiguous string
 						// do nothing (leave it uppercase)
 						found = true;
+						hist[i].setAmbiguous(false);
 						break;
 					}
 				}
 			}
 			if(!found) {
 				str[0] = tolower(str[0]);
+				hist[i].setCapital(false);
+				hist[i].setAmbiguous(false);
 			}
 		}
 	}
