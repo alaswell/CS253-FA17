@@ -7,7 +7,9 @@
 /// within the .histogram in order to stem them before counting
 void Porter::Eval(Histogram& Hist) const {
 	vector<Lexeme>& histogram = Hist.GetHist();
+	unordered_map<string, string>& map = Hist.GetExceptions();
 	unsigned long long size = histogram.size();
+	unordered_map<string,string>::iterator it;
 
 	for(unsigned long long i = 0; i < size; i++) {
 		Lexeme& lexeme = histogram[i];
@@ -15,8 +17,17 @@ void Porter::Eval(Histogram& Hist) const {
 		if(!lexeme.isPunctuation() && !lexeme.isCapital() && !lexeme.hasUpper() && !lexeme.hasDigit()) {
 			string& str = lexeme.getString();
 			const unsigned long long sz = str.size();
-			if(sz > 2)
-				GoGoPorterNumeroDos(str, sz);
+			if(sz > 2) {
+				it = map.find(str);	// search the exception table for the string
+				if(it == map.end()) { 
+					// no value could be matched
+					GoGoPorterNumeroDos(str, sz);
+				}
+				else {
+					// match found, so just convert it to the provided stub
+					str = it->second;
+				}
+			}
 		}
 	}
 }
@@ -97,6 +108,13 @@ string Porter::getRegion2(const string& str) const {
 	}	
 	return "";	// no Region2	
 }		
+
+
+/// isException(str, size, map)
+/// Takes a string and a map of exceptions
+/// and checks to see if the string exists
+/// returns true if str is found in map
+
 
 
 /// isDouble(str)
