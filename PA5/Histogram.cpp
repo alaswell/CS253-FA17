@@ -27,25 +27,39 @@ bool Histogram::ReadExceptionTable(ifstream& infile, unordered_map<string, strin
 	string stem;			// the associated stem for ^
 
 	// store each string and its associated stem
-	while(getline(infile, line)) {
+	while(std::getline(infile, line)) {
 		empty = false;		// there is at least one string in the file
 
-		std::istringstream iss(line);
-		if(!(iss >> word >> stem)) { 
-			// incorrect input
-			cerr << "Error Histogram.ReadExceptionFile() istringstream : Invalid line read" << endl;
-			return false; 
-		} 
-		
-		map.insert({word, stem});
+		// only parse if the line contains something
+		if(line.compare("")) {
+			std::istringstream iss(line);
+			if(!(iss >> word >> stem)) {
+				// incorrect input
+				cerr << "Error Histogram.ReadExceptionFile() istringstream : Invalid line read" << endl;
+				return false; 
+			}
+			// add to the map
+			map.insert({word, stem});
 	
-		// if not at eof, the value was not a valid string
-		if(iss.eof() != 1) {
-			cerr << "Error Histogram.ReadExceptionFile() : File contents are invalid eof." << endl;
-			return false;
+			// if not at eof, the value was not a valid string
+			if(iss.eof() != 1) {
+				string temp;
+				iss >> temp;
+				if(temp.compare("")) {
+					cerr << "Error Histogram.ReadExceptionFile() : File contents are invalid => not a valid string." << endl;
+					cerr << line << " : " << word << " : " << stem << endl;
+					return false;
+				}
+			}
 		}
+		
 	}
 	
+	// if not at eof, the value was not a valid string
+	if(infile.eof() != 1) {
+		cerr << "Error Histogram.Read() : File contents are invalid." << endl;
+		return false;
+	}
 
 	// if the file was empty we should error
 	if(empty) { 

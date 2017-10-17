@@ -11,6 +11,7 @@ using std::endl;
 using std::ifstream;
 using std::istream;
 using std::ostream;
+using std::istringstream;
 #include<sstream>
 #include<vector>
 using std::vector;
