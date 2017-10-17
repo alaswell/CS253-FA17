@@ -1,4 +1,6 @@
-skies sky
-skis ski
-dying die dies
+	 skies sky
+skis 	 ski
+
+dying die
+oops 	=====
 
