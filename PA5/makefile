@@ -2,7 +2,8 @@
 
 PNAME = PA5
 CC = g++
-CFLAGS = -std=c++11 -g -c -Wall -Wextra -Wpedantic -Werror -Wfatal-errors -Winit-self -Wshadow -Wlogical-op -Wcomment -Wctor-dtor-privacy -Wold-style-cast -D_GLIBCXX_DEBUG -fno-diagnostics-show-option -I.
+CFLAGS = -std=c++11 -c -I.
+WIPFLAGS = -std=c++11 -g -c -Wall -Wextra -Wpedantic -Werror -Wfatal-errors -Winit-self -Wshadow -Wlogical-op -Wcomment -Wctor-dtor-privacy -Wold-style-cast -D_GLIBCXX_DEBUG -fno-diagnostics-show-option -I.
 LFLAGS =-o $(PNAME)
 GFLAGS = -lpthread -lgtest
 
