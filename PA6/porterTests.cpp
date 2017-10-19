@@ -1410,6 +1410,9 @@ TEST(GoGoPorterNumeroDos, TestEQ_sentiment) {
 	p0.GoGoPorterNumeroDos(str, str.size());
 	EXPECT_EQ("sentiment", str);
 }
+
+/****************************************/
+/*		Histogram()		*/
 /****************************************/
 
 int main(int argc, char** argv) {
