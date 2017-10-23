@@ -2,6 +2,32 @@
 
 /*! \file Cluster.cpp: implements the Cluster class */
 
+
+/// 
+/// GetInverseDocumentFrequencies.
+/// Counts all instances of each string within all Histograms
+/// and stores them as a key_value_pair in the map
+/// returning the IDF of each word as a map<string, double>
+map<string, double> Cluster::GetInverseDocumentFrequencies(vector<Histogram>& cluster, map<string, double>& map) {
+	// To begin; get the frequency of each word to # of files
+	for(auto &h : cluster) {
+		auto kvp =  h.GetMap();
+		for(auto s : kvp) {
+			++map[s.first];
+		}
+	}
+	// N = number of Histograms
+	int N = cluster.size();
+	// Have to create a newMap to modify these values to
+	// idf(word) = log10(N/freq)
+	std::map<string, double> invDocFreq;
+	for(std::map<string, double>::iterator it=map.begin(); it != map.end(); it++) {
+		invDocFreq[it->first] = log10(N/it->second);
+	}
+	return invDocFreq;
+}
+
+
 bool Cluster::Read (ifstream& infile, unordered_map<string, string>& map) {
 	if(infile.fail()) return false; // input file did not open correctly
 
@@ -47,10 +73,14 @@ bool Cluster::Read (ifstream& infile, unordered_map<string, string>& map) {
 
 std::ostream& operator<< (std::ostream &out, const Cluster &Cluster) {
 	// output to ostream
+/*	EACH HISTOGRAM ALL WORDS
 	const vector<Histogram>& c0 = Cluster.GetCluster();
 	for(auto &h : c0) {
 		auto m = h.GetMap();
 		h.Write(std::cout, m);
 	}		
+*/
+	const map<string, double>& kvp = Cluster.GetMap();
+	for(auto s : kvp) out << s.first << " " << s.second << "\n";
 	return out;
 }

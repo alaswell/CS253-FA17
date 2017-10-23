@@ -3,8 +3,8 @@
 /*! \file Histogram.cpp: implements the Histogram class */
 
 /// Evaluation operator.
-/// Takes a Histogram and counts all instances of distinct strings
-/// within the .histogram and stores them as a key_value_pair in the .map
+/// Counts all instances of distinct strings
+/// within the histogram and stores them as a key_value_pair in the map
 void Histogram::Eval () {
 	/* for each string in histogram 
 	 * find it in kvm and increment

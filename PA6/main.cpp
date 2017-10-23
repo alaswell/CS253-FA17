@@ -23,7 +23,7 @@ int Usage(char* arg0, const char* location)
 int main(int argc, char** argv)
 {
   // check for the correct number of arguments 
-  if (argc != 4) return Usage(argv[0], "arguments != 4");
+  if (argc < 4) return Usage(argv[0], "arguments != 4");
   
   // exceptions
   ifstream infile(argv[1]);
@@ -60,6 +60,10 @@ int main(int argc, char** argv)
 	c0.add(h);
   }
   /* end histograms */
+  vector<Histogram>& cluster = c0.GetCluster();
+  map<string, double>& map = c0.GetMap();
+  map = c0.GetInverseDocumentFrequencies(cluster, map);
+
   std::cout << c0 << std::endl;
   return 0;
 }
