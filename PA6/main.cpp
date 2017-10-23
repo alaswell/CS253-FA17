@@ -1,4 +1,5 @@
 /*! \file main.cpp: main function for CS253 Histogram (HW1) */
+#include <Cluster.h>
 #include <Histogram.h>
 #include <Porter.h>
 #include <iostream>
@@ -22,38 +23,44 @@ int Usage(char* arg0, const char* location)
 int main(int argc, char** argv)
 {
   // check for the correct number of arguments 
-  if (argc != 3) return Usage(argv[0], "arguments != 3");
+  if (argc != 4) return Usage(argv[0], "arguments != 4");
   
+  // exceptions
   ifstream infile(argv[1]);
   if (infile.fail()) return Usage(argv[0], "infile.fail()");
 
-  ifstream istr(argv[2]);
-  if (istr.fail()) return Usage(argv[0], "istr.fail()");
+  Cluster c0;
+  unordered_map<string, string> table = c0.GetExceptions();
+  if(!c0.Read(infile, table)) return Usage(argv[0], "Read Exception Table");
 
-  Histogram h1;
-  vector<Lexeme>& hist = h1.GetHist();
-  unordered_map<string, string>& table = h1.GetExceptions();
-
-  if (!h1.Read(istr, hist)) return Usage(argv[0], "Read()");
-  if (!h1.ReadExceptionTable(infile, table)) return Usage(argv[0], "ReadExceptionTable()");
-
-
-  h1.findCapitals(hist);
-  h1.resolveAmbiguity(hist);
-  
-  
-  istr.close();
-
-  // stem the words using
-  // Porter Algorithm #2
   Porter p0;
-  p0.Eval(h1);
-  
-  // sort and order
-  // then print
-  h1.Eval(h1);
-  if (!h1.Write(cout, h1.GetMap())) return Usage(argv[0], "Write()");
 
+  /* begin histogram(s) */
+  for(int i = 2; i < argc; i++) {
+	ifstream istr(argv[i]);
+	if (istr.fail()) return Usage(argv[0], "istr.fail()");
+
+	Histogram h;
+	vector<Lexeme>& hist = h.GetHist();
+
+	if (!h.Read(istr, hist)) return Usage(argv[0], "Histogram::Read()");
+  	istr.close();
+
+	// clean up the words a bit
+	h.findCapitals(hist);
+	h.resolveAmbiguity(hist);
+  
+	// stem the words using
+	// Porter Algorithm #2
+	p0.Eval(h, table);
+  
+	// sort and order
+	// then print
+	h.Eval();
+	c0.add(h);
+  }
+  /* end histograms */
+  std::cout << c0 << std::endl;
   return 0;
 }
 

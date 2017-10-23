@@ -5,12 +5,12 @@
 /// Evaluation operator.
 /// Takes a Histogram and counts all instances of distinct strings
 /// within the .histogram and stores them as a key_value_pair in the .map
-void Histogram::Eval (Histogram& Hist) {
+void Histogram::Eval () {
 	/* for each string in histogram 
 	 * find it in kvm and increment
 	 * if not found, std::map::operator[] will zero-initialize
 	 */
-	for(auto &l : Hist.histogram) ++Hist.key_value_map[l.getString()];
+	for(auto &l : histogram) ++key_value_map[l.getString()];
 }
 
 

@@ -46,7 +46,7 @@ public:
 	void StemSeis(string& str, const unsigned long long size) const;
 	void StemSiete(string& str, const unsigned long long size) const;
 	void StemOcho(string& str, const unsigned long long size) const;
-	void Eval(Histogram& Hist) const;
+	void Eval(Histogram& Hist, unordered_map<string, string>& map) const;
 };
 
 #endif // PORTER_H_INCLUDE

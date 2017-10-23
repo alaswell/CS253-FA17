@@ -5,9 +5,8 @@
 /// Evaluation operator.
 /// Takes a Histogram and applies an 8-step algorithm to the strings 
 /// within the .histogram in order to stem them before counting
-void Porter::Eval(Histogram& Hist) const {
+void Porter::Eval(Histogram& Hist, unordered_map<string, string>& map) const {
 	vector<Lexeme>& histogram = Hist.GetHist();
-	unordered_map<string, string>& map = Hist.GetExceptions();
 	unsigned long long size = histogram.size();
 	unordered_map<string,string>::iterator it;
 

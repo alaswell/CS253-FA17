@@ -3,21 +3,25 @@
 PNAME = PA6
 CC = g++
 CFLAGS = -std=c++11 -c -I.
-WIPFLAGS = -std=c++11 -g -c -Wall -Wextra -Wpedantic -Werror -Wfatal-errors -Winit-self -Wshadow -Wlogical-op -Wcomment -Wctor-dtor-privacy -Wold-style-cast -D_GLIBCXX_DEBUG -fno-diagnostics-show-option -I.
+WIPFLAGS = -std=c++11 -g -c -I. -Wall -Wextra -Wpedantic -Werror -Wfatal-errors -Winit-self -Wshadow -Wlogical-op -Wcomment -Wctor-dtor-privacy -Wold-style-cast -D_GLIBCXX_DEBUG -fno-diagnostics-show-option
+FLAGS = $(CFLAGS)
 LFLAGS =-o $(PNAME)
 GFLAGS = -lpthread -lgtest
 
-exec: main.o Histogram.o Porter.o
-	$(CC) main.o Histogram.o Porter.o $(LFLAGS)
+exec: main.o Histogram.o Porter.o Cluster.o
+	$(CC) main.o Histogram.o Porter.o Cluster.o $(LFLAGS)
 
-main.o: main.cpp Histogram.h
-	$(CC) $(CFLAGS) main.cpp
+main.o: main.cpp Histogram.h 
+	$(CC) $(FLAGS) main.cpp
 
 Histogram.o: Histogram.cpp Histogram.h
-	$(CC) $(CFLAGS) Histogram.cpp
+	$(CC) $(FLAGS) Histogram.cpp
 
 Porter.o: Porter.cpp Porter.h
-	$(CC) $(CFLAGS) Porter.cpp
+	$(CC) $(FLAGS) Porter.cpp
+
+Cluster.o: Cluster.cpp Cluster.h
+	$(CC) $(FLAGS) Cluster.cpp
 
 clean: 
 	rm -f *.o 

@@ -21,7 +21,7 @@ using std::map;
 using std::string;
 #include<unordered_map>
 using std::unordered_map;
-#include<Lexeme.h>
+#include"Lexeme.h"
 
 /*! \brief A string histogram for simple counting (currently)
  *
@@ -37,14 +37,14 @@ public:
 
 	/* simple accessors */
 	inline vector<Lexeme>& GetHist() {return histogram;}	
-	inline map<string, int>& GetMap() {return key_value_map;}
+	inline const map<string, int>& GetMap() const {return key_value_map;}
 	inline unordered_map<string, string>& GetExceptions() {return exceptions;}
 	bool isException(const string& str, const unsigned int i) const;
 	bool Write(ostream& ostr, map<string, int>& kvm) const;
 
 	/* Mutators */
 	inline void SetString(const string newValue, const int position) {histogram[position].setString(newValue);}
-	void Eval(Histogram& Hist);
+	void Eval();
 	bool Read(istream& istr, vector<Lexeme>& histogram);
 	bool ReadExceptionTable(ifstream& infile, unordered_map<string, string>& map);
 	string parsePunctuation(string word, vector<Lexeme>& histogram);
