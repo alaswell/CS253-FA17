@@ -38,7 +38,6 @@ public:
 	/* simple accessors */
 	inline vector<Lexeme>& GetHist() {return histogram;}	
 	inline const map<string, int>& GetMap() const {return key_value_map;}
-	inline unordered_map<string, string>& GetExceptions() {return exceptions;}
 	bool isException(const string& str, const unsigned int i) const;
 	bool Write(ostream& ostr, map<string, int>& kvm) const;
 
@@ -47,7 +46,6 @@ public:
 	inline void SetString(const string newValue, const int position) {histogram[position].setString(newValue);}
 	void Eval();
 	bool Read(istream& istr, vector<Lexeme>& histogram);
-	bool ReadExceptionTable(ifstream& infile, unordered_map<string, string>& map);
 	string parsePunctuation(string word, vector<Lexeme>& histogram);
 	void findCapitals(vector<Lexeme>& histogram);
 	void resolveAmbiguity(vector<Lexeme>& histogram);
@@ -55,7 +53,6 @@ public:
 private:
 	vector<Lexeme> histogram;			/// the strings exactly as they are read in 
 	map<string, int> key_value_map;			/// map<string, count> containing number of times said string appears
-	unordered_map<string, string> exceptions; 	/// exception table for porter algorithm
 };
 
 #endif // HISTOGRAM_H_INCLUDE
