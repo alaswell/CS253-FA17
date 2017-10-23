@@ -10,7 +10,11 @@ void Histogram::Eval () {
 	 * find it in kvm and increment
 	 * if not found, std::map::operator[] will zero-initialize
 	 */
-	for(auto &l : histogram) ++key_value_map[l.getString()];
+	for(auto &l : histogram) {
+		if(!l.isPunctuation()) {
+			++key_value_map[l.getString()];
+		}
+	}
 }
 
 
