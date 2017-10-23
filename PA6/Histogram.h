@@ -43,6 +43,7 @@ public:
 	bool Write(ostream& ostr, map<string, int>& kvm) const;
 
 	/* Mutators */
+	inline map<string, int>& GetMap() {return key_value_map;}
 	inline void SetString(const string newValue, const int position) {histogram[position].setString(newValue);}
 	void Eval();
 	bool Read(istream& istr, vector<Lexeme>& histogram);
@@ -53,7 +54,7 @@ public:
 
 private:
 	vector<Lexeme> histogram;			/// the strings exactly as they are read in 
-	map<string, int> key_value_map;			/// string_count_map containing number of times said string appears
+	map<string, int> key_value_map;			/// map<string, count> containing number of times said string appears
 	unordered_map<string, string> exceptions; 	/// exception table for porter algorithm
 };
 

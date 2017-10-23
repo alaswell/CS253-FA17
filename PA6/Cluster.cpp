@@ -3,7 +3,26 @@
 /*! \file Cluster.cpp: implements the Cluster class */
 
 
-/// 
+/// Comparison 
+/// take two Histograms and output their similarity
+/// based on the TFIDF equation in the README.md
+double Cluster::Compare(const Histogram& a, const Histogram& b, map<string, double>& invDocFreq) const {
+	double idf, sum = 0.0;
+	const map<string, int>& mapA = a.GetMap();
+	const map<string, int>& mapB = b.GetMap();
+	int i, j = 0;
+	int sz = invDocFreq.size();
+	for(auto s : mapA) {
+		auto it = mapB.find(s.first);
+		if(it != mapB.end()) {
+			idf = invDocFreq[s.first];
+			sum += (s.second*idf) * (it->second * idf);
+		}
+	}
+	return sum;
+}
+
+
 /// GetInverseDocumentFrequencies.
 /// Counts all instances of each string within all Histograms
 /// and stores them as a key_value_pair in the map
@@ -71,7 +90,7 @@ bool Cluster::Read (ifstream& infile, unordered_map<string, string>& map) {
 }
 
 
-std::ostream& operator<< (std::ostream &out, const Cluster &Cluster) {
+std::ostream& operator<< (std::ostream &out, const Cluster &c0) {
 	// output to ostream
 /*	EACH HISTOGRAM ALL WORDS
 	const vector<Histogram>& c0 = Cluster.GetCluster();
@@ -79,8 +98,20 @@ std::ostream& operator<< (std::ostream &out, const Cluster &Cluster) {
 		auto m = h.GetMap();
 		h.Write(std::cout, m);
 	}		
-*/
+//
 	const map<string, double>& kvp = Cluster.GetMap();
 	for(auto s : kvp) out << s.first << " " << s.second << "\n";
+*/
+	Cluster c1 =  c0;
+	unsigned int sz = c1.Size();
+	const vector<Histogram>& cl0 = c1.GetCluster();
+	map<string, double>& idf = c1.GetMap();
+	for(auto h : cl0) {
+		for(unsigned int i = 0; i < sz; i++) {
+			out << c1.Compare(h, cl0[i], idf) << "\t";
+		}
+		out << "\n";
+	}
+	out << std::endl;
 	return out;
 }
