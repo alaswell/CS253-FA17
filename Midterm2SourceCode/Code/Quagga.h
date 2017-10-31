@@ -34,7 +34,7 @@ class Equine : public Mammal {
 public:
  Equine() : equine_ctr(1) {PrintIf("Equine Constructor");}
   ~Equine() {PrintIf("Equine Destructor");}
-  Equine(int ctr) : equine_ctr(ctr) {PrintIf("Equine Constructor int DBUG\n\tCtr = " +  equine_ctr);}
+  Equine(int ctr) : equine_ctr(ctr) {PrintIf("Equine Constructor int DBUG");}
  void Eat() {std::cout << "Equine::Eat \"Grass\"";}
 protected:
   int equine_ctr;
@@ -44,7 +44,7 @@ class Quagga : public Equine, public ZooProperty {
 public:
  Quagga(int x) : Equine(2^x), ZooProperty(1000), ctr(x) {PrintIf("Quagga Constructor");}
   ~Quagga() {PrintIf("Quagga Destructor");}
-  int CtrSum() {return ctr + equine_ctr + mammal_ctr + animal_ctr;}
+  int CtrSum() {printf("ctr(%d) eq_ctr(%d) m_ctr(%d) a_ctr(%d)\n", ctr, equine_ctr, mammal_ctr, animal_ctr); return ctr + equine_ctr + mammal_ctr + animal_ctr;}
   virtual string WarmUp() {return "Quagga::WarmUp \"Buck\"";}
 protected:
   int ctr;
