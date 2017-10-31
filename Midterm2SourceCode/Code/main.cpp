@@ -21,11 +21,15 @@ int main (int argc, char** argv) {
 	cout << "q_ptr->CtrSum() " << q_ptr->CtrSum() << endl;
 	cout << "q_ptr->WarmUp() " << q_ptr->WarmUp() << endl;
 	q_ptr->Eat();
+	/* this will not actuall remove debug statements due to shadowing */
+//	q_ptr->SetDebug(0);
 	Equine* eq_ptr = new Equine();
 	cout << "\n-==-==-==-==-==-==-==-==-==-==-" << endl;
 	cout << "q_ptr->Identifier() " << q_ptr->Identifier() << endl;
 	cout << "eq_ptr->WarmUp() " << eq_ptr->WarmUp() << endl;
 	eq_ptr->Eat();
+	/* this will stop debug statements */
+//	eq_ptr->SetDebug(0);
 	cout << "\n-==-==-==-==-==-==-==-==-==-==-" << endl;
 	cout << "q_ptr->CtrSum() " << q_ptr->CtrSum() << endl;
 	Mammal* m_ptr = new Equine();
