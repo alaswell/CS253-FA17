@@ -16,7 +16,8 @@ using std::string;
 class Lexeme {
 public:
 	/// Constructor
-	Lexeme(string s = "", bool c = 0, int p = 0, bool d = 0, bool u = 0, bool a = 0) : str(s), capital(c), punctuation(p), digit(d), upper(u), ambiguous(a) {}
+	Lexeme(string s = "", bool c = 0, int p = 0, bool d = 0, bool u = 0, bool a = 0 ) 
+		: str(s), capital(c), punctuation(p), digit(d), upper(u), ambiguous(a) {}
 	
 	/* Accessors */
 	inline bool hasDigit() const { return digit; }

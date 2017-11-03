@@ -8,8 +8,8 @@ FLAGS = $(CFLAGS)
 LFLAGS =-o $(PNAME)
 GFLAGS = -lpthread -lgtest
 
-exec: main.o Histogram.o Porter.o Cluster.o
-	$(CC) main.o Histogram.o Porter.o Cluster.o $(LFLAGS)
+exec: main.o Histogram.o Porter.o Cluster.o ColemanLiau.o
+	$(CC) main.o Histogram.o Porter.o Cluster.o ColemanLiau.o $(LFLAGS)
 
 main.o: main.cpp Histogram.h 
 	$(CC) $(FLAGS) main.cpp
@@ -22,6 +22,9 @@ Porter.o: Porter.cpp Porter.h
 
 Cluster.o: Cluster.cpp Cluster.h
 	$(CC) $(FLAGS) Cluster.cpp
+
+ColemanLiau.o: ColemanLiau.cpp ColemanLiau.h
+	$(CC) $(FLAGS) ColemanLiau.cpp
 
 clean: 
 	rm -f *.o 

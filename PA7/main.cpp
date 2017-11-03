@@ -2,6 +2,7 @@
 #include <Cluster.h>
 #include <Histogram.h>
 #include <Porter.h>
+#include <ColemanLiau.h>
 #include <iostream>
 using std::cout;
 using std::cerr;
@@ -23,21 +24,25 @@ int Usage(char* arg0, const char* location)
 int main(int argc, char** argv)
 {
   // check for the correct number of arguments 
-  if (argc < 4) return Usage(argv[0], "arguments != 4");
-  
+  if (argc < 2) return Usage(argv[0], "arguments != 1");
+/*  
   // exceptions
   ifstream infile(argv[1]);
   if (infile.fail()) return Usage(argv[0], "infile.fail()");
 
+
   Cluster c0;
   unordered_map<string, string> table = c0.GetExceptions();
   if(!c0.Read(infile, table)) return Usage(argv[0], "Read Exception Table");
+*/
 
   Porter p0;
+  ColemanLiau cl0;
 
   /* begin histogram(s) */
-  for(int i = 2; i < argc; i++) {
-	ifstream istr(argv[i]);
+//  for(int i = ; i < argc; i++) {
+//	ifstream istr(argv[i]);
+	ifstream istr(argv[1]);	
 	if (istr.fail()) return Usage(argv[0], "istr.fail()");
 
 	Histogram h;
@@ -46,10 +51,15 @@ int main(int argc, char** argv)
 	if (!h.Read(istr, hist)) return Usage(argv[0], "Histogram::Read()");
   	istr.close();
 
-	// clean up the words a bit
 	h.findCapitals(hist);
+
+	// get the Coleman-Liau index 
+	cl0.Eval(h);
+/*
+	// clean up the words a bit
 	h.resolveAmbiguity(hist);
   
+	
 	// stem the words using
 	// Porter Algorithm #2
 	p0.Eval(h, table);
@@ -58,13 +68,17 @@ int main(int argc, char** argv)
 	// then print
 	h.Eval();
 	c0.add(h);
+
   }
+*/
   /* end histograms */
+/*
   vector<Histogram>& cluster = c0.GetCluster();
   map<string, double>& map = c0.GetMap();
   map = c0.GetInverseDocumentFrequencies(cluster, map);
 
-  std::cout << c0 << std::endl;
+  std::cout << c0;
+*/
   return 0;
 }
 
