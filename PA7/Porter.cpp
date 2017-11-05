@@ -315,7 +315,7 @@ void Porter::StemDos(string& str, const unsigned long long size) const {
 			replace(str, "ss", 4);	// replace with ss
 			break;
 		}
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		case 3:
 		// find/parse "ied" || "ies"
 		suffix = str.substr(size-3);
@@ -326,13 +326,13 @@ void Porter::StemDos(string& str, const unsigned long long size) const {
 			else replace(str, "ie", 3);		// replace with ie
 			break;
 		}
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		case 2:
 		// find/parse "us" || "ss"
 		suffix = str.substr(size-2);
 		if(!suffix.compare("us") || !suffix.compare("ss")) 
 			break; // replace with same
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		case 1:
 		// find/parse "s"
 		suffix = str.substr(size-1);
@@ -347,7 +347,7 @@ void Porter::StemDos(string& str, const unsigned long long size) const {
 			}
 			break;
 		}
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		default: break;
 	}
 	// otherwise, nothing to do here
@@ -390,7 +390,7 @@ void Porter::StemTres(string& str, const unsigned long long size) const {
 				StemTresAlpha(str, getPreceder(str, 5), 5);
 				break;
 			}
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		// find/parse "edly"
 		case 4:
 			suffix = str.substr(size-4);
@@ -400,7 +400,7 @@ void Porter::StemTres(string& str, const unsigned long long size) const {
 				StemTresAlpha(str, getPreceder(str, 4), 4);
 				break;
 			}
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		case 3:
 		// find/parse "eed"
  			suffix = str.substr(size-3);	
@@ -420,7 +420,7 @@ void Porter::StemTres(string& str, const unsigned long long size) const {
 				StemTresAlpha(str, getPreceder(str, 3), 3);
 				break;
 			}
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		// find/parse "ed"
 		case 2:
 			suffix = str.substr(size-2);
@@ -430,7 +430,7 @@ void Porter::StemTres(string& str, const unsigned long long size) const {
 				StemTresAlpha(str, getPreceder(str, 2), 2);
 				break;
 			}
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		default: break;
 	}
 	// otherwise, nothing to do here
@@ -538,7 +538,7 @@ void Porter::StemCinco(string& str, const unsigned long long size) const {
 				replace(str, "ive", 7); // replace with ive
 				break;
 			}
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		case 6:
 			suffix = str.substr(size-6);
 			if(!suffix.compare("tional")) {
@@ -553,7 +553,7 @@ void Porter::StemCinco(string& str, const unsigned long long size) const {
 				replace(str, "less", 6); // replace with less
 				break;
 			}
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		case 5:
 			suffix = str.substr(size-5);
 			if(!suffix.compare("entli")) {
@@ -584,7 +584,7 @@ void Porter::StemCinco(string& str, const unsigned long long size) const {
 				replace(str, "ful", 5);	// replace with ful
 				break;
 			}
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		case 4:
 			suffix = str.substr(size-4);
 			if(!suffix.compare("enci")) {
@@ -623,7 +623,7 @@ void Porter::StemCinco(string& str, const unsigned long long size) const {
 					break;
 				}
 			}
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		case 3:
 			suffix = str.substr(size-3);
 			if(!suffix.compare("bli")) {
@@ -639,7 +639,7 @@ void Porter::StemCinco(string& str, const unsigned long long size) const {
 					break;
 				}
 			}
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		default: break;
 	}
 	// otherwise, nothing to do here
@@ -683,7 +683,7 @@ void Porter::StemSeis(string& str, const unsigned long long size) const {
 					break;
 				}
 			}
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		case 8:
 			suffix = str.substr(size-6);
 			if(!suffix.compare("tional")) {
@@ -691,7 +691,7 @@ void Porter::StemSeis(string& str, const unsigned long long size) const {
 					replace(str, "tion", 6); // replace with tion
 				break;
 			}
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		case 7:
 			suffix = str.substr(size-5);
 			if(!suffix.compare("alize")) {
@@ -704,7 +704,7 @@ void Porter::StemSeis(string& str, const unsigned long long size) const {
 					replace(str, "ic", 5); // replace with ic
 				break;
 			}				
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		case 6:
 			suffix = str.substr(size-4);
 			if(!suffix.compare("ical")) {
@@ -717,14 +717,14 @@ void Porter::StemSeis(string& str, const unsigned long long size) const {
 					replace(str, "", 4); // replace with (none)
 				break;
 			}
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		case 5:
 			suffix = str.substr(size-3);
 			if(!suffix.compare("ful")) {
 				if(region1.find(suffix) != std::string::npos)
 					replace(str, "", 3); // replace with (none)
 			}
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		default: break;
 	}
 	// otherwise, nothing to do here
@@ -761,7 +761,7 @@ void Porter::StemSiete(string& str, const unsigned long long size) const {
 				}
 				break;
 			}
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		case 4:
 			suffix = str.substr(size-4);
 			if(!suffix.compare("ance") || !suffix.compare("ence")
@@ -774,7 +774,7 @@ void Porter::StemSiete(string& str, const unsigned long long size) const {
 				}
 				break;
 			}	
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		case 3: 
 			suffix = str.substr(size-3);
 			if(!suffix.compare("ant") || !suffix.compare("ent") 
@@ -800,7 +800,7 @@ void Porter::StemSiete(string& str, const unsigned long long size) const {
 				}
 				break;
 			}
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		case 2:
 			suffix = str.substr(size-2);
 			if(!suffix.compare("al") || !suffix.compare("er") || !suffix.compare("ic")) 
@@ -811,7 +811,7 @@ void Porter::StemSiete(string& str, const unsigned long long size) const {
 				}
 				break;
 			}
-		[[gnu::fallthrough]];
+//		[[gnu::fallthrough]];
 		default: break;
 	}
 	// otherwise, nothing to do here

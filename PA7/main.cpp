@@ -13,9 +13,8 @@ using std::ifstream;
 /// Print the correct usage in case of user syntax error.
 int Usage(char* arg0, const char* location)
 {
-  cerr << "Usage: " << arg0 << " Exceptions.txt filename" << endl;
-  cerr << "where Exceptions.txt contains 1 or more string pairs" << endl;
-  cerr << "and filename contains 1 or more string values" << endl;
+  cerr << "Usage: " << arg0 << " filename" << endl;
+  cerr << "where filename contains 1 or more string values" << endl;
   cerr << "All strings should be separated by white space." << endl;
   cerr << location << endl;
   return -1;
