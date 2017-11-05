@@ -26,6 +26,11 @@ double ColemanLiau::Eval(Histogram& Hist) const {
 				s_doc++;
 		}
 	}
+/*	DBUG
+ *	printf("Letters:\t\t\t%f\n", l_doc);	
+ *	printf("Words:\t\t\t\t%f\n", w_doc);
+ *	printf("Sentences:\t\t\t%f\n", s_doc);
+*/
 	// L(doc) = 0.0588*[(# of letters/# of words)*100]
 	l_doc /= w_doc;
 	l_doc *= 100;
