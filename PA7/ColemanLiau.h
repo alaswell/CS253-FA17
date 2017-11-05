@@ -21,9 +21,18 @@ class ColemanLiau {
 public:
 	/// Constructor
 	ColemanLiau() {}
+	ColemanLiau(double index) : CLIndex(index) {}
+
+	/* Accessors */
+	inline double getIndex() { return CLIndex; }
 
 	/* Mutators */
-	void Eval(Histogram& Hist) const;
+	double Eval(Histogram& Hist) const;
+	inline void setIndex(double index) { CLIndex = index; }
+
+	friend std::ostream& operator<< (std::ostream &out, const ColemanLiau &c0);
+private:
+	double CLIndex;
 };
 
 #endif // COLEMANLIAU_H_INCLUDE

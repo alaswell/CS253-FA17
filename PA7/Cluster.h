@@ -33,7 +33,7 @@ public:
 	/* simple accessors */
 	inline const vector<Histogram>& GetCluster() const {return cluster;}	
 	inline const map<string, double>& GetMap() const {return key_value_pair;}
-	inline const unsigned int Size() const {return cluster.size();}
+	inline unsigned int Size() const {return cluster.size();}
 	inline unordered_map<string, string>& GetExceptions() {return exceptions;}
 
 	/* Mutators */

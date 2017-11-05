@@ -10,8 +10,6 @@ double Cluster::Compare(const Histogram& a, const Histogram& b, map<string, doub
 	double idf, sum = 0.0;
 	const map<string, int>& mapA = a.GetMap();
 	const map<string, int>& mapB = b.GetMap();
-	int i, j = 0;
-	int sz = invDocFreq.size();
 	for(auto s : mapA) {
 		auto it = mapB.find(s.first);
 		if(it != mapB.end()) {
@@ -27,16 +25,16 @@ double Cluster::Compare(const Histogram& a, const Histogram& b, map<string, doub
 /// Counts all instances of each string within all Histograms
 /// and stores them as a key_value_pair in the map
 /// returning the IDF of each word as a map<string, double>
-map<string, double> Cluster::GetInverseDocumentFrequencies(vector<Histogram>& cluster, map<string, double>& map) {
+map<string, double> Cluster::GetInverseDocumentFrequencies(vector<Histogram>& clust, map<string, double>& map) {
 	// To begin; get the frequency of each word to # of files
-	for(auto &h : cluster) {
+	for(auto &h : clust) {
 		auto kvp =  h.GetMap();
 		for(auto s : kvp) {
 			++map[s.first];
 		}
 	}
 	// N = number of Histograms
-	int N = cluster.size();
+	int N = clust.size();
 	// Have to create a newMap to modify these values to
 	// idf(word) = log10(N/freq)
 	std::map<string, double> invDocFreq;
@@ -110,8 +108,6 @@ std::ostream& operator<< (std::ostream &out, const Cluster &c0) {
 		for(unsigned int i = 0; i < sz; i++) {
 			out << c1.Compare(h, cl0[i], idf) << "\t";
 		}
-		out << "\n";
 	}
-	out << std::endl;
 	return out;
 }

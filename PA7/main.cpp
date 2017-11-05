@@ -54,7 +54,7 @@ int main(int argc, char** argv)
 	h.findCapitals(hist);
 
 	// get the Coleman-Liau index 
-	cl0.Eval(h);
+	cl0.setIndex(cl0.Eval(h));
 /*
 	// clean up the words a bit
 	h.resolveAmbiguity(hist);
@@ -79,6 +79,7 @@ int main(int argc, char** argv)
 
   std::cout << c0;
 */
+  std::cout << cl0 << endl;
   return 0;
 }
 
