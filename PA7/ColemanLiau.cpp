@@ -5,7 +5,7 @@
 /// Evaluation operator.
 /// Takes a Histogram and applies the Coleman-Liau equation 
 /// to comeup with a reading level of the document
-double ColemanLiau::Eval(Histogram& Hist) const {
+bool ColemanLiau::Eval(Histogram& Hist) {
 	double l_doc = 0;
 	double s_doc = 0;
 	double w_doc = 0;
@@ -31,6 +31,13 @@ double ColemanLiau::Eval(Histogram& Hist) const {
  *	printf("Words:\t\t\t\t%f\n", w_doc);
  *	printf("Sentences:\t\t\t%f\n", s_doc);
 */
+
+	if(w_doc < 1) {
+		// division by zero
+		cerr << "Error ColemanLiau::Eval() : Division by zero." << endl;
+		return false;
+	}
+
 	// L(doc) = 0.0588*[(# of letters/# of words)*100]
 	l_doc /= w_doc;
 	l_doc *= 100;
@@ -41,7 +48,8 @@ double ColemanLiau::Eval(Histogram& Hist) const {
 	s_doc *= 100;
 	s_doc *= 0.296;
 
-	return l_doc - s_doc - 15.8;
+	setIndex(l_doc - s_doc - 15.8);
+	return true;
 } // END OF COLEMAN-LIAU
 
 

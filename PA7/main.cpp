@@ -53,7 +53,7 @@ int main(int argc, char** argv)
 	h.findCapitals(hist);
 
 	// get the Coleman-Liau index 
-	cl0.setIndex(cl0.Eval(h));
+	if (!cl0.Eval(h)) return Usage(argv[0], "ColemanLiau::Eval()");
 /*
 	// clean up the words a bit
 	h.resolveAmbiguity(hist);

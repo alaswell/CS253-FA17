@@ -27,7 +27,7 @@ public:
 	inline double getIndex() { return CLIndex; }
 
 	/* Mutators */
-	double Eval(Histogram& Hist) const;
+	bool Eval(Histogram& Hist);
 	inline void setIndex(double index) { CLIndex = index; }
 
 	friend std::ostream& operator<< (std::ostream &out, const ColemanLiau &c0);
