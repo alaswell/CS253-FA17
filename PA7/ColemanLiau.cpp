@@ -26,14 +26,9 @@ bool ColemanLiau::Eval(Histogram& Hist) {
 				s_doc++;
 		}
 	}
-/*	DBUG
- *	printf("Letters:\t\t\t%f\n", l_doc);	
- *	printf("Words:\t\t\t\t%f\n", w_doc);
- *	printf("Sentences:\t\t\t%f\n", s_doc);
-*/
 
+	// cannot allow division by zero
 	if(w_doc < 1) {
-		// division by zero
 		cerr << "Error ColemanLiau::Eval() : Division by zero." << endl;
 		return false;
 	}
