@@ -112,6 +112,5 @@ std::ostream& operator<< (std::ostream &out, const Cluster &c0) {
 		}
 		out << "\n";
 	}
-	out << std::endl;
 	return out;
 }

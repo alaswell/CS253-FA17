@@ -64,7 +64,7 @@ int main(int argc, char** argv)
   map<string, double>& map = c0.GetMap();
   map = c0.GetInverseDocumentFrequencies(cluster, map);
 
-  std::cout << c0 << std::endl;
+  std::cout << c0;
   return 0;
 }
 
