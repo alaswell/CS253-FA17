@@ -1,0 +1,113 @@
+\hypertarget{class_coleman_liau}{}\section{Coleman\+Liau Class Reference}
+\label{class_coleman_liau}\index{Coleman\+Liau@{Coleman\+Liau}}
+
+
+An implementation of the Coleman-\/\+Liau index algorithm.  
+
+
+
+
+{\ttfamily \#include $<$Coleman\+Liau.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_coleman_liau_a4ff77aa5f5ff81d167a8cabad71e620f}{Coleman\+Liau} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_coleman_liau_a0b46f263a2dd687c2fa89bbef88002d0}{Coleman\+Liau} (double index)
+\item 
+double \hyperlink{class_coleman_liau_a3a9e5cb64586313a753211c350147cb3}{get\+Index} ()
+\item 
+bool \hyperlink{class_coleman_liau_af0b2de26e53db82cb3e7243de1f26a6f}{Eval} (\hyperlink{class_histogram}{Histogram} \&Hist)
+\item 
+void \hyperlink{class_coleman_liau_a077d1533dfd8145ed729531c6edbfad0}{set\+Index} (double index)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \hyperlink{class_coleman_liau_a896867aacd954df4faecc74a7010a8b0}{operator$<$$<$} (std\+::ostream \&out, const \hyperlink{class_coleman_liau}{Coleman\+Liau} \&c0)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An implementation of the Coleman-\/\+Liau index algorithm. 
+
+A class for determining the reading level of a given histogram (document) 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_coleman_liau_a4ff77aa5f5ff81d167a8cabad71e620f}\label{class_coleman_liau_a4ff77aa5f5ff81d167a8cabad71e620f}} 
+\index{Coleman\+Liau@{Coleman\+Liau}!Coleman\+Liau@{Coleman\+Liau}}
+\index{Coleman\+Liau@{Coleman\+Liau}!Coleman\+Liau@{Coleman\+Liau}}
+\subsubsection{\texorpdfstring{Coleman\+Liau()}{ColemanLiau()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Coleman\+Liau\+::\+Coleman\+Liau (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+\mbox{\Hypertarget{class_coleman_liau_a0b46f263a2dd687c2fa89bbef88002d0}\label{class_coleman_liau_a0b46f263a2dd687c2fa89bbef88002d0}} 
+\index{Coleman\+Liau@{Coleman\+Liau}!Coleman\+Liau@{Coleman\+Liau}}
+\index{Coleman\+Liau@{Coleman\+Liau}!Coleman\+Liau@{Coleman\+Liau}}
+\subsubsection{\texorpdfstring{Coleman\+Liau()}{ColemanLiau()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Coleman\+Liau\+::\+Coleman\+Liau (\begin{DoxyParamCaption}\item[{double}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_coleman_liau_af0b2de26e53db82cb3e7243de1f26a6f}\label{class_coleman_liau_af0b2de26e53db82cb3e7243de1f26a6f}} 
+\index{Coleman\+Liau@{Coleman\+Liau}!Eval@{Eval}}
+\index{Eval@{Eval}!Coleman\+Liau@{Coleman\+Liau}}
+\subsubsection{\texorpdfstring{Eval()}{Eval()}}
+{\footnotesize\ttfamily bool Coleman\+Liau\+::\+Eval (\begin{DoxyParamCaption}\item[{\hyperlink{class_histogram}{Histogram} \&}]{Hist }\end{DoxyParamCaption})}
+
+Evaluation operator. Takes a \hyperlink{class_histogram}{Histogram} and applies the Coleman-\/\+Liau equation to comeup with a reading level of the document Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_coleman_liau_af0b2de26e53db82cb3e7243de1f26a6f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_coleman_liau_a3a9e5cb64586313a753211c350147cb3}\label{class_coleman_liau_a3a9e5cb64586313a753211c350147cb3}} 
+\index{Coleman\+Liau@{Coleman\+Liau}!get\+Index@{get\+Index}}
+\index{get\+Index@{get\+Index}!Coleman\+Liau@{Coleman\+Liau}}
+\subsubsection{\texorpdfstring{get\+Index()}{getIndex()}}
+{\footnotesize\ttfamily double Coleman\+Liau\+::get\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{class_coleman_liau_a3a9e5cb64586313a753211c350147cb3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=297pt]{class_coleman_liau_a3a9e5cb64586313a753211c350147cb3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_coleman_liau_a077d1533dfd8145ed729531c6edbfad0}\label{class_coleman_liau_a077d1533dfd8145ed729531c6edbfad0}} 
+\index{Coleman\+Liau@{Coleman\+Liau}!set\+Index@{set\+Index}}
+\index{set\+Index@{set\+Index}!Coleman\+Liau@{Coleman\+Liau}}
+\subsubsection{\texorpdfstring{set\+Index()}{setIndex()}}
+{\footnotesize\ttfamily void Coleman\+Liau\+::set\+Index (\begin{DoxyParamCaption}\item[{double}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_coleman_liau_a896867aacd954df4faecc74a7010a8b0}\label{class_coleman_liau_a896867aacd954df4faecc74a7010a8b0}} 
+\index{Coleman\+Liau@{Coleman\+Liau}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Coleman\+Liau@{Coleman\+Liau}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{const \hyperlink{class_coleman_liau}{Coleman\+Liau} \&}]{c0 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_coleman_liau_8h}{Coleman\+Liau.\+h}\item 
+\hyperlink{_coleman_liau_8cpp}{Coleman\+Liau.\+cpp}\end{DoxyCompactItemize}

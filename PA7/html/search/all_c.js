@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['setambiguous',['setAmbiguous',['../class_lexeme.html#a8fd310c078c13d53dc601c299d0acb78',1,'Lexeme']]],
+  ['setcapital',['setCapital',['../class_lexeme.html#aa54d86594141f95df8a0364aebc931f2',1,'Lexeme']]],
+  ['setdigit',['setDigit',['../class_lexeme.html#a4bf15e88113bc3cd10dff188fef37752',1,'Lexeme']]],
+  ['setindex',['setIndex',['../class_coleman_liau.html#a077d1533dfd8145ed729531c6edbfad0',1,'ColemanLiau']]],
+  ['setpunctuation',['setPunctuation',['../class_lexeme.html#a620288e33ed2b3957023b3d325febc13',1,'Lexeme']]],
+  ['setstring',['setString',['../class_lexeme.html#a90a1a2080fb503b0a206a075fd4d038a',1,'Lexeme::setString()'],['../class_histogram.html#a3b48f22da2e0c9f1d12ecd7a83f0dcf6',1,'Histogram::SetString()']]],
+  ['setupper',['setUpper',['../class_lexeme.html#a09873449eb90bc9be0f4df1edcf97b26',1,'Lexeme']]],
+  ['size',['Size',['../class_cluster.html#a916e731be9d3e52a404152e94b8b127d',1,'Cluster']]],
+  ['stemcinco',['StemCinco',['../class_porter.html#a916f45b55a1bbdaff7ce1db3d9a42813',1,'Porter']]],
+  ['stemcuatro',['StemCuatro',['../class_porter.html#aa1e1b416311f37b827bc093bb03ca500',1,'Porter']]],
+  ['stemdos',['StemDos',['../class_porter.html#a33838d3b5ab4963106a5c47c4a0c74e6',1,'Porter']]],
+  ['stemocho',['StemOcho',['../class_porter.html#a61853073641e47863fc6a85c786d8737',1,'Porter']]],
+  ['stemseis',['StemSeis',['../class_porter.html#a485f69d6797fce65144e0596f3190c2d',1,'Porter']]],
+  ['stemsiete',['StemSiete',['../class_porter.html#a1015f959403c55d740fff435f0cae439',1,'Porter']]],
+  ['stemtres',['StemTres',['../class_porter.html#a4aadb1440bc5f143aba28641cab26ff6',1,'Porter']]],
+  ['stemtresalpha',['StemTresAlpha',['../class_porter.html#ac5e4f3909a27316c6997c92a0019eaaf',1,'Porter']]],
+  ['stemuno',['StemUno',['../class_porter.html#ad8b63c9741655393ff9c849d269c953a',1,'Porter']]]
+];

@@ -1,0 +1,8 @@
+<map id="Porter::StemTresAlpha" name="Porter::StemTresAlpha">
+<area shape="rect" id="node2" href="$class_porter.html#ab16d2762c47b86b9a161be3d2c44203e" title="Porter::isVowel" alt="" coords="572,76,683,102"/>
+<area shape="rect" id="node3" href="$class_porter.html#aba12641d0e612b264097a35e4f2ffb45" title="Porter::replace" alt="" coords="213,25,319,52"/>
+<area shape="rect" id="node4" href="$class_porter.html#a7c8a4b3b6103ce655e8ffc8a3eba1897" title="Porter::isDouble" alt="" coords="208,76,324,102"/>
+<area shape="rect" id="node5" href="$class_porter.html#a35b1cc5606d4e78d1f69ac4037fdde87" title="Porter::isShort" alt="" coords="213,126,319,153"/>
+<area shape="rect" id="node6" href="$class_porter.html#a9e33d06b477f04db7c8cee07e85e8bcb" title="Porter::getRegion" alt="" coords="386,76,510,102"/>
+<area shape="rect" id="node7" href="$class_porter.html#a36e6678f68a4cc29371cc0111a8c8860" title="Porter::isShortSyllable" alt="" coords="372,126,524,153"/>
+</map>

@@ -1,0 +1,54 @@
+\hypertarget{classColemanLiau}{}\section{Coleman\+Liau Class Reference}
+\label{classColemanLiau}\index{Coleman\+Liau@{Coleman\+Liau}}
+
+
+An implementation of the Coleman-\/\+Liau index algorithm.  
+
+
+
+
+{\ttfamily \#include $<$Coleman\+Liau.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classColemanLiau_a4ff77aa5f5ff81d167a8cabad71e620f}\label{classColemanLiau_a4ff77aa5f5ff81d167a8cabad71e620f}} 
+\hyperlink{classColemanLiau_a4ff77aa5f5ff81d167a8cabad71e620f}{Coleman\+Liau} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classColemanLiau_a0b46f263a2dd687c2fa89bbef88002d0}\label{classColemanLiau_a0b46f263a2dd687c2fa89bbef88002d0}} 
+{\bfseries Coleman\+Liau} (double index)
+\item 
+\mbox{\Hypertarget{classColemanLiau_a3a9e5cb64586313a753211c350147cb3}\label{classColemanLiau_a3a9e5cb64586313a753211c350147cb3}} 
+double {\bfseries get\+Index} ()
+\item 
+bool \hyperlink{classColemanLiau_af0b2de26e53db82cb3e7243de1f26a6f}{Eval} (\hyperlink{classHistogram}{Histogram} \&Hist)
+\item 
+\mbox{\Hypertarget{classColemanLiau_a077d1533dfd8145ed729531c6edbfad0}\label{classColemanLiau_a077d1533dfd8145ed729531c6edbfad0}} 
+void {\bfseries set\+Index} (double index)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classColemanLiau_a896867aacd954df4faecc74a7010a8b0}\label{classColemanLiau_a896867aacd954df4faecc74a7010a8b0}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&out, const \hyperlink{classColemanLiau}{Coleman\+Liau} \&c0)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An implementation of the Coleman-\/\+Liau index algorithm. 
+
+A class for determining the reading level of a given histogram (document) 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classColemanLiau_af0b2de26e53db82cb3e7243de1f26a6f}\label{classColemanLiau_af0b2de26e53db82cb3e7243de1f26a6f}} 
+\index{Coleman\+Liau@{Coleman\+Liau}!Eval@{Eval}}
+\index{Eval@{Eval}!Coleman\+Liau@{Coleman\+Liau}}
+\subsubsection{\texorpdfstring{Eval()}{Eval()}}
+{\footnotesize\ttfamily bool Coleman\+Liau\+::\+Eval (\begin{DoxyParamCaption}\item[{\hyperlink{classHistogram}{Histogram} \&}]{Hist }\end{DoxyParamCaption})}
+
+Evaluation operator. Takes a \hyperlink{classHistogram}{Histogram} and applies the Coleman-\/\+Liau equation to comeup with a reading level of the document 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ColemanLiau_8h}{Coleman\+Liau.\+h}\item 
+\hyperlink{ColemanLiau_8cpp}{Coleman\+Liau.\+cpp}\end{DoxyCompactItemize}

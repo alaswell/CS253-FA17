@@ -1,0 +1,9 @@
+<map id="Histogram::findCapitals" name="Histogram::findCapitals">
+<area shape="rect" id="node2" href="$class_lexeme.html#afa5bf60e2cd601b4755cc137c56f7aed" title="Lexeme::isCapital" alt="" coords="228,5,355,32"/>
+<area shape="rect" id="node3" href="$class_lexeme.html#a5b40ad2f0863cbae11b0dd2c7876d8e8" title="Lexeme::hasUpper" alt="" coords="225,56,357,83"/>
+<area shape="rect" id="node4" href="$class_lexeme.html#a01b2154c183663f7e298b564d14a907e" title="Lexeme::hasDigit" alt="" coords="229,107,353,133"/>
+<area shape="rect" id="node5" href="$class_lexeme.html#a90a1a2080fb503b0a206a075fd4d038a" title="Lexeme::setString" alt="" coords="227,157,355,184"/>
+<area shape="rect" id="node6" href="$class_lexeme.html#ac3bedb54fb40b5b7d85edb3cf2d715db" title="Lexeme::getString" alt="" coords="227,208,355,235"/>
+<area shape="rect" id="node7" href="$class_lexeme.html#a8fd310c078c13d53dc601c299d0acb78" title="Lexeme::setAmbiguous" alt="" coords="212,259,371,285"/>
+<area shape="rect" id="node8" href="$class_lexeme.html#a67fb5732247889cb97612dd327c7a194" title="Lexeme::isPunctuation" alt="" coords="214,309,369,336"/>
+</map>
