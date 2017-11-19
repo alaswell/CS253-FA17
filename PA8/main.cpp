@@ -160,8 +160,10 @@ int main(int argc, char** argv)
 		  }
 	  }	  
   }
+  
+  if(location == 0) return Usage(argv[0], "No documents with provided range");
+  else std::cout << filenames[location] << endl;
 
-  std::cout << filenames[location] << endl;
   return 0;
 }
 
