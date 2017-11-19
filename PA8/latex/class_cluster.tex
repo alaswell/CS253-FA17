@@ -1,0 +1,193 @@
+\hypertarget{class_cluster}{}\section{Cluster Class Reference}
+\label{class_cluster}\index{Cluster@{Cluster}}
+
+
+A cluster of histograms for comparison.  
+
+
+
+
+{\ttfamily \#include $<$Cluster.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_cluster_aee7feb1d599d4c8fda6c3ee83e86ba81}{Cluster} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+const vector$<$ \hyperlink{class_histogram}{Histogram} $>$ \& \hyperlink{class_cluster_aa890420aa5906859751f7920dc5b30d0}{Get\+Cluster} () const
+\item 
+const map$<$ string, double $>$ \& \hyperlink{class_cluster_a4e3685824bdd4b01763f8e811000f275}{Get\+Map} () const
+\item 
+unsigned int \hyperlink{class_cluster_a916e731be9d3e52a404152e94b8b127d}{Size} () const
+\item 
+unordered\+\_\+map$<$ string, string $>$ \& \hyperlink{class_cluster_ae703b09c81c25ab89bde18ca09aa1a5d}{Get\+Exceptions} ()
+\item 
+vector$<$ \hyperlink{class_histogram}{Histogram} $>$ \& \hyperlink{class_cluster_a9c667ad971afdc00ffd2cb83611dabde}{Get\+Cluster} ()
+\item 
+map$<$ string, double $>$ \& \hyperlink{class_cluster_a7c98f2cdd78a833e9033f8a9a5a5a7b0}{Get\+Map} ()
+\item 
+double \hyperlink{class_cluster_ad4f8765aefafc838c95a9c2334ee0356}{Compare} (const \hyperlink{class_histogram}{Histogram} \&a, const \hyperlink{class_histogram}{Histogram} \&b, map$<$ string, double $>$ \&inv\+Doc\+Freq) const
+\item 
+map$<$ string, double $>$ \hyperlink{class_cluster_ada4f897af1294c97e3ff2f8023a92b55}{Get\+Inverse\+Document\+Frequencies} (vector$<$ \hyperlink{class_histogram}{Histogram} $>$ \&cluster, map$<$ string, double $>$ \&map)
+\item 
+bool \hyperlink{class_cluster_ad9132f66736e8f170eb7746f9cd482d0}{Read} (ifstream \&infile, unordered\+\_\+map$<$ string, string $>$ \&map)
+\item 
+void \hyperlink{class_cluster_a410aab730d5fdf04b4ee8f230d0149e2}{add} (\hyperlink{class_histogram}{Histogram} \&h)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \hyperlink{class_cluster_a80e9d0c8af3d3700176af496cc2dcf29}{operator$<$$<$} (std\+::ostream \&out, const \hyperlink{class_cluster}{Cluster} \&c0)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A cluster of histograms for comparison. 
+
+A class for comparing instances of histograms 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_cluster_aee7feb1d599d4c8fda6c3ee83e86ba81}\label{class_cluster_aee7feb1d599d4c8fda6c3ee83e86ba81}} 
+\index{Cluster@{Cluster}!Cluster@{Cluster}}
+\index{Cluster@{Cluster}!Cluster@{Cluster}}
+\subsubsection{\texorpdfstring{Cluster()}{Cluster()}}
+{\footnotesize\ttfamily Cluster\+::\+Cluster (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_cluster_a410aab730d5fdf04b4ee8f230d0149e2}\label{class_cluster_a410aab730d5fdf04b4ee8f230d0149e2}} 
+\index{Cluster@{Cluster}!add@{add}}
+\index{add@{add}!Cluster@{Cluster}}
+\subsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily void Cluster\+::add (\begin{DoxyParamCaption}\item[{\hyperlink{class_histogram}{Histogram} \&}]{h }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_cluster_ad4f8765aefafc838c95a9c2334ee0356}\label{class_cluster_ad4f8765aefafc838c95a9c2334ee0356}} 
+\index{Cluster@{Cluster}!Compare@{Compare}}
+\index{Compare@{Compare}!Cluster@{Cluster}}
+\subsubsection{\texorpdfstring{Compare()}{Compare()}}
+{\footnotesize\ttfamily double Cluster\+::\+Compare (\begin{DoxyParamCaption}\item[{const \hyperlink{class_histogram}{Histogram} \&}]{a,  }\item[{const \hyperlink{class_histogram}{Histogram} \&}]{b,  }\item[{map$<$ string, double $>$ \&}]{inv\+Doc\+Freq }\end{DoxyParamCaption}) const}
+
+Comparison take two Histograms and output their similarity based on the T\+F\+I\+DF equation in the R\+E\+A\+D\+M\+E.\+md Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{class_cluster_ad4f8765aefafc838c95a9c2334ee0356_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_cluster_aa890420aa5906859751f7920dc5b30d0}\label{class_cluster_aa890420aa5906859751f7920dc5b30d0}} 
+\index{Cluster@{Cluster}!Get\+Cluster@{Get\+Cluster}}
+\index{Get\+Cluster@{Get\+Cluster}!Cluster@{Cluster}}
+\subsubsection{\texorpdfstring{Get\+Cluster()}{GetCluster()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const vector$<$\hyperlink{class_histogram}{Histogram}$>$\& Cluster\+::\+Get\+Cluster (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=281pt]{class_cluster_aa890420aa5906859751f7920dc5b30d0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_cluster_a9c667ad971afdc00ffd2cb83611dabde}\label{class_cluster_a9c667ad971afdc00ffd2cb83611dabde}} 
+\index{Cluster@{Cluster}!Get\+Cluster@{Get\+Cluster}}
+\index{Get\+Cluster@{Get\+Cluster}!Cluster@{Cluster}}
+\subsubsection{\texorpdfstring{Get\+Cluster()}{GetCluster()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily vector$<$\hyperlink{class_histogram}{Histogram}$>$\& Cluster\+::\+Get\+Cluster (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_cluster_ae703b09c81c25ab89bde18ca09aa1a5d}\label{class_cluster_ae703b09c81c25ab89bde18ca09aa1a5d}} 
+\index{Cluster@{Cluster}!Get\+Exceptions@{Get\+Exceptions}}
+\index{Get\+Exceptions@{Get\+Exceptions}!Cluster@{Cluster}}
+\subsubsection{\texorpdfstring{Get\+Exceptions()}{GetExceptions()}}
+{\footnotesize\ttfamily unordered\+\_\+map$<$string, string$>$\& Cluster\+::\+Get\+Exceptions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_cluster_ada4f897af1294c97e3ff2f8023a92b55}\label{class_cluster_ada4f897af1294c97e3ff2f8023a92b55}} 
+\index{Cluster@{Cluster}!Get\+Inverse\+Document\+Frequencies@{Get\+Inverse\+Document\+Frequencies}}
+\index{Get\+Inverse\+Document\+Frequencies@{Get\+Inverse\+Document\+Frequencies}!Cluster@{Cluster}}
+\subsubsection{\texorpdfstring{Get\+Inverse\+Document\+Frequencies()}{GetInverseDocumentFrequencies()}}
+{\footnotesize\ttfamily map$<$ string, double $>$ Cluster\+::\+Get\+Inverse\+Document\+Frequencies (\begin{DoxyParamCaption}\item[{vector$<$ \hyperlink{class_histogram}{Histogram} $>$ \&}]{clust,  }\item[{map$<$ string, double $>$ \&}]{map }\end{DoxyParamCaption})}
+
+Get\+Inverse\+Document\+Frequencies. Counts all instances of each string within all Histograms and stores them as a key\+\_\+value\+\_\+pair in the map returning the I\+DF of each word as a map$<$string, double$>$ Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_cluster_ada4f897af1294c97e3ff2f8023a92b55_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_cluster_a4e3685824bdd4b01763f8e811000f275}\label{class_cluster_a4e3685824bdd4b01763f8e811000f275}} 
+\index{Cluster@{Cluster}!Get\+Map@{Get\+Map}}
+\index{Get\+Map@{Get\+Map}!Cluster@{Cluster}}
+\subsubsection{\texorpdfstring{Get\+Map()}{GetMap()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const map$<$string, double$>$\& Cluster\+::\+Get\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=269pt]{class_cluster_a4e3685824bdd4b01763f8e811000f275_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_cluster_a7c98f2cdd78a833e9033f8a9a5a5a7b0}\label{class_cluster_a7c98f2cdd78a833e9033f8a9a5a5a7b0}} 
+\index{Cluster@{Cluster}!Get\+Map@{Get\+Map}}
+\index{Get\+Map@{Get\+Map}!Cluster@{Cluster}}
+\subsubsection{\texorpdfstring{Get\+Map()}{GetMap()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily map$<$string, double$>$\& Cluster\+::\+Get\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_cluster_a7c98f2cdd78a833e9033f8a9a5a5a7b0_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_cluster_ad9132f66736e8f170eb7746f9cd482d0}\label{class_cluster_ad9132f66736e8f170eb7746f9cd482d0}} 
+\index{Cluster@{Cluster}!Read@{Read}}
+\index{Read@{Read}!Cluster@{Cluster}}
+\subsubsection{\texorpdfstring{Read()}{Read()}}
+{\footnotesize\ttfamily bool Cluster\+::\+Read (\begin{DoxyParamCaption}\item[{ifstream \&}]{infile,  }\item[{unordered\+\_\+map$<$ string, string $>$ \&}]{map }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=282pt]{class_cluster_ad9132f66736e8f170eb7746f9cd482d0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_cluster_a916e731be9d3e52a404152e94b8b127d}\label{class_cluster_a916e731be9d3e52a404152e94b8b127d}} 
+\index{Cluster@{Cluster}!Size@{Size}}
+\index{Size@{Size}!Cluster@{Cluster}}
+\subsubsection{\texorpdfstring{Size()}{Size()}}
+{\footnotesize\ttfamily unsigned int Cluster\+::\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{class_cluster_a916e731be9d3e52a404152e94b8b127d_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_cluster_a80e9d0c8af3d3700176af496cc2dcf29}\label{class_cluster_a80e9d0c8af3d3700176af496cc2dcf29}} 
+\index{Cluster@{Cluster}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Cluster@{Cluster}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{const \hyperlink{class_cluster}{Cluster} \&}]{c0 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_cluster_8h}{Cluster.\+h}\item 
+\hyperlink{_cluster_8cpp}{Cluster.\+cpp}\end{DoxyCompactItemize}

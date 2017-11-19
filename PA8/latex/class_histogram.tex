@@ -1,0 +1,235 @@
+\hypertarget{class_histogram}{}\section{Histogram Class Reference}
+\label{class_histogram}\index{Histogram@{Histogram}}
+
+
+A string histogram for simple counting (currently)  
+
+
+
+
+{\ttfamily \#include $<$Histogram.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_histogram_af681f293852ac145f867ecfcce3062a5}{Histogram} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_histogram_a5e56d61b85862889a024c1a682981964}{Histogram} (vector$<$ \hyperlink{class_lexeme}{Lexeme} $>$ h)
+\item 
+vector$<$ \hyperlink{class_lexeme}{Lexeme} $>$ \& \hyperlink{class_histogram_afe807b7c5109c6a9781216961f2a9e90}{Get\+Hist} ()
+\item 
+const map$<$ string, int $>$ \& \hyperlink{class_histogram_a605a2f87dcbe0c52e956ed6e559daf81}{Get\+Map} () const
+\item 
+bool \hyperlink{class_histogram_aff24f16064c037ca8929c4f9751aedbf}{is\+Exception} (const string \&str, const unsigned int i) const
+\item 
+bool \hyperlink{class_histogram_af8b644d9dcb8dd86fb3420640de72ab2}{Write} (ostream \&ostr, map$<$ string, int $>$ \&kvm) const
+\item 
+map$<$ string, int $>$ \& \hyperlink{class_histogram_a7a4b270eb5d88df6466cef9433a95d39}{Get\+Map} ()
+\item 
+void \hyperlink{class_histogram_a3b48f22da2e0c9f1d12ecd7a83f0dcf6}{Set\+String} (const string new\+Value, const int position)
+\item 
+void \hyperlink{class_histogram_af4fdfc3e8e4c4028deaf9b663ee5832c}{Eval} ()
+\item 
+bool \hyperlink{class_histogram_afbdf1d9a97070fd3724dbe55fd9f8570}{Read} (istream \&istr, vector$<$ \hyperlink{class_lexeme}{Lexeme} $>$ \&histogram)
+\item 
+string \hyperlink{class_histogram_aa1ae3a4f490aef85530afc028867b8f4}{parse\+Punctuation} (string word, vector$<$ \hyperlink{class_lexeme}{Lexeme} $>$ \&histogram)
+\item 
+void \hyperlink{class_histogram_a97384bc67a4fcbd79f405329de0a4b41}{find\+Capitals} (vector$<$ \hyperlink{class_lexeme}{Lexeme} $>$ \&histogram)
+\item 
+void \hyperlink{class_histogram_a5adb0e9b69168b662af9f84cbf29d5a0}{resolve\+Ambiguity} (vector$<$ \hyperlink{class_lexeme}{Lexeme} $>$ \&histogram)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A string histogram for simple counting (currently) 
+
+A class for counting the instances of strings from a file. This class currently does nothing more than count totals and output said counts to the console. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_histogram_af681f293852ac145f867ecfcce3062a5}\label{class_histogram_af681f293852ac145f867ecfcce3062a5}} 
+\index{Histogram@{Histogram}!Histogram@{Histogram}}
+\index{Histogram@{Histogram}!Histogram@{Histogram}}
+\subsubsection{\texorpdfstring{Histogram()}{Histogram()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Histogram\+::\+Histogram (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+\mbox{\Hypertarget{class_histogram_a5e56d61b85862889a024c1a682981964}\label{class_histogram_a5e56d61b85862889a024c1a682981964}} 
+\index{Histogram@{Histogram}!Histogram@{Histogram}}
+\index{Histogram@{Histogram}!Histogram@{Histogram}}
+\subsubsection{\texorpdfstring{Histogram()}{Histogram()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Histogram\+::\+Histogram (\begin{DoxyParamCaption}\item[{vector$<$ \hyperlink{class_lexeme}{Lexeme} $>$}]{h }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_histogram_af4fdfc3e8e4c4028deaf9b663ee5832c}\label{class_histogram_af4fdfc3e8e4c4028deaf9b663ee5832c}} 
+\index{Histogram@{Histogram}!Eval@{Eval}}
+\index{Eval@{Eval}!Histogram@{Histogram}}
+\subsubsection{\texorpdfstring{Eval()}{Eval()}}
+{\footnotesize\ttfamily void Histogram\+::\+Eval (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Evaluation operator. Counts all instances of distinct strings within the histogram and stores them as a key\+\_\+value\+\_\+pair in the map Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=311pt]{class_histogram_af4fdfc3e8e4c4028deaf9b663ee5832c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_histogram_a97384bc67a4fcbd79f405329de0a4b41}\label{class_histogram_a97384bc67a4fcbd79f405329de0a4b41}} 
+\index{Histogram@{Histogram}!find\+Capitals@{find\+Capitals}}
+\index{find\+Capitals@{find\+Capitals}!Histogram@{Histogram}}
+\subsubsection{\texorpdfstring{find\+Capitals()}{findCapitals()}}
+{\footnotesize\ttfamily void Histogram\+::find\+Capitals (\begin{DoxyParamCaption}\item[{vector$<$ \hyperlink{class_lexeme}{Lexeme} $>$ \&}]{histogram }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_histogram_a97384bc67a4fcbd79f405329de0a4b41_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{class_histogram_a97384bc67a4fcbd79f405329de0a4b41_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_histogram_afe807b7c5109c6a9781216961f2a9e90}\label{class_histogram_afe807b7c5109c6a9781216961f2a9e90}} 
+\index{Histogram@{Histogram}!Get\+Hist@{Get\+Hist}}
+\index{Get\+Hist@{Get\+Hist}!Histogram@{Histogram}}
+\subsubsection{\texorpdfstring{Get\+Hist()}{GetHist()}}
+{\footnotesize\ttfamily vector$<$\hyperlink{class_lexeme}{Lexeme}$>$\& Histogram\+::\+Get\+Hist (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_histogram_afe807b7c5109c6a9781216961f2a9e90_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_histogram_a605a2f87dcbe0c52e956ed6e559daf81}\label{class_histogram_a605a2f87dcbe0c52e956ed6e559daf81}} 
+\index{Histogram@{Histogram}!Get\+Map@{Get\+Map}}
+\index{Get\+Map@{Get\+Map}!Histogram@{Histogram}}
+\subsubsection{\texorpdfstring{Get\+Map()}{GetMap()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const map$<$string, int$>$\& Histogram\+::\+Get\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{class_histogram_a605a2f87dcbe0c52e956ed6e559daf81_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_histogram_a7a4b270eb5d88df6466cef9433a95d39}\label{class_histogram_a7a4b270eb5d88df6466cef9433a95d39}} 
+\index{Histogram@{Histogram}!Get\+Map@{Get\+Map}}
+\index{Get\+Map@{Get\+Map}!Histogram@{Histogram}}
+\subsubsection{\texorpdfstring{Get\+Map()}{GetMap()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily map$<$string, int$>$\& Histogram\+::\+Get\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_histogram_aff24f16064c037ca8929c4f9751aedbf}\label{class_histogram_aff24f16064c037ca8929c4f9751aedbf}} 
+\index{Histogram@{Histogram}!is\+Exception@{is\+Exception}}
+\index{is\+Exception@{is\+Exception}!Histogram@{Histogram}}
+\subsubsection{\texorpdfstring{is\+Exception()}{isException()}}
+{\footnotesize\ttfamily bool Histogram\+::is\+Exception (\begin{DoxyParamCaption}\item[{const string \&}]{word,  }\item[{const unsigned int}]{i }\end{DoxyParamCaption}) const}
+
+Is this character an exception to the punctuation checks the string against the provided exceptoins to ensure that it is valid int i = the location in the word (to en Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_histogram_aff24f16064c037ca8929c4f9751aedbf_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_histogram_aa1ae3a4f490aef85530afc028867b8f4}\label{class_histogram_aa1ae3a4f490aef85530afc028867b8f4}} 
+\index{Histogram@{Histogram}!parse\+Punctuation@{parse\+Punctuation}}
+\index{parse\+Punctuation@{parse\+Punctuation}!Histogram@{Histogram}}
+\subsubsection{\texorpdfstring{parse\+Punctuation()}{parsePunctuation()}}
+{\footnotesize\ttfamily string Histogram\+::parse\+Punctuation (\begin{DoxyParamCaption}\item[{string}]{word,  }\item[{vector$<$ \hyperlink{class_lexeme}{Lexeme} $>$ \&}]{hist }\end{DoxyParamCaption})}
+
+Parse Punctuation. Takes a string and a vector$<$\+Lexeme$>$\& searches the str and parses out any punctuation returns a string such that ispunct(str\mbox{[}0\mbox{]}) = F\+A\+L\+SE Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_histogram_aa1ae3a4f490aef85530afc028867b8f4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_histogram_afbdf1d9a97070fd3724dbe55fd9f8570}\label{class_histogram_afbdf1d9a97070fd3724dbe55fd9f8570}} 
+\index{Histogram@{Histogram}!Read@{Read}}
+\index{Read@{Read}!Histogram@{Histogram}}
+\subsubsection{\texorpdfstring{Read()}{Read()}}
+{\footnotesize\ttfamily bool Histogram\+::\+Read (\begin{DoxyParamCaption}\item[{istream \&}]{istr,  }\item[{vector$<$ \hyperlink{class_lexeme}{Lexeme} $>$ \&}]{hist }\end{DoxyParamCaption})}
+
+Input operator. Format is string string ... str, where all strings are delineated by whitespace. Any other format causes the input stream to fail. Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_histogram_afbdf1d9a97070fd3724dbe55fd9f8570_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{class_histogram_afbdf1d9a97070fd3724dbe55fd9f8570_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_histogram_a5adb0e9b69168b662af9f84cbf29d5a0}\label{class_histogram_a5adb0e9b69168b662af9f84cbf29d5a0}} 
+\index{Histogram@{Histogram}!resolve\+Ambiguity@{resolve\+Ambiguity}}
+\index{resolve\+Ambiguity@{resolve\+Ambiguity}!Histogram@{Histogram}}
+\subsubsection{\texorpdfstring{resolve\+Ambiguity()}{resolveAmbiguity()}}
+{\footnotesize\ttfamily void Histogram\+::resolve\+Ambiguity (\begin{DoxyParamCaption}\item[{vector$<$ \hyperlink{class_lexeme}{Lexeme} $>$ \&}]{hist }\end{DoxyParamCaption})}
+
+Is this string supposed to be a capital or not this method will check to see if we find any other instance of the ambiguous word in the rest of the document if so ? leave capital \+: make it lowercase Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_histogram_a5adb0e9b69168b662af9f84cbf29d5a0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_histogram_a3b48f22da2e0c9f1d12ecd7a83f0dcf6}\label{class_histogram_a3b48f22da2e0c9f1d12ecd7a83f0dcf6}} 
+\index{Histogram@{Histogram}!Set\+String@{Set\+String}}
+\index{Set\+String@{Set\+String}!Histogram@{Histogram}}
+\subsubsection{\texorpdfstring{Set\+String()}{SetString()}}
+{\footnotesize\ttfamily void Histogram\+::\+Set\+String (\begin{DoxyParamCaption}\item[{const string}]{new\+Value,  }\item[{const int}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_histogram_a3b48f22da2e0c9f1d12ecd7a83f0dcf6_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_histogram_af8b644d9dcb8dd86fb3420640de72ab2}\label{class_histogram_af8b644d9dcb8dd86fb3420640de72ab2}} 
+\index{Histogram@{Histogram}!Write@{Write}}
+\index{Write@{Write}!Histogram@{Histogram}}
+\subsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily bool Histogram\+::\+Write (\begin{DoxyParamCaption}\item[{ostream \&}]{ostr,  }\item[{map$<$ string, int $>$ \&}]{kvm }\end{DoxyParamCaption}) const}
+
+Write operator. Typical output operator. Takes an ostream\& and a map$<$string, int$>$ dumps the key\+\_\+value\+\_\+pairs to the ostream provided Erros on an empty map$<$string, int$>$ Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=309pt]{class_histogram_af8b644d9dcb8dd86fb3420640de72ab2_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_histogram_8h}{Histogram.\+h}\item 
+\hyperlink{_histogram_8cpp}{Histogram.\+cpp}\end{DoxyCompactItemize}

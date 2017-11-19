@@ -1,0 +1,6 @@
+<map id="TEST" name="TEST">
+<area shape="rect" id="node2" href="$class_porter.html#a35b1cc5606d4e78d1f69ac4037fdde87" title="Porter::isShort" alt="" coords="109,31,216,57"/>
+<area shape="rect" id="node3" href="$class_porter.html#a9e33d06b477f04db7c8cee07e85e8bcb" title="Porter::getRegion" alt="" coords="278,5,402,32"/>
+<area shape="rect" id="node5" href="$class_porter.html#a36e6678f68a4cc29371cc0111a8c8860" title="Porter::isShortSyllable" alt="" coords="264,56,416,83"/>
+<area shape="rect" id="node4" href="$class_porter.html#ab16d2762c47b86b9a161be3d2c44203e" title="Porter::isVowel" alt="" coords="464,31,575,57"/>
+</map>

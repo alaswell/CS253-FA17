@@ -1,0 +1,194 @@
+\hypertarget{class_lexeme}{}\section{Lexeme Class Reference}
+\label{class_lexeme}\index{Lexeme@{Lexeme}}
+
+
+An implementation of a lexeme (word)  
+
+
+
+
+{\ttfamily \#include $<$Lexeme.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_lexeme_a91ec217d9cc9c11b33597705b1f2ef88}{Lexeme} (string s=\char`\"{}\char`\"{}, bool c=0, int p=0, bool d=0, bool u=0, bool a=0)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+bool \hyperlink{class_lexeme_a01b2154c183663f7e298b564d14a907e}{has\+Digit} () const
+\item 
+bool \hyperlink{class_lexeme_a5b40ad2f0863cbae11b0dd2c7876d8e8}{has\+Upper} () const
+\item 
+bool \hyperlink{class_lexeme_a6319c062333968f1d47f69d7fd44900c}{is\+Ambiguous} () const
+\item 
+bool \hyperlink{class_lexeme_afa5bf60e2cd601b4755cc137c56f7aed}{is\+Capital} () const
+\item 
+int \hyperlink{class_lexeme_a67fb5732247889cb97612dd327c7a194}{is\+Punctuation} () const
+\item 
+string \& \hyperlink{class_lexeme_ac3bedb54fb40b5b7d85edb3cf2d715db}{get\+String} ()
+\item 
+void \hyperlink{class_lexeme_a8fd310c078c13d53dc601c299d0acb78}{set\+Ambiguous} (bool amb)
+\item 
+void \hyperlink{class_lexeme_aa54d86594141f95df8a0364aebc931f2}{set\+Capital} (bool cap)
+\item 
+void \hyperlink{class_lexeme_a4bf15e88113bc3cd10dff188fef37752}{set\+Digit} (bool digi)
+\item 
+void \hyperlink{class_lexeme_a620288e33ed2b3957023b3d325febc13}{set\+Punctuation} (int punct)
+\item 
+void \hyperlink{class_lexeme_a90a1a2080fb503b0a206a075fd4d038a}{set\+String} (string s)
+\item 
+void \hyperlink{class_lexeme_a09873449eb90bc9be0f4df1edcf97b26}{set\+Upper} (bool up)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An implementation of a lexeme (word) 
+
+A class for holding a word along with some key attributes that are needed to compute the stem and some other things 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_lexeme_a91ec217d9cc9c11b33597705b1f2ef88}\label{class_lexeme_a91ec217d9cc9c11b33597705b1f2ef88}} 
+\index{Lexeme@{Lexeme}!Lexeme@{Lexeme}}
+\index{Lexeme@{Lexeme}!Lexeme@{Lexeme}}
+\subsubsection{\texorpdfstring{Lexeme()}{Lexeme()}}
+{\footnotesize\ttfamily Lexeme\+::\+Lexeme (\begin{DoxyParamCaption}\item[{string}]{s = {\ttfamily \char`\"{}\char`\"{}},  }\item[{bool}]{c = {\ttfamily 0},  }\item[{int}]{p = {\ttfamily 0},  }\item[{bool}]{d = {\ttfamily 0},  }\item[{bool}]{u = {\ttfamily 0},  }\item[{bool}]{a = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_lexeme_ac3bedb54fb40b5b7d85edb3cf2d715db}\label{class_lexeme_ac3bedb54fb40b5b7d85edb3cf2d715db}} 
+\index{Lexeme@{Lexeme}!get\+String@{get\+String}}
+\index{get\+String@{get\+String}!Lexeme@{Lexeme}}
+\subsubsection{\texorpdfstring{get\+String()}{getString()}}
+{\footnotesize\ttfamily string\& Lexeme\+::get\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_lexeme_ac3bedb54fb40b5b7d85edb3cf2d715db_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_lexeme_a01b2154c183663f7e298b564d14a907e}\label{class_lexeme_a01b2154c183663f7e298b564d14a907e}} 
+\index{Lexeme@{Lexeme}!has\+Digit@{has\+Digit}}
+\index{has\+Digit@{has\+Digit}!Lexeme@{Lexeme}}
+\subsubsection{\texorpdfstring{has\+Digit()}{hasDigit()}}
+{\footnotesize\ttfamily bool Lexeme\+::has\+Digit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_lexeme_a01b2154c183663f7e298b564d14a907e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_lexeme_a5b40ad2f0863cbae11b0dd2c7876d8e8}\label{class_lexeme_a5b40ad2f0863cbae11b0dd2c7876d8e8}} 
+\index{Lexeme@{Lexeme}!has\+Upper@{has\+Upper}}
+\index{has\+Upper@{has\+Upper}!Lexeme@{Lexeme}}
+\subsubsection{\texorpdfstring{has\+Upper()}{hasUpper()}}
+{\footnotesize\ttfamily bool Lexeme\+::has\+Upper (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_lexeme_a5b40ad2f0863cbae11b0dd2c7876d8e8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_lexeme_a6319c062333968f1d47f69d7fd44900c}\label{class_lexeme_a6319c062333968f1d47f69d7fd44900c}} 
+\index{Lexeme@{Lexeme}!is\+Ambiguous@{is\+Ambiguous}}
+\index{is\+Ambiguous@{is\+Ambiguous}!Lexeme@{Lexeme}}
+\subsubsection{\texorpdfstring{is\+Ambiguous()}{isAmbiguous()}}
+{\footnotesize\ttfamily bool Lexeme\+::is\+Ambiguous (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_lexeme_afa5bf60e2cd601b4755cc137c56f7aed}\label{class_lexeme_afa5bf60e2cd601b4755cc137c56f7aed}} 
+\index{Lexeme@{Lexeme}!is\+Capital@{is\+Capital}}
+\index{is\+Capital@{is\+Capital}!Lexeme@{Lexeme}}
+\subsubsection{\texorpdfstring{is\+Capital()}{isCapital()}}
+{\footnotesize\ttfamily bool Lexeme\+::is\+Capital (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_lexeme_afa5bf60e2cd601b4755cc137c56f7aed_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_lexeme_a67fb5732247889cb97612dd327c7a194}\label{class_lexeme_a67fb5732247889cb97612dd327c7a194}} 
+\index{Lexeme@{Lexeme}!is\+Punctuation@{is\+Punctuation}}
+\index{is\+Punctuation@{is\+Punctuation}!Lexeme@{Lexeme}}
+\subsubsection{\texorpdfstring{is\+Punctuation()}{isPunctuation()}}
+{\footnotesize\ttfamily int Lexeme\+::is\+Punctuation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_lexeme_a67fb5732247889cb97612dd327c7a194_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_lexeme_a8fd310c078c13d53dc601c299d0acb78}\label{class_lexeme_a8fd310c078c13d53dc601c299d0acb78}} 
+\index{Lexeme@{Lexeme}!set\+Ambiguous@{set\+Ambiguous}}
+\index{set\+Ambiguous@{set\+Ambiguous}!Lexeme@{Lexeme}}
+\subsubsection{\texorpdfstring{set\+Ambiguous()}{setAmbiguous()}}
+{\footnotesize\ttfamily void Lexeme\+::set\+Ambiguous (\begin{DoxyParamCaption}\item[{bool}]{amb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_lexeme_a8fd310c078c13d53dc601c299d0acb78_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_lexeme_aa54d86594141f95df8a0364aebc931f2}\label{class_lexeme_aa54d86594141f95df8a0364aebc931f2}} 
+\index{Lexeme@{Lexeme}!set\+Capital@{set\+Capital}}
+\index{set\+Capital@{set\+Capital}!Lexeme@{Lexeme}}
+\subsubsection{\texorpdfstring{set\+Capital()}{setCapital()}}
+{\footnotesize\ttfamily void Lexeme\+::set\+Capital (\begin{DoxyParamCaption}\item[{bool}]{cap }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_lexeme_a4bf15e88113bc3cd10dff188fef37752}\label{class_lexeme_a4bf15e88113bc3cd10dff188fef37752}} 
+\index{Lexeme@{Lexeme}!set\+Digit@{set\+Digit}}
+\index{set\+Digit@{set\+Digit}!Lexeme@{Lexeme}}
+\subsubsection{\texorpdfstring{set\+Digit()}{setDigit()}}
+{\footnotesize\ttfamily void Lexeme\+::set\+Digit (\begin{DoxyParamCaption}\item[{bool}]{digi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_lexeme_a620288e33ed2b3957023b3d325febc13}\label{class_lexeme_a620288e33ed2b3957023b3d325febc13}} 
+\index{Lexeme@{Lexeme}!set\+Punctuation@{set\+Punctuation}}
+\index{set\+Punctuation@{set\+Punctuation}!Lexeme@{Lexeme}}
+\subsubsection{\texorpdfstring{set\+Punctuation()}{setPunctuation()}}
+{\footnotesize\ttfamily void Lexeme\+::set\+Punctuation (\begin{DoxyParamCaption}\item[{int}]{punct }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_lexeme_a90a1a2080fb503b0a206a075fd4d038a}\label{class_lexeme_a90a1a2080fb503b0a206a075fd4d038a}} 
+\index{Lexeme@{Lexeme}!set\+String@{set\+String}}
+\index{set\+String@{set\+String}!Lexeme@{Lexeme}}
+\subsubsection{\texorpdfstring{set\+String()}{setString()}}
+{\footnotesize\ttfamily void Lexeme\+::set\+String (\begin{DoxyParamCaption}\item[{string}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_lexeme_a90a1a2080fb503b0a206a075fd4d038a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{class_lexeme_a09873449eb90bc9be0f4df1edcf97b26}\label{class_lexeme_a09873449eb90bc9be0f4df1edcf97b26}} 
+\index{Lexeme@{Lexeme}!set\+Upper@{set\+Upper}}
+\index{set\+Upper@{set\+Upper}!Lexeme@{Lexeme}}
+\subsubsection{\texorpdfstring{set\+Upper()}{setUpper()}}
+{\footnotesize\ttfamily void Lexeme\+::set\+Upper (\begin{DoxyParamCaption}\item[{bool}]{up }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_lexeme_8h}{Lexeme.\+h}\end{DoxyCompactItemize}
