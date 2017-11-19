@@ -87,7 +87,9 @@ bool Cluster::Read (ifstream& infile, unordered_map<string, string>& map) {
         return true;
 }
 
-
+/// operator<< 
+/// outputs the ColemanLiau matrix
+/// for the cluster of histograms included therein
 std::ostream& operator<< (std::ostream &out, const Cluster &c0) {
 	// output to ostream
 /*	EACH HISTOGRAM ALL WORDS

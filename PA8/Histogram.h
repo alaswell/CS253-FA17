@@ -37,6 +37,7 @@ public:
 
 	/* simple accessors */
 	inline vector<Lexeme>& GetHist() {return histogram;}	
+	inline double GetIndex() const {return CLIndex;}
 	inline const map<string, int>& GetMap() const {return key_value_map;}
 	bool isException(const string& str, const unsigned int i) const;
 	bool Write(ostream& ostr, map<string, int>& kvm) const;
@@ -44,6 +45,7 @@ public:
 	/* Mutators */
 	inline map<string, int>& GetMap() {return key_value_map;}
 	inline void SetString(const string newValue, const int position) {histogram[position].setString(newValue);}
+	inline void SetIndex(const double index) {CLIndex = index;}
 	void Eval();
 	bool Read(istream& istr, vector<Lexeme>& histogram);
 	string parsePunctuation(string word, vector<Lexeme>& histogram);
@@ -53,6 +55,7 @@ public:
 private:
 	vector<Lexeme> histogram;			/// the strings exactly as they are read in 
 	map<string, int> key_value_map;			/// map<string, count> containing number of times said string appears
+	double CLIndex;
 };
 
 #endif // HISTOGRAM_H_INCLUDE
