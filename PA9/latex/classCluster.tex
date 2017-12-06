@@ -1,0 +1,77 @@
+\hypertarget{classCluster}{}\section{Cluster Class Reference}
+\label{classCluster}\index{Cluster@{Cluster}}
+
+
+A cluster of histograms for comparison.  
+
+
+
+
+{\ttfamily \#include $<$Cluster.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCluster_aee7feb1d599d4c8fda6c3ee83e86ba81}\label{classCluster_aee7feb1d599d4c8fda6c3ee83e86ba81}} 
+\hyperlink{classCluster_aee7feb1d599d4c8fda6c3ee83e86ba81}{Cluster} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCluster_aa890420aa5906859751f7920dc5b30d0}\label{classCluster_aa890420aa5906859751f7920dc5b30d0}} 
+const vector$<$ \hyperlink{classHistogram}{Histogram} $>$ \& {\bfseries Get\+Cluster} () const
+\item 
+\mbox{\Hypertarget{classCluster_a4e3685824bdd4b01763f8e811000f275}\label{classCluster_a4e3685824bdd4b01763f8e811000f275}} 
+const map$<$ string, double $>$ \& {\bfseries Get\+Map} () const
+\item 
+\mbox{\Hypertarget{classCluster_a916e731be9d3e52a404152e94b8b127d}\label{classCluster_a916e731be9d3e52a404152e94b8b127d}} 
+unsigned int {\bfseries Size} () const
+\item 
+\mbox{\Hypertarget{classCluster_ae703b09c81c25ab89bde18ca09aa1a5d}\label{classCluster_ae703b09c81c25ab89bde18ca09aa1a5d}} 
+unordered\+\_\+map$<$ string, string $>$ \& {\bfseries Get\+Exceptions} ()
+\item 
+\mbox{\Hypertarget{classCluster_a9c667ad971afdc00ffd2cb83611dabde}\label{classCluster_a9c667ad971afdc00ffd2cb83611dabde}} 
+vector$<$ \hyperlink{classHistogram}{Histogram} $>$ \& {\bfseries Get\+Cluster} ()
+\item 
+\mbox{\Hypertarget{classCluster_a7c98f2cdd78a833e9033f8a9a5a5a7b0}\label{classCluster_a7c98f2cdd78a833e9033f8a9a5a5a7b0}} 
+map$<$ string, double $>$ \& {\bfseries Get\+Map} ()
+\item 
+double \hyperlink{classCluster_ad4f8765aefafc838c95a9c2334ee0356}{Compare} (const \hyperlink{classHistogram}{Histogram} \&a, const \hyperlink{classHistogram}{Histogram} \&b, map$<$ string, double $>$ \&inv\+Doc\+Freq) const
+\item 
+map$<$ string, double $>$ \hyperlink{classCluster_ada4f897af1294c97e3ff2f8023a92b55}{Get\+Inverse\+Document\+Frequencies} (vector$<$ \hyperlink{classHistogram}{Histogram} $>$ \&cluster, map$<$ string, double $>$ \&map)
+\item 
+\mbox{\Hypertarget{classCluster_ad9132f66736e8f170eb7746f9cd482d0}\label{classCluster_ad9132f66736e8f170eb7746f9cd482d0}} 
+bool {\bfseries Read} (ifstream \&infile, unordered\+\_\+map$<$ string, string $>$ \&map)
+\item 
+\mbox{\Hypertarget{classCluster_a410aab730d5fdf04b4ee8f230d0149e2}\label{classCluster_a410aab730d5fdf04b4ee8f230d0149e2}} 
+void {\bfseries add} (\hyperlink{classHistogram}{Histogram} \&h)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCluster_a80e9d0c8af3d3700176af496cc2dcf29}\label{classCluster_a80e9d0c8af3d3700176af496cc2dcf29}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&out, const \hyperlink{classCluster}{Cluster} \&c0)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A cluster of histograms for comparison. 
+
+A class for comparing instances of histograms 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classCluster_ad4f8765aefafc838c95a9c2334ee0356}\label{classCluster_ad4f8765aefafc838c95a9c2334ee0356}} 
+\index{Cluster@{Cluster}!Compare@{Compare}}
+\index{Compare@{Compare}!Cluster@{Cluster}}
+\subsubsection{\texorpdfstring{Compare()}{Compare()}}
+{\footnotesize\ttfamily double Cluster\+::\+Compare (\begin{DoxyParamCaption}\item[{const \hyperlink{classHistogram}{Histogram} \&}]{a,  }\item[{const \hyperlink{classHistogram}{Histogram} \&}]{b,  }\item[{map$<$ string, double $>$ \&}]{inv\+Doc\+Freq }\end{DoxyParamCaption}) const}
+
+Comparison take two Histograms and output their similarity based on the T\+F\+I\+DF equation in the R\+E\+A\+D\+M\+E.\+md \mbox{\Hypertarget{classCluster_ada4f897af1294c97e3ff2f8023a92b55}\label{classCluster_ada4f897af1294c97e3ff2f8023a92b55}} 
+\index{Cluster@{Cluster}!Get\+Inverse\+Document\+Frequencies@{Get\+Inverse\+Document\+Frequencies}}
+\index{Get\+Inverse\+Document\+Frequencies@{Get\+Inverse\+Document\+Frequencies}!Cluster@{Cluster}}
+\subsubsection{\texorpdfstring{Get\+Inverse\+Document\+Frequencies()}{GetInverseDocumentFrequencies()}}
+{\footnotesize\ttfamily map$<$ string, double $>$ Cluster\+::\+Get\+Inverse\+Document\+Frequencies (\begin{DoxyParamCaption}\item[{vector$<$ \hyperlink{classHistogram}{Histogram} $>$ \&}]{clust,  }\item[{map$<$ string, double $>$ \&}]{map }\end{DoxyParamCaption})}
+
+Get\+Inverse\+Document\+Frequencies. Counts all instances of each string within all Histograms and stores them as a key\+\_\+value\+\_\+pair in the map returning the I\+DF of each word as a map$<$string, double$>$ 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Cluster_8h}{Cluster.\+h}\item 
+\hyperlink{Cluster_8cpp}{Cluster.\+cpp}\end{DoxyCompactItemize}

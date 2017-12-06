@@ -1,0 +1,23 @@
+<map id="TEST" name="TEST">
+<area shape="rect" id="node2" href="$class_porter.html#a4aadb1440bc5f143aba28641cab26ff6" title="Porter::StemTres" alt="" coords="109,498,232,525"/>
+<area shape="rect" id="node3" href="$class_porter.html#a9e33d06b477f04db7c8cee07e85e8bcb" title="Porter::getRegion" alt="" coords="911,297,1035,323"/>
+<area shape="rect" id="node5" href="$class_porter.html#aba12641d0e612b264097a35e4f2ffb45" title="Porter::replace" alt="" coords="920,537,1027,563"/>
+<area shape="rect" id="node6" href="$class_porter.html#ac5e4f3909a27316c6997c92a0019eaaf" title="Porter::StemTresAlpha" alt="" coords="487,170,642,197"/>
+<area shape="rect" id="node10" href="$class_porter.html#a2000ce7eeabb3a7d9593fa9790a4fdc4" title="Porter::getPreceder" alt="" coords="280,498,415,525"/>
+<area shape="rect" id="node4" href="$class_porter.html#ab16d2762c47b86b9a161be3d2c44203e" title="Porter::isVowel" alt="" coords="1097,297,1208,323"/>
+<area shape="rect" id="node7" href="$class_porter.html#a7c8a4b3b6103ce655e8ffc8a3eba1897" title="Porter::isDouble" alt="" coords="724,258,840,285"/>
+<area shape="rect" id="node8" href="$class_porter.html#a35b1cc5606d4e78d1f69ac4037fdde87" title="Porter::isShort" alt="" coords="729,207,835,234"/>
+<area shape="rect" id="node9" href="$class_porter.html#a36e6678f68a4cc29371cc0111a8c8860" title="Porter::isShortSyllable" alt="" coords="897,233,1049,259"/>
+<area shape="rect" id="node11" href="$class_porter.html#ac53ad85d5d3178b72178a4d89137b55e" title="Porter::isValidli" alt="" coords="918,854,1029,881"/>
+<area shape="rect" id="node12" href="$class_porter.html#a9da79dd6524131e703619d3e301e896a" title="Porter::isValid" alt="" coords="513,599,617,626"/>
+<area shape="rect" id="node13" href="$class_porter.html#af7f1d6892ca1ed4e22986c48be2365d6" title="Porter::GoGoPorterNumeroDos" alt="" coords="463,650,667,677"/>
+<area shape="rect" id="node14" href="$class_porter.html#ad8b63c9741655393ff9c849d269c953a" title="Porter::StemUno" alt="" coords="722,562,842,589"/>
+<area shape="rect" id="node15" href="$class_porter.html#a33838d3b5ab4963106a5c47c4a0c74e6" title="Porter::StemDos" alt="" coords="722,650,842,677"/>
+<area shape="rect" id="node16" href="$class_porter.html#aa1e1b416311f37b827bc093bb03ca500" title="Porter::StemCuatro" alt="" coords="715,794,849,821"/>
+<area shape="rect" id="node17" href="$class_porter.html#a916f45b55a1bbdaff7ce1db3d9a42813" title="Porter::StemCinco" alt="" coords="717,743,847,770"/>
+<area shape="rect" id="node18" href="$class_porter.html#a485f69d6797fce65144e0596f3190c2d" title="Porter::StemSeis" alt="" coords="721,410,843,437"/>
+<area shape="rect" id="node20" href="$class_porter.html#a1015f959403c55d740fff435f0cae439" title="Porter::StemSiete" alt="" coords="719,461,845,487"/>
+<area shape="rect" id="node21" href="$class_porter.html#a61853073641e47863fc6a85c786d8737" title="Porter::StemOcho" alt="" coords="719,309,845,335"/>
+<area shape="rect" id="node22" href="$class_porter.html#afbe6ae10a924a4419e62a20babe3be7d" title="Porter::Eval" alt="" coords="519,373,610,399"/>
+<area shape="rect" id="node19" href="$class_porter.html#a1420c413bb564a22e4fc0c6627e1870b" title="Porter::getRegion2" alt="" coords="908,378,1039,405"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="Porter::Eval" name="Porter::Eval">
+<area shape="rect" id="node2" href="$class_porter.html#a2000ce7eeabb3a7d9593fa9790a4fdc4" title="Porter::getPreceder" alt="" coords="144,157,279,184"/>
+<area shape="rect" id="node3" href="$class_porter.html#a33838d3b5ab4963106a5c47c4a0c74e6" title="Porter::StemDos" alt="" coords="334,5,454,32"/>
+<area shape="rect" id="node7" href="$class_porter.html#a4aadb1440bc5f143aba28641cab26ff6" title="Porter::StemTres" alt="" coords="333,56,455,83"/>
+<area shape="rect" id="node9" href="$class_porter.html#aa1e1b416311f37b827bc093bb03ca500" title="Porter::StemCuatro" alt="" coords="327,157,461,184"/>
+<area shape="rect" id="node11" href="$class_porter.html#a916f45b55a1bbdaff7ce1db3d9a42813" title="Porter::StemCinco" alt="" coords="329,208,459,235"/>
+<area shape="rect" id="node13" href="$class_porter.html#a1015f959403c55d740fff435f0cae439" title="Porter::StemSiete" alt="" coords="331,259,457,285"/>
+<area shape="rect" id="node4" href="$class_porter.html#af7f1d6892ca1ed4e22986c48be2365d6" title="Porter::GoGoPorterNumeroDos" alt="" coords="509,107,713,133"/>
+<area shape="rect" id="node6" href="$porter_tests_8cpp.html#a0f18a69ed5ea571fe0ccf8f2c71190e4" title="TEST" alt="" coords="583,5,639,32"/>
+<area shape="rect" id="node5" href="$porter_tests_8cpp.html#a3a15e1c0200735dc797f715112dcf565" title="TEST" alt="" coords="761,107,817,133"/>
+<area shape="rect" id="node8" href="$porter_tests_8cpp.html#a94b17cc28ef5bf236185a75240db690b" title="TEST" alt="" coords="583,56,639,83"/>
+<area shape="rect" id="node10" href="$porter_tests_8cpp.html#a68d3aa57e80066560b71a69ba42a3f9c" title="TEST" alt="" coords="583,157,639,184"/>
+<area shape="rect" id="node12" href="$porter_tests_8cpp.html#a3c79c26dd1d97561141664ff3ae987d6" title="TEST" alt="" coords="583,208,639,235"/>
+<area shape="rect" id="node14" href="$porter_tests_8cpp.html#ab97c0103e4998645059f77c534dc47b5" title="TEST" alt="" coords="583,259,639,285"/>
+</map>

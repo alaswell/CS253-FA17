@@ -1,0 +1,189 @@
+\hypertarget{classPorter}{}\section{Porter Class Reference}
+\label{classPorter}\index{Porter@{Porter}}
+
+
+An implementation of the \hyperlink{classPorter}{Porter} Algorithm \#2.  
+
+
+
+
+{\ttfamily \#include $<$Porter.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPorter_a04be3733ab5109a1cf6131de05cc5961}\label{classPorter_a04be3733ab5109a1cf6131de05cc5961}} 
+\hyperlink{classPorter_a04be3733ab5109a1cf6131de05cc5961}{Porter} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+string \hyperlink{classPorter_a9e33d06b477f04db7c8cee07e85e8bcb}{get\+Region} (const string \&str) const
+\item 
+string \hyperlink{classPorter_a1420c413bb564a22e4fc0c6627e1870b}{get\+Region2} (const string \&str) const
+\item 
+\mbox{\Hypertarget{classPorter_a2000ce7eeabb3a7d9593fa9790a4fdc4}\label{classPorter_a2000ce7eeabb3a7d9593fa9790a4fdc4}} 
+string {\bfseries get\+Preceder} (const string \&str, const unsigned long long len) const
+\item 
+bool \hyperlink{classPorter_a7c8a4b3b6103ce655e8ffc8a3eba1897}{is\+Double} (const string \&str) const
+\item 
+bool \hyperlink{classPorter_a35b1cc5606d4e78d1f69ac4037fdde87}{is\+Short} (const string \&str) const
+\item 
+bool \hyperlink{classPorter_a36e6678f68a4cc29371cc0111a8c8860}{is\+Short\+Syllable} (const string \&str) const
+\item 
+bool \hyperlink{classPorter_ac53ad85d5d3178b72178a4d89137b55e}{is\+Validli} (const string \&str) const
+\item 
+bool \hyperlink{classPorter_ab16d2762c47b86b9a161be3d2c44203e}{is\+Vowel} (const string \&str, unsigned long long loc) const
+\item 
+\mbox{\Hypertarget{classPorter_a9da79dd6524131e703619d3e301e896a}\label{classPorter_a9da79dd6524131e703619d3e301e896a}} 
+bool {\bfseries is\+Valid} (const string \&str) const
+\item 
+void \hyperlink{classPorter_aba12641d0e612b264097a35e4f2ffb45}{replace} (string \&str, const string replacement, const int length) const
+\item 
+void \hyperlink{classPorter_af7f1d6892ca1ed4e22986c48be2365d6}{Go\+Go\+Porter\+Numero\+Dos} (string \&str, unsigned long long size) const
+\item 
+void \hyperlink{classPorter_ad8b63c9741655393ff9c849d269c953a}{Stem\+Uno} (string \&str, const unsigned long long size) const
+\item 
+void \hyperlink{classPorter_a33838d3b5ab4963106a5c47c4a0c74e6}{Stem\+Dos} (string \&str, const unsigned long long size) const
+\item 
+void \hyperlink{classPorter_a4aadb1440bc5f143aba28641cab26ff6}{Stem\+Tres} (string \&str, const unsigned long long size) const
+\item 
+void \hyperlink{classPorter_ac5e4f3909a27316c6997c92a0019eaaf}{Stem\+Tres\+Alpha} (string \&str, const string \&preceder, const unsigned long long length) const
+\item 
+void \hyperlink{classPorter_aa1e1b416311f37b827bc093bb03ca500}{Stem\+Cuatro} (string \&str, const unsigned long long size) const
+\item 
+void \hyperlink{classPorter_a916f45b55a1bbdaff7ce1db3d9a42813}{Stem\+Cinco} (string \&str, const unsigned long long size) const
+\item 
+void \hyperlink{classPorter_a485f69d6797fce65144e0596f3190c2d}{Stem\+Seis} (string \&str, const unsigned long long size) const
+\item 
+void \hyperlink{classPorter_a1015f959403c55d740fff435f0cae439}{Stem\+Siete} (string \&str, const unsigned long long size) const
+\item 
+void \hyperlink{classPorter_a61853073641e47863fc6a85c786d8737}{Stem\+Ocho} (string \&str, const unsigned long long size) const
+\item 
+void \hyperlink{classPorter_afbe6ae10a924a4419e62a20babe3be7d}{Eval} (\hyperlink{classHistogram}{Histogram} \&Hist, unordered\+\_\+map$<$ string, string $>$ \&map) const
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An implementation of the \hyperlink{classPorter}{Porter} Algorithm \#2. 
+
+A class for parsing grammatical suffixes given specific conditions and replacements 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classPorter_afbe6ae10a924a4419e62a20babe3be7d}\label{classPorter_afbe6ae10a924a4419e62a20babe3be7d}} 
+\index{Porter@{Porter}!Eval@{Eval}}
+\index{Eval@{Eval}!Porter@{Porter}}
+\subsubsection{\texorpdfstring{Eval()}{Eval()}}
+{\footnotesize\ttfamily void Porter\+::\+Eval (\begin{DoxyParamCaption}\item[{\hyperlink{classHistogram}{Histogram} \&}]{Hist,  }\item[{unordered\+\_\+map$<$ string, string $>$ \&}]{map }\end{DoxyParamCaption}) const}
+
+Evaluation operator. Takes a \hyperlink{classHistogram}{Histogram} and applies an 8-\/step algorithm to the strings within the .histogram in order to stem them before counting \mbox{\Hypertarget{classPorter_a9e33d06b477f04db7c8cee07e85e8bcb}\label{classPorter_a9e33d06b477f04db7c8cee07e85e8bcb}} 
+\index{Porter@{Porter}!get\+Region@{get\+Region}}
+\index{get\+Region@{get\+Region}!Porter@{Porter}}
+\subsubsection{\texorpdfstring{get\+Region()}{getRegion()}}
+{\footnotesize\ttfamily string Porter\+::get\+Region (\begin{DoxyParamCaption}\item[{const string \&}]{str }\end{DoxyParamCaption}) const}
+
+get\+Region(str) Takes a string and returns the defined \char`\"{}\+Region1\char`\"{} \mbox{\Hypertarget{classPorter_a1420c413bb564a22e4fc0c6627e1870b}\label{classPorter_a1420c413bb564a22e4fc0c6627e1870b}} 
+\index{Porter@{Porter}!get\+Region2@{get\+Region2}}
+\index{get\+Region2@{get\+Region2}!Porter@{Porter}}
+\subsubsection{\texorpdfstring{get\+Region2()}{getRegion2()}}
+{\footnotesize\ttfamily string Porter\+::get\+Region2 (\begin{DoxyParamCaption}\item[{const string \&}]{str }\end{DoxyParamCaption}) const}
+
+get\+Region2(str) Takes a string and returns the defined \char`\"{}\+Region2\char`\"{} R\+E\+L\+A\+T\+I\+VE TO T\+HE O\+R\+I\+G\+I\+N\+AL W\+O\+RD P\+ER IN C\+L\+A\+SS D\+I\+S\+C\+U\+S\+S\+I\+ON 10/10 \mbox{\Hypertarget{classPorter_af7f1d6892ca1ed4e22986c48be2365d6}\label{classPorter_af7f1d6892ca1ed4e22986c48be2365d6}} 
+\index{Porter@{Porter}!Go\+Go\+Porter\+Numero\+Dos@{Go\+Go\+Porter\+Numero\+Dos}}
+\index{Go\+Go\+Porter\+Numero\+Dos@{Go\+Go\+Porter\+Numero\+Dos}!Porter@{Porter}}
+\subsubsection{\texorpdfstring{Go\+Go\+Porter\+Numero\+Dos()}{GoGoPorterNumeroDos()}}
+{\footnotesize\ttfamily void Porter\+::\+Go\+Go\+Porter\+Numero\+Dos (\begin{DoxyParamCaption}\item[{string \&}]{str,  }\item[{unsigned long long}]{size }\end{DoxyParamCaption}) const}
+
+Execute \hyperlink{classPorter}{Porter} Algorithm \#2 Takes a string and its size iterates through \hyperlink{classPorter}{Porter}\#2 to systematically stem away the suffix \mbox{\Hypertarget{classPorter_a7c8a4b3b6103ce655e8ffc8a3eba1897}\label{classPorter_a7c8a4b3b6103ce655e8ffc8a3eba1897}} 
+\index{Porter@{Porter}!is\+Double@{is\+Double}}
+\index{is\+Double@{is\+Double}!Porter@{Porter}}
+\subsubsection{\texorpdfstring{is\+Double()}{isDouble()}}
+{\footnotesize\ttfamily bool Porter\+::is\+Double (\begin{DoxyParamCaption}\item[{const string \&}]{str }\end{DoxyParamCaption}) const}
+
+is\+Exception(str, size, map) Takes a string and a map of exceptions and checks to see if the string exists returns true if str is found in map is\+Double(str) Takes a string returns true if it is any of \{\textquotesingle{}bb\textquotesingle{}, \textquotesingle{}dd\textquotesingle{}, \textquotesingle{}ff\textquotesingle{}, \textquotesingle{}gg\textquotesingle{}, \textquotesingle{}mm\textquotesingle{}, \textquotesingle{}nn\textquotesingle{}, \textquotesingle{}pp\textquotesingle{}, \textquotesingle{}rr\textquotesingle{}, \textquotesingle{}tt\textquotesingle{}\} all other strings return false \mbox{\Hypertarget{classPorter_a35b1cc5606d4e78d1f69ac4037fdde87}\label{classPorter_a35b1cc5606d4e78d1f69ac4037fdde87}} 
+\index{Porter@{Porter}!is\+Short@{is\+Short}}
+\index{is\+Short@{is\+Short}!Porter@{Porter}}
+\subsubsection{\texorpdfstring{is\+Short()}{isShort()}}
+{\footnotesize\ttfamily bool Porter\+::is\+Short (\begin{DoxyParamCaption}\item[{const string \&}]{str }\end{DoxyParamCaption}) const}
+
+is\+Short(str) Takes a string returns true if it both 1) its Region1 is empty 2) it ends in a short-\/syllable \mbox{\Hypertarget{classPorter_a36e6678f68a4cc29371cc0111a8c8860}\label{classPorter_a36e6678f68a4cc29371cc0111a8c8860}} 
+\index{Porter@{Porter}!is\+Short\+Syllable@{is\+Short\+Syllable}}
+\index{is\+Short\+Syllable@{is\+Short\+Syllable}!Porter@{Porter}}
+\subsubsection{\texorpdfstring{is\+Short\+Syllable()}{isShortSyllable()}}
+{\footnotesize\ttfamily bool Porter\+::is\+Short\+Syllable (\begin{DoxyParamCaption}\item[{const string \&}]{str }\end{DoxyParamCaption}) const}
+
+is\+Short\+Syllable(str) Takes a string returns true if either 1) it is only 2 chars long and is a vowel followed by a non-\/vowel 2) ends with a non-\/vowel followed by a vowel followed by a non-\/vowel that is not \{\textquotesingle{}w\textquotesingle{}, \textquotesingle{}x\textquotesingle{}, \textquotesingle{}y\textquotesingle{}\} \mbox{\Hypertarget{classPorter_ac53ad85d5d3178b72178a4d89137b55e}\label{classPorter_ac53ad85d5d3178b72178a4d89137b55e}} 
+\index{Porter@{Porter}!is\+Validli@{is\+Validli}}
+\index{is\+Validli@{is\+Validli}!Porter@{Porter}}
+\subsubsection{\texorpdfstring{is\+Validli()}{isValidli()}}
+{\footnotesize\ttfamily bool Porter\+::is\+Validli (\begin{DoxyParamCaption}\item[{const string \&}]{str }\end{DoxyParamCaption}) const}
+
+is\+Validli(str) Takes a string (preceder to an li-\/ending) returns true if it is any of \{\textquotesingle{}c\textquotesingle{}, \textquotesingle{}d\textquotesingle{}, \textquotesingle{}e\textquotesingle{}, \textquotesingle{}g\textquotesingle{}, \textquotesingle{}h\textquotesingle{}, \textquotesingle{}k\textquotesingle{}, \textquotesingle{}m\textquotesingle{}, \textquotesingle{}n\textquotesingle{}, \textquotesingle{}r\textquotesingle{}, \textquotesingle{}t\textquotesingle{}\} all other chars return false; \mbox{\Hypertarget{classPorter_ab16d2762c47b86b9a161be3d2c44203e}\label{classPorter_ab16d2762c47b86b9a161be3d2c44203e}} 
+\index{Porter@{Porter}!is\+Vowel@{is\+Vowel}}
+\index{is\+Vowel@{is\+Vowel}!Porter@{Porter}}
+\subsubsection{\texorpdfstring{is\+Vowel()}{isVowel()}}
+{\footnotesize\ttfamily bool Porter\+::is\+Vowel (\begin{DoxyParamCaption}\item[{const string \&}]{str,  }\item[{unsigned long long}]{loc }\end{DoxyParamCaption}) const}
+
+is\+Vowel(str, int) Takes a string and a location of a char checks to see if said char is a vowel all other chars return false \mbox{\Hypertarget{classPorter_aba12641d0e612b264097a35e4f2ffb45}\label{classPorter_aba12641d0e612b264097a35e4f2ffb45}} 
+\index{Porter@{Porter}!replace@{replace}}
+\index{replace@{replace}!Porter@{Porter}}
+\subsubsection{\texorpdfstring{replace()}{replace()}}
+{\footnotesize\ttfamily void Porter\+::replace (\begin{DoxyParamCaption}\item[{string \&}]{str,  }\item[{const string}]{replacement,  }\item[{const int}]{length }\end{DoxyParamCaption}) const}
+
+replace method input\+: string, replacement, length returns string with replacement at length expects 0 $<$= length $<$= str.\+size() \mbox{\Hypertarget{classPorter_a916f45b55a1bbdaff7ce1db3d9a42813}\label{classPorter_a916f45b55a1bbdaff7ce1db3d9a42813}} 
+\index{Porter@{Porter}!Stem\+Cinco@{Stem\+Cinco}}
+\index{Stem\+Cinco@{Stem\+Cinco}!Porter@{Porter}}
+\subsubsection{\texorpdfstring{Stem\+Cinco()}{StemCinco()}}
+{\footnotesize\ttfamily void Porter\+::\+Stem\+Cinco (\begin{DoxyParamCaption}\item[{string \&}]{str,  }\item[{const unsigned long long}]{size }\end{DoxyParamCaption}) const}
+
+Stem\+Cinco(str, int) Step \#5 of the \hyperlink{classPorter}{Porter} Algorithm Takes a string and its size and parses off\+: \{\char`\"{}ization\char`\"{}, \char`\"{}ational\char`\"{}, \char`\"{}fulness\char`\"{}, \char`\"{}ousness\char`\"{}, \char`\"{}iveness\char`\"{}, \char`\"{}tional\char`\"{}, \char`\"{}biliti\char`\"{}, \char`\"{}lessli\char`\"{}, \char`\"{}entli\char`\"{}, \char`\"{}ation\char`\"{}, \char`\"{}alism\char`\"{}, \char`\"{}aliti\char`\"{}, \char`\"{}ousli\char`\"{}, \char`\"{}iviti\char`\"{}, \char`\"{}fulli\char`\"{}, \char`\"{}enci\char`\"{}, \char`\"{}anci\char`\"{}, \char`\"{}abli\char`\"{}, \char`\"{}izer\char`\"{}, \char`\"{}ator\char`\"{}, \char`\"{}alli\char`\"{}, \char`\"{}bli\char`\"{}, \char`\"{}ogi\char`\"{}, \char`\"{}li\char`\"{}\} phew! \mbox{\Hypertarget{classPorter_aa1e1b416311f37b827bc093bb03ca500}\label{classPorter_aa1e1b416311f37b827bc093bb03ca500}} 
+\index{Porter@{Porter}!Stem\+Cuatro@{Stem\+Cuatro}}
+\index{Stem\+Cuatro@{Stem\+Cuatro}!Porter@{Porter}}
+\subsubsection{\texorpdfstring{Stem\+Cuatro()}{StemCuatro()}}
+{\footnotesize\ttfamily void Porter\+::\+Stem\+Cuatro (\begin{DoxyParamCaption}\item[{string \&}]{str,  }\item[{const unsigned long long}]{size }\end{DoxyParamCaption}) const}
+
+Stem\+Cuatro(str, int) Step \#4 of the \hyperlink{classPorter}{Porter} Algorithm Takes a string and its size and parses off\+: \{\char`\"{}y\char`\"{}\} \mbox{\Hypertarget{classPorter_a33838d3b5ab4963106a5c47c4a0c74e6}\label{classPorter_a33838d3b5ab4963106a5c47c4a0c74e6}} 
+\index{Porter@{Porter}!Stem\+Dos@{Stem\+Dos}}
+\index{Stem\+Dos@{Stem\+Dos}!Porter@{Porter}}
+\subsubsection{\texorpdfstring{Stem\+Dos()}{StemDos()}}
+{\footnotesize\ttfamily void Porter\+::\+Stem\+Dos (\begin{DoxyParamCaption}\item[{string \&}]{str,  }\item[{const unsigned long long}]{size }\end{DoxyParamCaption}) const}
+
+Stem\+Dos(string) Step \#2 of the \hyperlink{classPorter}{Porter} Algorithm \{\char`\"{}sses\char`\"{}, \char`\"{}ies\char`\"{}, \char`\"{}ied\char`\"{}, \char`\"{}us\char`\"{}, \char`\"{}ss\char`\"{}, \char`\"{}s\char`\"{}\} Find the longest suffix that matches ... \mbox{\Hypertarget{classPorter_a61853073641e47863fc6a85c786d8737}\label{classPorter_a61853073641e47863fc6a85c786d8737}} 
+\index{Porter@{Porter}!Stem\+Ocho@{Stem\+Ocho}}
+\index{Stem\+Ocho@{Stem\+Ocho}!Porter@{Porter}}
+\subsubsection{\texorpdfstring{Stem\+Ocho()}{StemOcho()}}
+{\footnotesize\ttfamily void Porter\+::\+Stem\+Ocho (\begin{DoxyParamCaption}\item[{string \&}]{str,  }\item[{const unsigned long long}]{size }\end{DoxyParamCaption}) const}
+
+Stem\+Ocho(str, int) Step \#8 of the \hyperlink{classPorter}{Porter} Algorithm Takes a string and its size and parses off\+: \{\char`\"{}e\char`\"{}, \char`\"{}l\char`\"{}\} \mbox{\Hypertarget{classPorter_a485f69d6797fce65144e0596f3190c2d}\label{classPorter_a485f69d6797fce65144e0596f3190c2d}} 
+\index{Porter@{Porter}!Stem\+Seis@{Stem\+Seis}}
+\index{Stem\+Seis@{Stem\+Seis}!Porter@{Porter}}
+\subsubsection{\texorpdfstring{Stem\+Seis()}{StemSeis()}}
+{\footnotesize\ttfamily void Porter\+::\+Stem\+Seis (\begin{DoxyParamCaption}\item[{string \&}]{str,  }\item[{const unsigned long long}]{size }\end{DoxyParamCaption}) const}
+
+Stem\+Seis(str, int) Step \#6 of the \hyperlink{classPorter}{Porter} Algorithm Takes a string and its size and parses off\+: \{\char`\"{}ational\char`\"{}, \char`\"{}tional\char`\"{}, \char`\"{}alize\char`\"{}, \char`\"{}ative\char`\"{}, \char`\"{}icate\char`\"{}, \char`\"{}iciti\char`\"{}, \char`\"{}ical\char`\"{}, \char`\"{}ness\char`\"{}, \char`\"{}ful\char`\"{}\} \mbox{\Hypertarget{classPorter_a1015f959403c55d740fff435f0cae439}\label{classPorter_a1015f959403c55d740fff435f0cae439}} 
+\index{Porter@{Porter}!Stem\+Siete@{Stem\+Siete}}
+\index{Stem\+Siete@{Stem\+Siete}!Porter@{Porter}}
+\subsubsection{\texorpdfstring{Stem\+Siete()}{StemSiete()}}
+{\footnotesize\ttfamily void Porter\+::\+Stem\+Siete (\begin{DoxyParamCaption}\item[{string \&}]{str,  }\item[{const unsigned long long}]{size }\end{DoxyParamCaption}) const}
+
+Stem\+Siete(str, int) Step \#7 of the \hyperlink{classPorter}{Porter} Algorithm Takes a string and its size and parses off\+: \{\char`\"{}ement\char`\"{}, \char`\"{}ance\char`\"{}, \char`\"{}ence\char`\"{}, \char`\"{}able\char`\"{}, \char`\"{}ible\char`\"{}, \char`\"{}ment\char`\"{}, \char`\"{}ant\char`\"{}, \char`\"{}ent\char`\"{}, \char`\"{}ism\char`\"{}, \char`\"{}ate\char`\"{}, \char`\"{}iti\char`\"{}, \char`\"{}ous\char`\"{}, \char`\"{}ive\char`\"{}, \char`\"{}ize\char`\"{}, \char`\"{}ion\char`\"{}, \char`\"{}al\char`\"{}, \char`\"{}er\char`\"{}, \char`\"{}ic\char`\"{}\} \mbox{\Hypertarget{classPorter_a4aadb1440bc5f143aba28641cab26ff6}\label{classPorter_a4aadb1440bc5f143aba28641cab26ff6}} 
+\index{Porter@{Porter}!Stem\+Tres@{Stem\+Tres}}
+\index{Stem\+Tres@{Stem\+Tres}!Porter@{Porter}}
+\subsubsection{\texorpdfstring{Stem\+Tres()}{StemTres()}}
+{\footnotesize\ttfamily void Porter\+::\+Stem\+Tres (\begin{DoxyParamCaption}\item[{string \&}]{str,  }\item[{const unsigned long long}]{size }\end{DoxyParamCaption}) const}
+
+Stem\+Tres(str, int) Step \#3 of the \hyperlink{classPorter}{Porter} Algorithm Takes a string and its size and parses off\+: \{\char`\"{}eed\char`\"{}, \char`\"{}eedly\char`\"{}, \char`\"{}ed\char`\"{}, \char`\"{}edly\char`\"{}, \char`\"{}ing\char`\"{}, \char`\"{}ingly\char`\"{}\} Find the longest suffix that matches ... \mbox{\Hypertarget{classPorter_ac5e4f3909a27316c6997c92a0019eaaf}\label{classPorter_ac5e4f3909a27316c6997c92a0019eaaf}} 
+\index{Porter@{Porter}!Stem\+Tres\+Alpha@{Stem\+Tres\+Alpha}}
+\index{Stem\+Tres\+Alpha@{Stem\+Tres\+Alpha}!Porter@{Porter}}
+\subsubsection{\texorpdfstring{Stem\+Tres\+Alpha()}{StemTresAlpha()}}
+{\footnotesize\ttfamily void Porter\+::\+Stem\+Tres\+Alpha (\begin{DoxyParamCaption}\item[{string \&}]{str,  }\item[{const string \&}]{preceder,  }\item[{const unsigned long long}]{length }\end{DoxyParamCaption}) const}
+
+Stem\+Tres\+Alpha(str, int) Takes a string and a length this particular case repeats a lot of requiremnts and it has some aditional special requirements that have to be checked after replacing the suffix This alpha function takes care all of that, rather than copy + pasta everywhere Special Requirements\+: 1) if preceder ends in \{\char`\"{}at\char`\"{}, \char`\"{}bl\char`\"{}, \char`\"{}iz\char`\"{}\} 2) if preceder \hyperlink{classPorter_a7c8a4b3b6103ce655e8ffc8a3eba1897}{is\+Double()} 3) if preceder \hyperlink{classPorter_a35b1cc5606d4e78d1f69ac4037fdde87}{is\+Short()} \mbox{\Hypertarget{classPorter_ad8b63c9741655393ff9c849d269c953a}\label{classPorter_ad8b63c9741655393ff9c849d269c953a}} 
+\index{Porter@{Porter}!Stem\+Uno@{Stem\+Uno}}
+\index{Stem\+Uno@{Stem\+Uno}!Porter@{Porter}}
+\subsubsection{\texorpdfstring{Stem\+Uno()}{StemUno()}}
+{\footnotesize\ttfamily void Porter\+::\+Stem\+Uno (\begin{DoxyParamCaption}\item[{string \&}]{str,  }\item[{const unsigned long long}]{size }\end{DoxyParamCaption}) const}
+
+Stem\+Uno(string) Step \#1 of the \hyperlink{classPorter}{Porter} Algorithm \{\char`\"{}\textquotesingle{}s\textquotesingle{}\char`\"{}, \char`\"{}\textquotesingle{}s\char`\"{}, \char`\"{}\textquotesingle{}\char`\"{}\} and any one leading \char`\"{}\textquotesingle{}\char`\"{} Find the longest suffix that matches the ending of the word If the conditions of the suffix are satisfied, remove the suffix and add the replacement. If the conditions of the suffix are N\+OT satisfied, do nothing 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Porter_8h}{Porter.\+h}\item 
+\hyperlink{Porter_8cpp}{Porter.\+cpp}\end{DoxyCompactItemize}
