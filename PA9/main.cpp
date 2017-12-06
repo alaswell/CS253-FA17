@@ -11,6 +11,7 @@ using std::endl;
 using std::ifstream;
 #include <sstream>
 using std::stringstream;
+#include <omp.h>
 
 /// Print the correct usage in case of user syntax error.
 int Usage(char* arg0, const char* location)
@@ -109,15 +110,19 @@ int main(int argc, char** argv)
   c0.add(h);
 
   // now the rest of them
-  for(vector<string>::iterator it = ++filenames.begin(); it != filenames.end(); ++it) {
-	ifstream istr(*it);
-	if (istr.fail()) return Usage(argv[0], "istr.fail() filenames vector");
+  int error = 0;
+  omp_set_num_threads(6);
+  #pragma omp parallel for private(error)
+  for(unsigned int i = 0; i < filenames.size(); i++) {
+	ifstream istr(filenames[i]);
+	if (istr.fail()) error = 1;
 
 	Histogram h1;
 	ColemanLiau cl1;
 	vector<Lexeme>& hist1 = h1.GetHist();
 
-	if (!h1.Read(istr, hist1)) return Usage(argv[0], "Histogram1::Read()");
+	if (!h1.Read(istr, hist1)) error = 2;
+
 	istr.close();
 
 
@@ -125,7 +130,7 @@ int main(int argc, char** argv)
 	  h1.findCapitals(hist1);
 
 	  // get the Coleman-Liau index 
-	  if (!cl1.Eval(h1)) return Usage(argv[0], "ColemanLiau::Eval()");
+	  if (!cl1.Eval(h1)) error = 3;
 	  h1.SetIndex(cl1.getIndex());
 
 	  // clean up the words a bit
@@ -143,6 +148,11 @@ int main(int argc, char** argv)
   }
 /* end histograms */
 
+  switch(error) { 
+	case 1: return Usage(argv[0], "istr.fail() filenames vector");
+	case 2: return Usage(argv[0], "Histogram1::Read()");
+	case 3: return Usage(argv[0], "ColemanLiau::Eval()");
+  }
 
   vector<Histogram>& cluster = c0.GetCluster();
   map<string, double>& IDF = c0.GetMap();

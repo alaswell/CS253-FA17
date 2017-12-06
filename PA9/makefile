@@ -2,10 +2,10 @@
 
 PNAME = PA9
 CC = g++
-CFLAGS = -std=c++14 -c -I. -Ofast
+CFLAGS = -O3 -fopenmp -std=c++14 -c -I.
 WIPFLAGS = -std=c++14 -g -c -I. -Wall -Wextra -Wpedantic -Werror -Wfatal-errors -Winit-self -Wshadow -Wlogical-op -Wcomment -Wctor-dtor-privacy -Wold-style-cast -D_GLIBCXX_DEBUG -fno-diagnostics-show-option
 FLAGS = $(CFLAGS)
-LFLAGS =-o $(PNAME)
+LFLAGS = -fopenmp -o $(PNAME)
 GFLAGS = -lpthread -lgtest
 
 all: main.o Histogram.o Porter.o Cluster.o ColemanLiau.o
